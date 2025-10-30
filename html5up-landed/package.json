@@ -1,0 +1,18 @@
+{
+  "name": "fantasy-football-dashboard",
+  "version": "1.0.0",
+  "description": "Fantasy Football Dashboard with Sleeper API integration",
+  "type": "module",
+  "scripts": {
+    "dev": "npx netlify dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "npx netlify deploy --prod"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0",
+    "@netlify/functions": "^2.8.2"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.37.1"
+  }
+}

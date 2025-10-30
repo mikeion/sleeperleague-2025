@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Season View - Fantasy League Dashboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Fantasy Dashboard</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="season.html">Season View</a></li>
+							<li><a href="weekly.html">Weekly Recap</a></li>
+							<li><a href="alltime.html">Sleeper Era</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2 id="season-title">2025 Season</h2>
+							<p id="season-subtitle">Complete season statistics and analysis</p>
+							<div style="margin-top: 20px;">
+								<label for="season-select" style="font-size: 0.9em; margin-right: 10px;">View Season:</label>
+								<select id="season-select" style="padding: 8px 12px; font-size: 0.9em; border-radius: 4px; border: 1px solid #ccc;">
+									<option value="current">Loading seasons...</option>
+								</select>
+							</div>
+						</header>
+
+						<!-- Standings -->
+						<section id="standings" style="margin-bottom: 60px;">
+							<h2>Current Standings</h2>
+							<div class="table-wrapper">
+								<table id="standings-table">
+									<thead>
+										<tr>
+											<th>Rank</th>
+											<th>Manager</th>
+											<th>Team</th>
+											<th>Record</th>
+											<th>PF</th>
+											<th>PA</th>
+											<th>+/-</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr><td colspan="7">Loading standings...</td></tr>
+									</tbody>
+								</table>
+							</div>
+						</section>
+
+						<!-- Power Rankings -->
+						<section id="power-rankings" style="margin-bottom: 60px;">
+							<h2>Power Rankings</h2>
+							<p>Rankings based on performance, points, and strength of schedule</p>
+							<div id="power-rankings-content" style="position: relative; height: 700px; width: 100%;">
+								<canvas id="power-rankings-chart"></canvas>
+							</div>
+						</section>
+
+						<!-- Weekly Stats -->
+						<section id="weekly-stats" style="margin-bottom: 60px;">
+							<h2>Season Scoring Heatmap</h2>
+							<p>Weekly performance at a glance - darker = higher score</p>
+							<div id="heatmap-container" style="overflow-x: auto; margin: 20px 0;">
+								<div id="weekly-heatmap"></div>
+							</div>
+							<div style="margin-top: 40px;">
+								<h3>Weekly Scoring Trends</h3>
+								<p style="font-size: 0.9em;">Select teams to compare (click legend to show/hide):</p>
+								<div style="position: relative; height:400px; width:100%">
+									<canvas id="weekly-chart"></canvas>
+								</div>
+							</div>
+						</section>
+
+						<!-- Manager Analysis -->
+						<section id="manager-analysis" style="margin-bottom: 60px;">
+							<h2>Manager Performance</h2>
+							<p>Unique insights you won't find in the Sleeper app</p>
+							<div class="table-wrapper">
+								<table id="manager-details-table">
+									<thead>
+										<tr>
+											<th>Team</th>
+											<th>Record</th>
+											<th>Avg Score</th>
+											<th>High Score</th>
+											<th>Low Score</th>
+											<th>Luck Index</th>
+											<th>Consistency</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr><td colspan="7">Loading data...</td></tr>
+									</tbody>
+								</table>
+							</div>
+						</section>
+
+						<!-- Waiver Wire & Management -->
+						<section id="waiver-analysis" style="margin-bottom: 60px;">
+							<h2>Waiver Wire & Roster Management</h2>
+							<p>Who's working the wire and making smart moves?</p>
+
+							<div class="row" style="margin-bottom: 40px;">
+								<div class="col-6 col-12-medium">
+									<h3>FAAB Spending Leaders</h3>
+									<div class="table-wrapper">
+										<table id="faab-table">
+											<thead>
+												<tr>
+													<th>Team</th>
+													<th>Total Spent</th>
+													<th>Remaining</th>
+													<th>Claims</th>
+													<th>Pickups</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr><td colspan="5">Loading...</td></tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="col-6 col-12-medium">
+									<h3>Most Active Managers</h3>
+									<div class="table-wrapper">
+										<table id="activity-table">
+											<thead>
+												<tr>
+													<th>Team</th>
+													<th>Waiver</th>
+													<th>FA</th>
+													<th>Trades</th>
+													<th>Total</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr><td colspan="5">Loading...</td></tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+							<div style="margin-top: 40px;">
+								<h3>Recent Waiver Activity</h3>
+								<p style="font-size: 0.9em;">Last 15 waiver wire moves</p>
+								<div class="table-wrapper">
+									<table id="recent-waivers-table">
+										<thead>
+											<tr>
+												<th>Week</th>
+												<th>Team</th>
+												<th>Added</th>
+												<th>Dropped</th>
+												<th>Bid</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr><td colspan="5">Loading...</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div style="margin-top: 40px;">
+								<h3>Trade Activity</h3>
+								<div id="trades-container">
+									<p>Loading trades...</p>
+								</div>
+							</div>
+						</section>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Fantasy League Dashboard</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/league-data.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				initDashboard();
+			});
+		</script>
+
+	</body>
+</html>

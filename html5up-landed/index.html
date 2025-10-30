@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Fantasy League Dashboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	</head>
+	<body class="is-preload landing">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Fantasy Dashboard</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="season.html">Season View</a></li>
+							<li><a href="weekly.html">Weekly Recap</a></li>
+							<li><a href="alltime.html">Sleeper Era</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Banner -->
+				<section id="banner">
+					<div class="content">
+						<header>
+							<h2 id="league-name">Loading League...</h2>
+							<p id="league-subtitle">League stats and insights</p>
+						</header>
+					</div>
+					<a href="#one" class="goto-next scrolly">Next</a>
+				</section>
+
+			<!-- One - Current Standings -->
+				<section id="one" class="spotlight style1 bottom">
+					<span class="image fit main"><img src="images/pic02.jpg" alt="" /></span>
+					<div class="content">
+						<div class="container">
+							<header class="major">
+								<h2>Current Season Standings</h2>
+								<p id="current-week-display">Loading...</p>
+							</header>
+							<div id="standings-preview"></div>
+							<ul class="actions special">
+								<li><a href="season.html" class="button">View Full Season Stats</a></li>
+							</ul>
+						</div>
+					</div>
+					<a href="#two" class="goto-next scrolly">Next</a>
+				</section>
+
+			<!-- Two - This Week -->
+				<section id="two" class="spotlight style2 right">
+					<span class="image fit main"><img src="images/pic03.jpg" alt="" /></span>
+					<div class="content">
+						<header>
+							<h2>This Week's Action</h2>
+							<p id="weekly-subtitle">Latest matchups and highlights</p>
+						</header>
+						<div id="weekly-preview"></div>
+						<ul class="actions">
+							<li><a href="weekly.html" class="button">View Weekly Recap</a></li>
+						</ul>
+					</div>
+					<a href="#three" class="goto-next scrolly">Next</a>
+				</section>
+
+			<!-- Three - Sleeper Era Stats -->
+				<section id="three" class="spotlight style3 left">
+					<span class="image fit main bottom"><img src="images/pic04.jpg" alt="" /></span>
+					<div class="content">
+						<header>
+							<h2>Sleeper Era Legends</h2>
+							<p>Career statistics from 2022-present</p>
+						</header>
+						<div id="alltime-preview"></div>
+						<ul class="actions">
+							<li><a href="alltime.html" class="button">View Sleeper Era Stats</a></li>
+						</ul>
+					</div>
+					<a href="#four" class="goto-next scrolly">Next</a>
+				</section>
+
+			<!-- Four - Quick Stats Grid -->
+				<section id="four" class="wrapper style1 special fade-up">
+					<div class="container">
+						<header class="major">
+							<h2>What's Inside</h2>
+							<p>Track league performance and history</p>
+						</header>
+						<div class="box alt">
+							<div class="row gtr-uniform">
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-chart-area"></span>
+									<h3>Power Rankings</h3>
+									<p>Visual rankings based on wins, points, and strength of schedule.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-trophy"></span>
+									<h3>Dynasty Rankings</h3>
+									<p>Career statistics, championships, and win rates across all Sleeper seasons.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-chart-line"></span>
+									<h3>Weekly Trends</h3>
+									<p>Scoring heatmaps and line charts showing performance over time.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-exchange-alt"></span>
+									<h3>Waiver Wire</h3>
+									<p>FAAB spending, waiver activity, and recent pickups.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-handshake"></span>
+									<h3>Trade Tracker</h3>
+									<p>Complete trade history with player details.</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<span class="icon solid alt major fa-fire"></span>
+									<h3>Weekly Highlights</h3>
+									<p>Top scores, blowouts, and close matchups from each week.</p>
+								</section>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Fantasy League Dashboard</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/league-data.js"></script>
+		<script>
+			// Initialize home page with preview data
+			document.addEventListener('DOMContentLoaded', async () => {
+				await initHomePage();
+			});
+		</script>
+
+	</body>
+</html>

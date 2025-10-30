@@ -1,0 +1,9 @@
+# Netlify configuration file
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Scheduled function configuration
+[[plugins]]
+  package = "@netlify/plugin-functions"

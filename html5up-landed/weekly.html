@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Weekly Recap - Fantasy League Dashboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Fantasy Dashboard</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="season.html">Season View</a></li>
+							<li><a href="weekly.html">Weekly Recap</a></li>
+							<li><a href="alltime.html">Sleeper Era</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2>Weekly Recap</h2>
+							<p id="weekly-subtitle">Highlights from the most recent week</p>
+							<div style="margin-top: 20px;">
+								<label for="week-select" style="font-size: 0.9em; margin-right: 10px;">Select Week:</label>
+								<select id="week-select" style="padding: 8px 12px; font-size: 0.9em; border-radius: 4px; border: 1px solid #ccc;">
+									<option value="current">Loading weeks...</option>
+								</select>
+							</div>
+						</header>
+
+						<!-- Weekly Content -->
+						<section id="weekly-content">
+							<p style="text-align: center;">Loading weekly recap...</p>
+						</section>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Fantasy League Dashboard</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/league-data.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				renderWeeklyRecap();
+			});
+		</script>
+
+	</body>
+</html>

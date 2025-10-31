@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Extract playoff results (champion and runner-up) from Sleeper API
+Extract playoff results (champion, runner-up, 3rd, 4th, and Sacko) from Sleeper API
 """
 import requests
 import json
@@ -35,69 +35,90 @@ def get_username_from_roster(league_id, roster_id):
     return profile.get('username') if profile else None
 
 def parse_playoff_bracket(league_id, year):
-    """Parse playoff bracket to find champion and runner-up"""
-    # Get winners bracket
-    bracket_url = f"https://api.sleeper.app/v1/league/{league_id}/winners_bracket"
-    resp = requests.get(bracket_url)
+    """Parse playoff bracket to find champion, runner-up, 3rd, 4th, and Sacko"""
+    # Get winners and losers brackets
+    winners_url = f"https://api.sleeper.app/v1/league/{league_id}/winners_bracket"
+    losers_url = f"https://api.sleeper.app/v1/league/{league_id}/losers_bracket"
 
-    if resp.status_code != 200:
+    winners_resp = requests.get(winners_url)
+    losers_resp = requests.get(losers_url)
+
+    if winners_resp.status_code != 200:
         print(f"  No playoff bracket for {year}")
         return None
 
-    bracket = resp.json()
+    winners_bracket = winners_resp.json()
+    losers_bracket = losers_resp.json() if losers_resp.status_code == 200 else []
 
-    # The championship game is typically the last matchup with round = 2 or the final matchup
-    # We need to find the matchup where both teams came from semifinals
-
-    # Build a mapping of matchup flow
-    # Look for the final matchup (should have highest matchup id or be marked as championship)
-
-    # Strategy: Find matchup where both participants came from winner's bracket semifinals
-    # The championship is the matchup that determines the overall winner
-
-    # Look at the bracket structure - find matchup with no "parent" (no other matchup feeds into it)
-    matchup_sources = {}
-    for matchup in bracket:
-        m_id = matchup.get('m')
-        t1_from = matchup.get('t1_from')
-        t2_from = matchup.get('t2_from')
-
-        if t1_from:
-            matchup_sources[t1_from.get('w')] = True
-        if t2_from:
-            matchup_sources[t2_from.get('w')] = True
-
-    # Find matchup that isn't a source for another matchup (the final)
-    championship_matchup = None
-    for matchup in bracket:
-        m_id = matchup.get('m')
-        if m_id not in matchup_sources:
-            # This matchup doesn't feed into another - it's likely the championship
-            championship_matchup = matchup
-            break
-
-    if not championship_matchup:
-        # Fallback: last matchup in bracket
-        championship_matchup = bracket[-1]
-
-    # Extract champion and runner-up
-    champion_roster = championship_matchup.get('w')
-    team1 = championship_matchup.get('t1')
-    team2 = championship_matchup.get('t2')
-
-    # Runner-up is the other team in championship game
-    runner_up_roster = team2 if champion_roster == team1 else team1
-
-    champion_username = get_username_from_roster(league_id, champion_roster)
-    runner_up_username = get_username_from_roster(league_id, runner_up_roster)
-
-    return {
+    results = {
         'year': year,
-        'champion': champion_username,
-        'runner_up': runner_up_username,
-        'champion_roster_id': champion_roster,
-        'runner_up_roster_id': runner_up_roster
+        'champion': None,
+        'runner_up': None,
+        'third_place': None,
+        'fourth_place': None,
+        'fifth_place': None,
+        'sixth_place': None,
+        'seventh_place': None,
+        'eighth_place': None,
+        'sacko': None
     }
+
+    # Parse winners bracket - look for placement markers
+    for matchup in winners_bracket:
+        p = matchup.get('p')  # placement indicator
+
+        if p == 1:  # Championship game
+            champion_roster = matchup.get('w')
+            team1 = matchup.get('t1')
+            team2 = matchup.get('t2')
+            loser_roster = team2 if champion_roster == team1 else team1
+
+            results['champion'] = get_username_from_roster(league_id, champion_roster)
+            results['runner_up'] = get_username_from_roster(league_id, loser_roster)
+
+        elif p == 3:  # 3rd place game
+            winner_roster = matchup.get('w')
+            team1 = matchup.get('t1')
+            team2 = matchup.get('t2')
+            loser_roster = team2 if winner_roster == team1 else team1
+
+            results['third_place'] = get_username_from_roster(league_id, winner_roster)
+            results['fourth_place'] = get_username_from_roster(league_id, loser_roster)
+
+        elif p == 5:  # 5th place game
+            winner_roster = matchup.get('w')
+            team1 = matchup.get('t1')
+            team2 = matchup.get('t2')
+            loser_roster = team2 if winner_roster == team1 else team1
+
+            results['fifth_place'] = get_username_from_roster(league_id, winner_roster)
+            results['sixth_place'] = get_username_from_roster(league_id, loser_roster)
+
+        elif p == 7:  # 7th place game
+            winner_roster = matchup.get('w')
+            team1 = matchup.get('t1')
+            team2 = matchup.get('t2')
+            loser_roster = team2 if winner_roster == team1 else team1
+
+            results['seventh_place'] = get_username_from_roster(league_id, winner_roster)
+            results['eighth_place'] = get_username_from_roster(league_id, loser_roster)
+
+    # Parse losers bracket for Sacko
+    # The Toilet Bowl championship (p=1 in losers bracket): winner gets the Sacko trophy
+    # The "winner" of the losers bracket final "wins" last place
+    for matchup in losers_bracket:
+        p = matchup.get('p')
+
+        if p == 1:  # Toilet Bowl final - winner gets the Sacko (last place trophy)
+            winner_roster = matchup.get('w')
+            results['sacko'] = get_username_from_roster(league_id, winner_roster)
+
+    # Validate we got at least champion and runner-up
+    if not results['champion'] or not results['runner_up']:
+        print(f"  Could not identify champion and runner-up")
+        return None
+
+    return results
 
 def main():
     print("Extracting Sleeper playoff results...")
@@ -114,6 +135,20 @@ def main():
             playoff_results.append(result)
             print(f"  Champion: {result['champion']}")
             print(f"  Runner-up: {result['runner_up']}")
+            if result['third_place']:
+                print(f"  3rd Place: {result['third_place']}")
+            if result['fourth_place']:
+                print(f"  4th Place: {result['fourth_place']}")
+            if result['fifth_place']:
+                print(f"  5th Place: {result['fifth_place']}")
+            if result['sixth_place']:
+                print(f"  6th Place: {result['sixth_place']}")
+            if result['seventh_place']:
+                print(f"  7th Place: {result['seventh_place']}")
+            if result['eighth_place']:
+                print(f"  8th Place: {result['eighth_place']}")
+            if result['sacko']:
+                print(f"  Sacko: {result['sacko']}")
         else:
             print(f"  Could not determine playoff results")
 

@@ -1176,6 +1176,18 @@ async function renderAllTimeStats() {
             console.log('No Yahoo data available:', yahooError);
         }
 
+        // Load Sleeper playoff results
+        let sleeperPlayoffs = null;
+        try {
+            const playoffsResponse = await fetch('/assets/data/sleeper_playoff_results.json');
+            if (playoffsResponse.ok) {
+                sleeperPlayoffs = await playoffsResponse.json();
+                console.log('Sleeper playoff results loaded:', sleeperPlayoffs);
+            }
+        } catch (playoffsError) {
+            console.log('No Sleeper playoff results:', playoffsError);
+        }
+
         // Get all available seasons
         const sleeperSeasons = await loadAvailableSeasons();
 
@@ -1217,6 +1229,7 @@ async function renderAllTimeStats() {
                     seasons: [],
                     championships: mflManager.totals.championships,
                     runnerUps: 0,
+                    sackos: 0,
                     playoffAppearances: 0,
                     totalWins: mflManager.totals.wins,
                     totalLosses: mflManager.totals.losses,
@@ -1277,6 +1290,7 @@ async function renderAllTimeStats() {
                         seasons: [],
                         championships: 0,
                         runnerUps: 0,
+                        sackos: 0,
                         playoffAppearances: 0,
                         totalWins: 0,
                         totalLosses: 0,
@@ -1361,6 +1375,7 @@ async function renderAllTimeStats() {
                             seasons: [],
                             championships: 0,
                             runnerUps: 0,
+                            sackos: 0,
                             playoffAppearances: 0,
                             totalWins: 0,
                             totalLosses: 0,
@@ -1405,59 +1420,41 @@ async function renderAllTimeStats() {
                     existingManager.totalPointsAgainst += seasonPointsAgainst;
                 }
 
-                // Try to determine champion from winners bracket
-                try {
-                    const winnersbracket = await fetchData(`${API_BASE}/league/${season.leagueId}/winners_bracket`);
-                    if (winnersbracket && winnersbracket.length > 0) {
-                        // Find the championship match (placement = 1 means 1st place game)
-                        const championshipMatch = winnersbracket.find(m => m.p === 1);
+                // Use pre-extracted playoff results
+                if (sleeperPlayoffs) {
+                    const yearPlayoffs = sleeperPlayoffs.find(p => p.year === season.season);
+                    if (yearPlayoffs) {
+                        let championName = null;
+                        let runnerUpName = null;
 
-                        if (championshipMatch) {
-                            // Winner is the roster_id stored in 'w' field
-                            const championRosterId = championshipMatch.w;
-                            const championRoster = rosters.find(r => r.roster_id === championRosterId);
-                            let championName = null;
-                            let runnerUpName = null;
-
-                            if (championRoster) {
-                                const championUser = users.find(u => u.user_id === championRoster.owner_id);
-                                if (championUser) {
-                                    const championUsername = userProfiles[championUser.user_id] || championUser.user_id.toString().toLowerCase();
-                                    if (managerStats[championUsername]) {
-                                        managerStats[championUsername].championships++;
-                                        // Use getDisplayName for first name
-                                        championName = getDisplayName(managerStats[championUsername]);
-                                        console.log(`${championName} won ${season.season} championship`);
-                                    }
-                                }
-                            }
-
-                            // Runner-up is the loser of championship match
-                            const runnerUpRosterId = championshipMatch.t1 === championRosterId ? championshipMatch.t2 : championshipMatch.t1;
-                            const runnerUpRoster = rosters.find(r => r.roster_id === runnerUpRosterId);
-                            if (runnerUpRoster) {
-                                const runnerUpUser = users.find(u => u.user_id === runnerUpRoster.owner_id);
-                                if (runnerUpUser) {
-                                    const runnerUpUsername = userProfiles[runnerUpUser.user_id] || runnerUpUser.user_id.toString().toLowerCase();
-                                    if (managerStats[runnerUpUsername]) {
-                                        managerStats[runnerUpUsername].runnerUps++;
-                                        // Use getDisplayName for first name
-                                        runnerUpName = getDisplayName(managerStats[runnerUpUsername]);
-                                        console.log(`${runnerUpName} was ${season.season} runner-up`);
-                                    }
-                                }
-                            }
-
-                            // Store in seasonResults for League History display
-                            seasonResults.push({
-                                season: season.season,
-                                champion: championName,
-                                runnerUp: runnerUpName
-                            });
+                        // Track champion
+                        if (yearPlayoffs.champion && managerStats[yearPlayoffs.champion]) {
+                            managerStats[yearPlayoffs.champion].championships++;
+                            championName = getDisplayName(managerStats[yearPlayoffs.champion]);
+                            console.log(`${championName} won ${season.season} championship`);
                         }
+
+                        // Track runner-up
+                        if (yearPlayoffs.runner_up && managerStats[yearPlayoffs.runner_up]) {
+                            managerStats[yearPlayoffs.runner_up].runnerUps++;
+                            runnerUpName = getDisplayName(managerStats[yearPlayoffs.runner_up]);
+                            console.log(`${runnerUpName} was ${season.season} runner-up`);
+                        }
+
+                        // Track Sacko
+                        if (yearPlayoffs.sacko && managerStats[yearPlayoffs.sacko]) {
+                            managerStats[yearPlayoffs.sacko].sackos++;
+                            const sackoName = getDisplayName(managerStats[yearPlayoffs.sacko]);
+                            console.log(`${sackoName} got the Sacko in ${season.season}`);
+                        }
+
+                        // Store in seasonResults for League History display
+                        seasonResults.push({
+                            season: season.season,
+                            champion: championName,
+                            runnerUp: runnerUpName
+                        });
                     }
-                } catch (bracketError) {
-                    console.log(`No bracket data for ${season.season}:`, bracketError.message || bracketError);
                 }
 
             } catch (error) {
@@ -1523,6 +1520,7 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
                                 <th>Rank</th>
                                 <th>Manager</th>
                                 <th style="cursor: pointer;" onclick="sortDynastyTable('championships')" id="sort-champs">Championships</th>
+                                <th style="cursor: pointer;" onclick="sortDynastyTable('sackos')" id="sort-sackos">Sackos</th>
                                 <th style="cursor: pointer;" onclick="sortDynastyTable('winPct')" id="sort-winpct">Win %</th>
                                 <th>Record</th>
                                 <th style="cursor: pointer;" onclick="sortDynastyTable('avgPts')" id="sort-avgpts">Avg PPG</th>
@@ -1591,6 +1589,13 @@ function sortDynastyTable(sortBy) {
                 return b.totalPointsFor - a.totalPointsFor;
             });
             break;
+        case 'sackos':
+            sortedManagers = managers.sort((a, b) => {
+                if (b.sackos !== a.sackos) return b.sackos - a.sackos;
+                if (b.winPct !== a.winPct) return a.winPct - b.winPct; // reverse - lower win% is "better" for Sacko
+                return a.totalPointsFor - b.totalPointsFor; // reverse - fewer points is "better" for Sacko
+            });
+            break;
         case 'winPct':
             sortedManagers = managers.sort((a, b) => {
                 if (b.winPct !== a.winPct) return b.winPct - a.winPct;
@@ -1609,6 +1614,7 @@ function sortDynastyTable(sortBy) {
 
     // Update sort indicators in headers
     document.getElementById('sort-champs').innerHTML = 'Championships' + (sortBy === 'championships' ? ' ▼' : '');
+    document.getElementById('sort-sackos').innerHTML = 'Sackos' + (sortBy === 'sackos' ? ' ▼' : '');
     document.getElementById('sort-winpct').innerHTML = 'Win %' + (sortBy === 'winPct' ? ' ▼' : '');
     document.getElementById('sort-avgpts').innerHTML = 'Avg PPG' + (sortBy === 'avgPts' ? ' ▼' : '');
 
@@ -1631,6 +1637,9 @@ function sortDynastyTable(sortBy) {
                 <td><strong><a href="${userLink}" style="color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor;">${displayName}</a></strong></td>
                 <td style="font-size: 1.2em; color: ${manager.championships > 0 ? '#FFD700' : 'inherit'};">
                     ${manager.championships > 0 ? '🏆 ' : ''}${manager.championships}
+                </td>
+                <td style="font-size: 1.2em; color: ${manager.sackos > 0 ? '#8B4513' : 'inherit'};">
+                    ${manager.sackos > 0 ? '💩 ' : ''}${manager.sackos}
                 </td>
                 <td>${manager.winPct.toFixed(1)}%</td>
                 <td>${manager.totalWins}-${manager.totalLosses}${manager.totalTies > 0 ? '-' + manager.totalTies : ''}</td>
@@ -2070,6 +2079,7 @@ async function renderUserProfile(username) {
             totalPointsAgainst: 0,
             championships: 0,
             runnerUps: 0,
+            sackos: 0,
             playoffAppearances: 0
         };
 
@@ -2178,17 +2188,35 @@ async function renderUserProfile(username) {
                         const pointsFor = roster.settings?.fpts || 0;
                         const pointsAgainst = roster.settings?.fpts_against || 0;
 
+                        // Get team name
+                        const user = users.find(u => u.user_id === userId);
+                        const teamName = user?.metadata?.team_name || null;
+
                         // Find placement
                         const finish = standings.findIndex(s => s.owner_id === userId) + 1;
 
                         // Check playoff results
                         let isChampion = false;
                         let isRunnerUp = false;
+                        let isThirdPlace = false;
+                        let isFourthPlace = false;
+                        let isFifthPlace = false;
+                        let isSixthPlace = false;
+                        let isSeventhPlace = false;
+                        let isEighthPlace = false;
+                        let isSacko = false;
                         if (sleeperPlayoffs) {
                             const yearPlayoffs = sleeperPlayoffs.find(p => p.year === season.season);
                             if (yearPlayoffs) {
                                 isChampion = yearPlayoffs.champion === normalizedUsername;
                                 isRunnerUp = yearPlayoffs.runner_up === normalizedUsername;
+                                isThirdPlace = yearPlayoffs.third_place === normalizedUsername;
+                                isFourthPlace = yearPlayoffs.fourth_place === normalizedUsername;
+                                isFifthPlace = yearPlayoffs.fifth_place === normalizedUsername;
+                                isSixthPlace = yearPlayoffs.sixth_place === normalizedUsername;
+                                isSeventhPlace = yearPlayoffs.seventh_place === normalizedUsername;
+                                isEighthPlace = yearPlayoffs.eighth_place === normalizedUsername;
+                                isSacko = yearPlayoffs.sacko === normalizedUsername;
                             }
                         }
 
@@ -2213,10 +2241,14 @@ async function renderUserProfile(username) {
                         if (isRunnerUp) {
                             userData.runnerUps++;
                         }
+                        if (isSacko) {
+                            userData.sackos++;
+                        }
 
                         userData.seasons.push({
                             year: season.season,
                             platform: 'Sleeper',
+                            teamName,
                             wins,
                             losses,
                             ties,
@@ -2224,6 +2256,13 @@ async function renderUserProfile(username) {
                             pointsAgainst,
                             champion: isChampion,
                             runnerUp: isRunnerUp,
+                            thirdPlace: isThirdPlace,
+                            fourthPlace: isFourthPlace,
+                            fifthPlace: isFifthPlace,
+                            sixthPlace: isSixthPlace,
+                            seventhPlace: isSeventhPlace,
+                            eighthPlace: isEighthPlace,
+                            sacko: isSacko,
                             finish,
                             totalTeams,
                             draftPick
@@ -2316,6 +2355,7 @@ function renderUserProfileContent(userData) {
                             <tr>
                                 <th>Year</th>
                                 <th>Platform</th>
+                                <th>Team Name</th>
                                 <th>Draft</th>
                                 <th>Record</th>
                                 <th>Win %</th>
@@ -2355,16 +2395,32 @@ function renderUserProfileContent(userData) {
             playoffResult = '🏆 1st';
         } else if (season.runnerUp) {
             playoffResult = '🥈 2nd';
+        } else if (season.thirdPlace) {
+            playoffResult = '🥉 3rd';
+        } else if (season.fourthPlace) {
+            playoffResult = '4th';
+        } else if (season.fifthPlace) {
+            playoffResult = '5th';
+        } else if (season.sixthPlace) {
+            playoffResult = '6th';
+        } else if (season.seventhPlace) {
+            playoffResult = '7th';
+        } else if (season.eighthPlace) {
+            playoffResult = '8th';
+        } else if (season.sacko) {
+            playoffResult = '💩 Sacko';
         } else {
             playoffResult = '-';
         }
 
         const draftDisplay = season.draftPick ? season.draftPick : '-';
+        const teamNameDisplay = season.teamName ? `<em>${season.teamName}</em>` : '-';
 
         html += `
             <tr>
                 <td><strong>${season.year}</strong></td>
                 <td>${platformBadge[season.platform]}</td>
+                <td>${teamNameDisplay}</td>
                 <td>${draftDisplay}</td>
                 <td>${season.wins}-${season.losses}${season.ties > 0 ? '-' + season.ties : ''}</td>
                 <td>${seasonWinPct}%</td>

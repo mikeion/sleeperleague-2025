@@ -3,28 +3,36 @@
     "year": 2022,
     "champion": "robertwneal2",
     "runner_up": "rpthorp",
-    "champion_roster_id": 5,
-    "runner_up_roster_id": 2
+    "third_place": "otterboi",
+    "fourth_place": "dakodiacbear",
+    "fifth_place": "mikeion",
+    "sixth_place": "sambam805",
+    "seventh_place": "buddygalletti",
+    "eighth_place": "bigdog11",
+    "sacko": "robbbbbbbb"
   },
   {
     "year": 2023,
     "champion": "gordonulus",
     "runner_up": "rpthorp",
-    "champion_roster_id": 9,
-    "runner_up_roster_id": 13
+    "third_place": "otterboi",
+    "fourth_place": "fishy11",
+    "fifth_place": "captainbigcup",
+    "sixth_place": "robertwneal2",
+    "seventh_place": "caseyforeverunclean",
+    "eighth_place": "robbbbbbbb",
+    "sacko": "buddygalletti"
   },
   {
     "year": 2024,
     "champion": "spaceman917",
     "runner_up": "robertwneal2",
-    "champion_roster_id": 1,
-    "runner_up_roster_id": 14
-  },
-  {
-    "year": 2025,
-    "champion": null,
-    "runner_up": null,
-    "champion_roster_id": null,
-    "runner_up_roster_id": null
+    "third_place": "robbbbbbbb",
+    "fourth_place": "rpthorp",
+    "fifth_place": "fishy11",
+    "sixth_place": "bigdog11",
+    "seventh_place": "gordonulus",
+    "eighth_place": "buddygalletti",
+    "sacko": "captainbigcup"
   }
 ]

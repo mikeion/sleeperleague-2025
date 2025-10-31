@@ -21,6 +21,46 @@ let currentWeek = 9;
 let playersData = {}; // Cache for player names
 let availableSeasons = []; // Store all available seasons and their league IDs
 
+// Username to real name mapping
+const USERNAME_TO_NAME = {
+    'rpthorp': 'Ryan',
+    'robertwneal2': 'Robert',
+    'robbbbbbbb': 'Robb',
+    'fishy11': 'Vince',
+    'dakodiacbear': 'Dakota',
+    'spaceman917': 'Nick',
+    'sambam805': 'Sam',
+    'mikeion': 'Mike',
+    'caseyforeverunclean': 'Casey',
+    'gordonulus': 'Gordon',
+    'captainbigcup': 'Colin',
+    'bigdog11': 'Daniel',
+    'otterboi': 'Josh',
+    'buddygalletti': 'Buddy',
+    'elliottkaser': 'Elliott',
+    'not_in_league_chris': 'Chris',
+    'not_in_league_archie': 'Archie',
+    'not_in_league_shane': 'Shane',
+    'not_in_league_lorna': 'Lorna',
+    'not_in_league_matt': 'Matt',
+    'not_in_league_ben': 'Ben',
+    'not_in_league': 'Trevor'
+};
+
+// Helper function to get display name for a manager
+function getDisplayName(manager) {
+    if (!manager) return 'Unknown';
+    // Try username mapping first
+    if (manager.userId && USERNAME_TO_NAME[manager.userId]) {
+        return USERNAME_TO_NAME[manager.userId];
+    }
+    if (manager.username && USERNAME_TO_NAME[manager.username]) {
+        return USERNAME_TO_NAME[manager.username];
+    }
+    // Fallback to the name from data
+    return manager.name || 'Unknown';
+}
+
 // Load all available seasons for this league
 async function loadAvailableSeasons() {
     const seasons = [];
@@ -1112,33 +1152,131 @@ async function renderAllTimeStats() {
     container.innerHTML = '<p style="text-align: center;">Loading all-time statistics...</p>';
 
     try {
+        // Load MFL historical data
+        let mflData = null;
+        try {
+            const mflResponse = await fetch('/assets/data/mfl_dashboard_data.json');
+            if (mflResponse.ok) {
+                mflData = await mflResponse.json();
+                console.log('MFL data loaded:', mflData);
+            }
+        } catch (mflError) {
+            console.log('No MFL data available:', mflError);
+        }
+
         // Get all available seasons
-        const seasons = await loadAvailableSeasons();
+        const sleeperSeasons = await loadAvailableSeasons();
+
+        // Create combined seasons array (MFL + Sleeper)
+        const seasons = [];
 
         // Manager stats structure: { userId: { name, seasons: [], championships: 0, etc } }
         const managerStats = {};
         const seasonResults = []; // Track champion/runner-up by year
 
-        // Fetch data for each season
-        for (const season of seasons) {
+        // Add MFL data to seasonResults and managerStats
+        if (mflData) {
+            // Add MFL years to seasons array
+            mflData.years.forEach(year => {
+                seasons.push({
+                    season: year,
+                    platform: 'MFL',
+                    name: `${year} Season (MFL)`
+                });
+            });
+            // Add MFL champions to season results
+            mflData.champions.forEach(champ => {
+                seasonResults.push({
+                    season: champ.year,
+                    champion: champ.champion.display_name,
+                    runnerUp: champ.runner_up.display_name,
+                    platform: 'MFL'
+                });
+            });
+
+            // Initialize manager stats from MFL data
+            mflData.manager_stats.forEach(mflManager => {
+                // Use username as key (will match with Sleeper data)
+                const userId = mflManager.username;
+
+                managerStats[userId] = {
+                    name: mflManager.display_name,
+                    userId: userId,
+                    seasons: [],
+                    championships: mflManager.totals.championships,
+                    runnerUps: 0,
+                    playoffAppearances: 0,
+                    totalWins: mflManager.totals.wins,
+                    totalLosses: mflManager.totals.losses,
+                    totalTies: mflManager.totals.ties,
+                    totalPointsFor: mflManager.totals.points_for,
+                    totalPointsAgainst: mflManager.totals.points_against,
+                    seasonFinishes: [],
+                    bestFinish: null,
+                    worstFinish: null
+                };
+
+                // Add MFL seasons
+                Object.entries(mflManager.years).forEach(([year, yearData]) => {
+                    managerStats[userId].seasons.push({
+                        year: parseInt(year),
+                        wins: yearData.wins,
+                        losses: yearData.losses,
+                        ties: yearData.ties,
+                        pointsFor: yearData.points_for,
+                        pointsAgainst: yearData.points_against,
+                        finish: null,
+                        platform: 'MFL'
+                    });
+                });
+            });
+        }
+
+        // Add Sleeper seasons to combined array
+        seasons.push(...sleeperSeasons);
+
+        // Sort seasons by year (oldest to newest)
+        seasons.sort((a, b) => a.season - b.season);
+
+        // Fetch Sleeper data for each season
+        for (const season of sleeperSeasons) {
             try {
                 const leagueData = await fetchData(getLeagueUrl(season.leagueId));
                 const rosters = await fetchData(getRostersUrl(season.leagueId));
                 const users = await fetchData(getUsersUrl(season.leagueId));
 
-                // Process each manager
-                rosters.forEach(roster => {
-                    const user = users.find(u => u.user_id === roster.owner_id);
-                    if (!user) return;
+                // Fetch user profiles to get actual usernames (league users don't include username)
+                const userProfiles = {};
+                for (const user of users) {
+                    try {
+                        const profile = await fetchData(`${API_BASE}/user/${user.user_id}`);
+                        if (profile && profile.username) {
+                            userProfiles[user.user_id] = profile.username.toLowerCase();
+                        }
+                    } catch (e) {
+                        console.log(`Could not fetch profile for user ${user.user_id}`);
+                    }
+                }
 
-                    const userId = user.user_id;
+                // Process each manager
+                for (const roster of rosters) {
+                    const user = users.find(u => u.user_id === roster.owner_id);
+                    if (!user) continue;
+
+                    // Use username from profile, fallback to user_id if not available
+                    // Normalize to lowercase for case-insensitive matching
+                    const username = userProfiles[user.user_id] || user.user_id.toString().toLowerCase();
                     const displayName = user.display_name || user.metadata?.team_name || 'Unknown';
 
+                    // Check if this user already has MFL data
+                    let existingManager = managerStats[username];
+
                     // Initialize manager if not exists
-                    if (!managerStats[userId]) {
-                        managerStats[userId] = {
+                    if (!existingManager) {
+                        managerStats[username] = {
                             name: displayName,
-                            userId: userId,
+                            userId: username,
+                            username: username,
                             seasons: [],
                             championships: 0,
                             runnerUps: 0,
@@ -1152,6 +1290,12 @@ async function renderAllTimeStats() {
                             bestFinish: null,
                             worstFinish: null
                         };
+                        existingManager = managerStats[username];
+                    }
+
+                    // Update display name if Sleeper has a better one
+                    if (displayName && displayName !== 'Unknown') {
+                        existingManager.name = displayName;
                     }
 
                     // Get season stats from roster settings (includes playoffs)
@@ -1162,22 +1306,23 @@ async function renderAllTimeStats() {
                     const seasonPointsAgainst = roster.settings?.fpts_against || 0;
 
                     // Store season data
-                    managerStats[userId].seasons.push({
+                    existingManager.seasons.push({
                         year: season.season,
                         wins: seasonWins,
                         losses: seasonLosses,
                         ties: seasonTies,
                         pointsFor: seasonPointsFor,
                         pointsAgainst: seasonPointsAgainst,
-                        finish: null
+                        finish: null,
+                        platform: 'Sleeper'
                     });
 
-                    managerStats[userId].totalWins += seasonWins;
-                    managerStats[userId].totalLosses += seasonLosses;
-                    managerStats[userId].totalTies += seasonTies;
-                    managerStats[userId].totalPointsFor += seasonPointsFor;
-                    managerStats[userId].totalPointsAgainst += seasonPointsAgainst;
-                });
+                    existingManager.totalWins += seasonWins;
+                    existingManager.totalLosses += seasonLosses;
+                    existingManager.totalTies += seasonTies;
+                    existingManager.totalPointsFor += seasonPointsFor;
+                    existingManager.totalPointsAgainst += seasonPointsAgainst;
+                }
 
                 // Try to determine champion from winners bracket
                 try {
@@ -1195,10 +1340,13 @@ async function renderAllTimeStats() {
 
                             if (championRoster) {
                                 const championUser = users.find(u => u.user_id === championRoster.owner_id);
-                                if (championUser && managerStats[championUser.user_id]) {
-                                    managerStats[championUser.user_id].championships++;
-                                    championName = championUser.display_name;
-                                    console.log(`${championUser.display_name} won ${season.season} championship`);
+                                if (championUser) {
+                                    const championUsername = userProfiles[championUser.user_id] || championUser.user_id.toString().toLowerCase();
+                                    if (managerStats[championUsername]) {
+                                        managerStats[championUsername].championships++;
+                                        championName = championUser.display_name;
+                                        console.log(`${championUser.display_name} won ${season.season} championship`);
+                                    }
                                 }
                             }
 
@@ -1207,10 +1355,13 @@ async function renderAllTimeStats() {
                             const runnerUpRoster = rosters.find(r => r.roster_id === runnerUpRosterId);
                             if (runnerUpRoster) {
                                 const runnerUpUser = users.find(u => u.user_id === runnerUpRoster.owner_id);
-                                if (runnerUpUser && managerStats[runnerUpUser.user_id]) {
-                                    managerStats[runnerUpUser.user_id].runnerUps++;
-                                    runnerUpName = runnerUpUser.display_name;
-                                    console.log(`${runnerUpUser.display_name} was ${season.season} runner-up`);
+                                if (runnerUpUser) {
+                                    const runnerUpUsername = userProfiles[runnerUpUser.user_id] || runnerUpUser.user_id.toString().toLowerCase();
+                                    if (managerStats[runnerUpUsername]) {
+                                        managerStats[runnerUpUsername].runnerUps++;
+                                        runnerUpName = runnerUpUser.display_name;
+                                        console.log(`${runnerUpUser.display_name} was ${season.season} runner-up`);
+                                    }
                                 }
                             }
 
@@ -1429,10 +1580,11 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
     [...managers].sort((a, b) => b.totalPointsFor - a.totalPointsFor).forEach(manager => {
         const bestSeasonPts = Math.max(...manager.seasons.map(s => s.pointsFor));
         const worstSeasonPts = Math.min(...manager.seasons.map(s => s.pointsFor));
+        const displayName = getDisplayName(manager);
 
         html += `
             <tr>
-                <td><strong>${manager.name}</strong></td>
+                <td><strong>${displayName}</strong></td>
                 <td>${manager.totalPointsFor.toFixed(1)}</td>
                 <td>${manager.avgPointsPerGame.toFixed(2)}</td>
                 <td style="color: #4CAF50;">${bestSeasonPts.toFixed(1)}</td>
@@ -1483,8 +1635,8 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
     // Store managers data globally for sorting
     window.dynastyManagers = managers;
 
-    // Initial render with championship sort
-    sortDynastyTable('championships');
+    // Initial render with win percentage sort
+    sortDynastyTable('winPct');
 }
 
 // Sort dynasty table by different criteria
@@ -1535,10 +1687,11 @@ function sortDynastyTable(sortBy) {
     const tbody = document.getElementById('dynasty-rankings-tbody');
     tbody.innerHTML = sortedManagers.map((manager, index) => {
         const medal = index === 0 ? '👑' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
+        const displayName = getDisplayName(manager);
         return `
             <tr>
                 <td><strong>${medal} ${index + 1}</strong></td>
-                <td><strong>${manager.name}</strong></td>
+                <td><strong>${displayName}</strong></td>
                 <td style="font-size: 1.2em; color: ${manager.championships > 0 ? '#FFD700' : 'inherit'};">
                     ${manager.championships > 0 ? '🏆 ' : ''}${manager.championships}
                 </td>

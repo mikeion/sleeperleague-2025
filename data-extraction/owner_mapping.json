@@ -2,8 +2,8 @@
   "mfl_to_sleeper": {
     "0001": {
       "mfl_franchise_id": "0001",
-      "sleeper_username": "unknown",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "spaceman917",
+      "sleeper_display_name": "Spaceman917",
       "real_name": "Nick",
       "notes": "Team names: It's Miller Time, Melvin Gordon, The Fournette Awakens"
     },
@@ -16,24 +16,24 @@
     },
     "0003": {
       "mfl_franchise_id": "0003",
-      "sleeper_username": "unknown",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "captainbigcup",
+      "sleeper_display_name": "CaptainBigCup",
       "real_name": "Colin",
       "notes": "Team names: Phil lives down by the River, From First to Worst, I HOPkins, The Rise of Sky-Rodgers"
     },
     "0004": {
       "mfl_franchise_id": "0004",
-      "sleeper_username": "shane",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "not_in_league_shane",
+      "sleeper_display_name": "Shane",
       "real_name": "Shane",
-      "notes": "Team names: Julio Daddy?, Brees-ing to Sacco Cup, Shane, Awww Bitch"
+      "notes": "Team names: Julio Daddy?, Brees-ing to Sacco Cup, Shane, Awww Bitch - LEFT AFTER 2024"
     },
     "0005": {
       "mfl_franchise_id": "0005",
-      "sleeper_username": "chris_attias",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "not_in_league_chris",
+      "sleeper_display_name": "Chris Attias",
       "real_name": "Chris Attias",
-      "notes": "Team names: Senor Negro, Attius!, Men In Tights, Hot Chubb Thomas Machine"
+      "notes": "Team names: Senor Negro, Attius!, Men In Tights, Hot Chubb Thomas Machine - LEFT AFTER 2024"
     },
     "0006": {
       "mfl_franchise_id": "0006",
@@ -44,10 +44,10 @@
     },
     "0007": {
       "mfl_franchise_id": "0007",
-      "sleeper_username": "unknown",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "not_in_league_archie",
+      "sleeper_display_name": "Archie",
       "real_name": "Archie",
-      "notes": "Team name: Archie (all 4 years)"
+      "notes": "Team name: Archie (all 4 years) - LEFT AFTER 2024"
     },
     "0008": {
       "mfl_franchise_id": "0008",
@@ -58,8 +58,8 @@
     },
     "0009": {
       "mfl_franchise_id": "0009",
-      "sleeper_username": "vince",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "fishy11",
+      "sleeper_display_name": "fishy11",
       "real_name": "Vince",
       "notes": "Team names: The SuhhhDudes, The SuhhhDudes, Keuchly Do you love me?, Cookin with Mahomie"
     },
@@ -86,8 +86,8 @@
     },
     "0013": {
       "mfl_franchise_id": "0013",
-      "sleeper_username": "unknown",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "not_in_league_lorna",
+      "sleeper_display_name": "Lorna Porter",
       "real_name": "Lorna Porter",
       "notes": "Team names: Immeasurable Non-Binary Gender Human's Team, Lorna, The Chewbacca Defense - NOT IN CURRENT SLEEPER LEAGUE"
     },
@@ -114,8 +114,8 @@
     },
     "0017": {
       "mfl_franchise_id": "0017",
-      "sleeper_username": "unknown",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "not_in_league_ben",
+      "sleeper_display_name": "Ben",
       "real_name": "Ben",
       "notes": "Team names: Ben, Chris, Totally Intentional - LEFT BEFORE 2019"
     },
@@ -127,17 +127,17 @@
     },
     "0019": {
       "mfl_franchise_id": "0019",
-      "sleeper_username": "unknown",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "not_in_league_matt",
+      "sleeper_display_name": "Matt Irons",
       "real_name": "Matt Irons",
       "notes": "Team names: Matt, Failed Imagineers Club, A Plethora of Piñatas - LEFT BEFORE 2019"
     },
     "0020": {
       "mfl_franchise_id": "0020",
-      "sleeper_username": "unknown",
-      "sleeper_display_name": "unknown",
+      "sleeper_username": "otterboi",
+      "sleeper_display_name": "otterboi",
       "real_name": "Josh",
-      "notes": "Team names: Doctor's without Bortles, Sack tap, its me Ya Boyd - LEFT BEFORE 2019"
+      "notes": "Team names: Doctor's without Bortles, Sack tap, its me Ya Boyd"
     }
   },
   "sleeper_users": [

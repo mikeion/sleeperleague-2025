@@ -482,6 +482,7 @@ async function renderWeeklyStats(teams, lastCompletedWeek) {
 // Render heatmap visualization
 function renderHeatmap(teamScores, weeks) {
     const container = document.getElementById('weekly-heatmap');
+    if (!container) return; // Skip if heatmap doesn't exist on this page
 
     // Get all scores to determine min/max for color scale
     const allScores = Object.values(teamScores).flatMap(team => team.scores);

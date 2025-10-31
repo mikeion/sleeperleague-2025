@@ -290,6 +290,9 @@ let powerRankingsChart = null;
 
 // Render power rankings
 function renderPowerRankings(teams) {
+    const canvas = document.getElementById('power-rankings-chart');
+    if (!canvas) return; // Skip if chart doesn't exist on this page
+
     const rankedTeams = calculatePowerRankings(teams);
 
     // Create gradient colors based on rank
@@ -301,7 +304,7 @@ function renderPowerRankings(teams) {
         return `rgba(${r}, ${g}, 50, 0.7)`;
     });
 
-    const ctx = document.getElementById('power-rankings-chart').getContext('2d');
+    const ctx = canvas.getContext('2d');
 
     // Destroy existing chart if it exists
     if (powerRankingsChart) {
@@ -390,7 +393,9 @@ async function renderWeeklyStats(teams, lastCompletedWeek) {
     renderHeatmap(teamScores, weeks);
 
     // Create interactive line chart
-    const ctx = document.getElementById('weekly-chart').getContext('2d');
+    const canvas = document.getElementById('weekly-chart');
+    if (!canvas) return; // Skip if chart doesn't exist on this page
+    const ctx = canvas.getContext('2d');
 
     // Destroy existing chart if it exists
     if (weeklyChart) {
@@ -637,6 +642,7 @@ async function renderManagerAnalysis(teams, lastCompletedWeek) {
 
     // Render detailed table
     const tbody = document.querySelector('#manager-details-table tbody');
+    if (!tbody) return; // Skip if table doesn't exist on this page
     tbody.innerHTML = teamStats
         .sort((a, b) => b.avgScore - a.avgScore) // Sort by avg score
         .map(team => {
@@ -812,6 +818,7 @@ async function renderWaiverAnalysis(teams, lastCompletedWeek) {
 
         // Render FAAB table
         const faabTbody = document.querySelector('#faab-table tbody');
+        if (!faabTbody) return; // Skip if table doesn't exist on this page
         const sortedBySpending = Object.values(teamStats).sort((a, b) => b.totalSpent - a.totalSpent);
         faabTbody.innerHTML = sortedBySpending.map(team => `
             <tr>
@@ -825,6 +832,7 @@ async function renderWaiverAnalysis(teams, lastCompletedWeek) {
 
         // Render activity table
         const activityTbody = document.querySelector('#activity-table tbody');
+        if (!activityTbody) return; // Skip if table doesn't exist on this page
         const sortedByActivity = Object.values(teamStats).sort((a, b) =>
             (b.waiverPickups + b.freeAgentMoves) - (a.waiverPickups + a.freeAgentMoves)
         );
@@ -844,6 +852,7 @@ async function renderWaiverAnalysis(teams, lastCompletedWeek) {
             .slice(0, 15);
 
         const waiversTbody = document.querySelector('#recent-waivers-table tbody');
+        if (!waiversTbody) return; // Skip if table doesn't exist on this page
         if (recentWaivers.length === 0) {
             waiversTbody.innerHTML = '<tr><td colspan="5">No waiver activity yet</td></tr>';
         } else {

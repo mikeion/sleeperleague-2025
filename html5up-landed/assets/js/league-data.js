@@ -2080,6 +2080,7 @@ async function renderUserProfile(username) {
                         pointsFor: yearData.points_for,
                         pointsAgainst: yearData.points_against,
                         champion: yearData.champion,
+                        runnerUp: yearData.runner_up || false,
                         finish: yearData.finish || null,
                         totalTeams: yearData.total_teams || null
                     });
@@ -2108,6 +2109,7 @@ async function renderUserProfile(username) {
                         pointsFor: yearData.points_for,
                         pointsAgainst: yearData.points_against,
                         champion: yearData.champion,
+                        runnerUp: yearData.runner_up || false,
                         finish: yearData.finish || null,
                         totalTeams: yearData.total_teams || null
                     });
@@ -2293,20 +2295,15 @@ function renderUserProfileContent(userData) {
             'Sleeper': '<span style="background: #00CCCB; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">Sleeper</span>'
         };
 
-        // Build result string with placement
+        // Build result string - prioritize playoff results over regular season
         let result = '';
         if (season.champion) {
             result = '🏆 Champion';
+        } else if (season.runnerUp) {
+            result = '🥈 Runner-up';
         } else if (season.finish && season.totalTeams) {
-            const placement = `${season.finish}/${season.totalTeams}`;
-            // Add medal for top 3 finishes
-            if (season.finish === 2) {
-                result = `🥈 ${placement}`;
-            } else if (season.finish === 3) {
-                result = `🥉 ${placement}`;
-            } else {
-                result = placement;
-            }
+            // Show regular season placement for non-playoff teams
+            result = `${season.finish}/${season.totalTeams}`;
         }
 
         html += `

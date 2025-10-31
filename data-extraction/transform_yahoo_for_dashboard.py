@@ -122,9 +122,19 @@ def transform_yahoo_data():
             manager['totals']['points_against'] += team['points_against']
 
             # Check if champion
-            if (username == year_mapping.get(
+            is_champion = (username == year_mapping.get(
                 year_data.get('champion', {}).get('team_name', ''), ''
-            ).lower()):
+            ).lower())
+
+            # Check if runner-up
+            is_runner_up = (username == year_mapping.get(
+                year_data.get('runner_up', {}).get('team_name', ''), ''
+            ).lower())
+
+            manager['years'][str(year)]['champion'] = is_champion
+            manager['years'][str(year)]['runner_up'] = is_runner_up
+
+            if is_champion:
                 manager['totals']['championships'] += 1
 
     # Calculate placements for each year

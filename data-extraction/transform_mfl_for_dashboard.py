@@ -136,13 +136,29 @@ for year, data in mfl_years.items():
                 # Check if they won championship this year
                 is_champion = any(c['year'] == year and c['champion_id'] == fid for c in champions_data)
 
+                # Check if they were runner-up (need to match by display name)
+                is_runner_up = False
+                for c in champions_data:
+                    if c['year'] == year:
+                        runner_up_name = c['runner_up']
+                        # Apply name mappings
+                        name_mapping = {
+                            'Thorp': 'Ryan',
+                            'Chris Attias': 'Chris'
+                        }
+                        runner_up_name = name_mapping.get(runner_up_name, runner_up_name)
+                        if display_name == runner_up_name:
+                            is_runner_up = True
+                            break
+
                 manager_stats[username]['years'][year] = {
                     'wins': wins,
                     'losses': losses,
                     'ties': ties,
                     'points_for': points_for,
                     'points_against': points_against,
-                    'champion': is_champion
+                    'champion': is_champion,
+                    'runner_up': is_runner_up
                 }
 
                 # Update totals

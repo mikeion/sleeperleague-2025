@@ -1718,12 +1718,18 @@ async function renderWeeklyRecap(selectedWeek = null) {
             usersData = await fetchData(getUsersUrl(CURRENT_LEAGUE_ID));
         }
 
-        // Get team names
+        // Get team names using display names (first names)
         const getTeamName = (rosterId) => {
             const roster = rostersData.find(r => r.roster_id === rosterId);
             if (!roster) return 'Unknown Team';
             const user = usersData.find(u => u.user_id === roster.owner_id);
-            return user?.display_name || user?.metadata?.team_name || 'Unknown Team';
+            if (!user) return 'Unknown Team';
+
+            // Use getDisplayName to get first name instead of username
+            return getDisplayName({
+                username: user.display_name?.toLowerCase() || user.user_id.toString(),
+                name: user.display_name
+            });
         };
 
         // Calculate week stats

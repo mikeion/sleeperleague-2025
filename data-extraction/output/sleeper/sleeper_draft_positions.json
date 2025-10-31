@@ -1,0 +1,346 @@
+{
+  "2022": {
+    "spaceman917": {
+      "pick": 1,
+      "roster_id": 1,
+      "player_id": "6813",
+      "round": 1
+    },
+    "mikeion": {
+      "pick": 2,
+      "roster_id": 11,
+      "player_id": "4034",
+      "round": 1
+    },
+    "sambam805": {
+      "pick": 3,
+      "roster_id": 8,
+      "player_id": "4663",
+      "round": 1
+    },
+    "otterboi": {
+      "pick": 4,
+      "roster_id": 7,
+      "player_id": "3198",
+      "round": 1
+    },
+    "fishy11": {
+      "pick": 5,
+      "roster_id": 3,
+      "player_id": "4039",
+      "round": 1
+    },
+    "robbbbbbbb": {
+      "pick": 6,
+      "roster_id": 6,
+      "player_id": "4029",
+      "round": 1
+    },
+    "robertwneal2": {
+      "pick": 7,
+      "roster_id": 5,
+      "player_id": "6794",
+      "round": 1
+    },
+    "dakodiacbear": {
+      "pick": 8,
+      "roster_id": 4,
+      "player_id": "4018",
+      "round": 1
+    },
+    "captainbigcup": {
+      "pick": 9,
+      "roster_id": 10,
+      "player_id": "7528",
+      "round": 1
+    },
+    "gordonulus": {
+      "pick": 10,
+      "roster_id": 14,
+      "player_id": "7564",
+      "round": 1
+    },
+    "rpthorp": {
+      "pick": 11,
+      "roster_id": 2,
+      "player_id": "1466",
+      "round": 1
+    },
+    "bigdog11": {
+      "pick": 12,
+      "roster_id": 9,
+      "player_id": "2449",
+      "round": 1
+    },
+    "buddygalletti": {
+      "pick": 13,
+      "roster_id": 13,
+      "player_id": "6790",
+      "round": 1
+    },
+    "caseyforeverunclean": {
+      "pick": 14,
+      "roster_id": 12,
+      "player_id": "2133",
+      "round": 1
+    }
+  },
+  "2023": {
+    "rpthorp": {
+      "pick": 1,
+      "roster_id": 13,
+      "player_id": "6794",
+      "round": 1
+    },
+    "fishy11": {
+      "pick": 2,
+      "roster_id": 6,
+      "player_id": "4034",
+      "round": 1
+    },
+    "robbbbbbbb": {
+      "pick": 3,
+      "roster_id": 8,
+      "player_id": "7564",
+      "round": 1
+    },
+    "bigdog11": {
+      "pick": 4,
+      "roster_id": 7,
+      "player_id": "4663",
+      "round": 1
+    },
+    "buddygalletti": {
+      "pick": 5,
+      "roster_id": 4,
+      "player_id": "4866",
+      "round": 1
+    },
+    "gordonulus": {
+      "pick": 6,
+      "roster_id": 9,
+      "player_id": "4988",
+      "round": 1
+    },
+    "caseyforeverunclean": {
+      "pick": 7,
+      "roster_id": 12,
+      "player_id": "3321",
+      "round": 1
+    },
+    "mikeion": {
+      "pick": 8,
+      "roster_id": 11,
+      "player_id": "1466",
+      "round": 1
+    },
+    "sambam805": {
+      "pick": 9,
+      "roster_id": 10,
+      "player_id": "4039",
+      "round": 1
+    },
+    "spaceman917": {
+      "pick": 10,
+      "roster_id": 1,
+      "player_id": "9509",
+      "round": 1
+    },
+    "otterboi": {
+      "pick": 11,
+      "roster_id": 5,
+      "player_id": "2449",
+      "round": 1
+    },
+    "dakodiacbear": {
+      "pick": 12,
+      "roster_id": 2,
+      "player_id": "5859",
+      "round": 1
+    },
+    "captainbigcup": {
+      "pick": 13,
+      "roster_id": 3,
+      "player_id": "3198",
+      "round": 1
+    },
+    "robertwneal2": {
+      "pick": 14,
+      "roster_id": 14,
+      "player_id": "5850",
+      "round": 1
+    }
+  },
+  "2024": {
+    "caseyforeverunclean": {
+      "pick": 1,
+      "roster_id": 12,
+      "player_id": "4034",
+      "round": 1
+    },
+    "spaceman917": {
+      "pick": 2,
+      "roster_id": 1,
+      "player_id": "6786",
+      "round": 1
+    },
+    "mikeion": {
+      "pick": 3,
+      "roster_id": 11,
+      "player_id": "3321",
+      "round": 1
+    },
+    "rpthorp": {
+      "pick": 4,
+      "roster_id": 13,
+      "player_id": "7564",
+      "round": 1
+    },
+    "gordonulus": {
+      "pick": 5,
+      "roster_id": 9,
+      "player_id": "9509",
+      "round": 1
+    },
+    "captainbigcup": {
+      "pick": 6,
+      "roster_id": 3,
+      "player_id": "8155",
+      "round": 1
+    },
+    "buddygalletti": {
+      "pick": 7,
+      "roster_id": 4,
+      "player_id": "9221",
+      "round": 1
+    },
+    "robertwneal2": {
+      "pick": 8,
+      "roster_id": 14,
+      "player_id": "6794",
+      "round": 1
+    },
+    "dakodiacbear": {
+      "pick": 9,
+      "roster_id": 2,
+      "player_id": "7547",
+      "round": 1
+    },
+    "bigdog11": {
+      "pick": 10,
+      "roster_id": 7,
+      "player_id": "6813",
+      "round": 1
+    },
+    "robbbbbbbb": {
+      "pick": 11,
+      "roster_id": 8,
+      "player_id": "5859",
+      "round": 1
+    },
+    "sambam805": {
+      "pick": 12,
+      "roster_id": 10,
+      "player_id": "8146",
+      "round": 1
+    },
+    "fishy11": {
+      "pick": 13,
+      "roster_id": 6,
+      "player_id": "4866",
+      "round": 1
+    },
+    "otterboi": {
+      "pick": 14,
+      "roster_id": 5,
+      "player_id": "9493",
+      "round": 1
+    }
+  },
+  "2025": {
+    "bigdog11": {
+      "pick": 1,
+      "roster_id": 7,
+      "player_id": "9509",
+      "round": 1
+    },
+    "caseyforeverunclean": {
+      "pick": 2,
+      "roster_id": 12,
+      "player_id": "4866",
+      "round": 1
+    },
+    "spaceman917": {
+      "pick": 3,
+      "roster_id": 1,
+      "player_id": "7564",
+      "round": 1
+    },
+    "fishy11": {
+      "pick": 4,
+      "roster_id": 6,
+      "player_id": "9221",
+      "round": 1
+    },
+    "otterboi": {
+      "pick": 5,
+      "roster_id": 5,
+      "player_id": "6786",
+      "round": 1
+    },
+    "robbbbbbbb": {
+      "pick": 6,
+      "roster_id": 8,
+      "player_id": "6794",
+      "round": 1
+    },
+    "buddygalletti": {
+      "pick": 7,
+      "roster_id": 4,
+      "player_id": "3198",
+      "round": 1
+    },
+    "rpthorp": {
+      "pick": 8,
+      "roster_id": 13,
+      "player_id": "4034",
+      "round": 1
+    },
+    "robertwneal2": {
+      "pick": 9,
+      "roster_id": 14,
+      "player_id": "9226",
+      "round": 1
+    },
+    "sambam805": {
+      "pick": 10,
+      "roster_id": 10,
+      "player_id": "12527",
+      "round": 1
+    },
+    "gordonulus": {
+      "pick": 11,
+      "roster_id": 9,
+      "player_id": "7569",
+      "round": 1
+    },
+    "dakodiacbear": {
+      "pick": 12,
+      "roster_id": 2,
+      "player_id": "6813",
+      "round": 1
+    },
+    "elliottkaser": {
+      "pick": 13,
+      "roster_id": 3,
+      "player_id": "7547",
+      "round": 1
+    },
+    "mikeion": {
+      "pick": 14,
+      "roster_id": 11,
+      "player_id": "11632",
+      "round": 1
+    }
+  }
+}

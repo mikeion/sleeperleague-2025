@@ -2041,6 +2041,20 @@ async function renderUserProfile(username) {
             if (yahooResponse.ok) yahooData = await yahooResponse.json();
         } catch (e) { console.log('No Yahoo data'); }
 
+        // Load Sleeper playoff results
+        let sleeperPlayoffs = null;
+        try {
+            const playoffsResponse = await fetch('/assets/data/sleeper_playoff_results.json');
+            if (playoffsResponse.ok) sleeperPlayoffs = await playoffsResponse.json();
+        } catch (e) { console.log('No Sleeper playoff data'); }
+
+        // Load Sleeper draft positions
+        let sleeperDrafts = null;
+        try {
+            const draftsResponse = await fetch('/assets/data/sleeper_draft_positions.json');
+            if (draftsResponse.ok) sleeperDrafts = await draftsResponse.json();
+        } catch (e) { console.log('No Sleeper draft data'); }
+
         // Get Sleeper data
         const sleeperSeasons = await loadAvailableSeasons();
         
@@ -2167,11 +2181,38 @@ async function renderUserProfile(username) {
                         // Find placement
                         const finish = standings.findIndex(s => s.owner_id === userId) + 1;
 
+                        // Check playoff results
+                        let isChampion = false;
+                        let isRunnerUp = false;
+                        if (sleeperPlayoffs) {
+                            const yearPlayoffs = sleeperPlayoffs.find(p => p.year === season.season);
+                            if (yearPlayoffs) {
+                                isChampion = yearPlayoffs.champion === normalizedUsername;
+                                isRunnerUp = yearPlayoffs.runner_up === normalizedUsername;
+                            }
+                        }
+
+                        // Get draft position
+                        let draftPick = null;
+                        if (sleeperDrafts && sleeperDrafts[season.season]) {
+                            const yearDrafts = sleeperDrafts[season.season];
+                            if (yearDrafts[normalizedUsername]) {
+                                draftPick = yearDrafts[normalizedUsername].pick;
+                            }
+                        }
+
                         userData.totalWins += wins;
                         userData.totalLosses += losses;
                         userData.totalTies += ties;
                         userData.totalPointsFor += pointsFor;
                         userData.totalPointsAgainst += pointsAgainst;
+
+                        if (isChampion) {
+                            userData.championships++;
+                        }
+                        if (isRunnerUp) {
+                            userData.runnerUps++;
+                        }
 
                         userData.seasons.push({
                             year: season.season,
@@ -2181,9 +2222,11 @@ async function renderUserProfile(username) {
                             ties,
                             pointsFor,
                             pointsAgainst,
-                            champion: false, // Will check later
+                            champion: isChampion,
+                            runnerUp: isRunnerUp,
                             finish,
-                            totalTeams
+                            totalTeams,
+                            draftPick
                         });
                     }
                 }

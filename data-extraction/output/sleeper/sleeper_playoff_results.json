@@ -1,0 +1,30 @@
+[
+  {
+    "year": 2022,
+    "champion": "robertwneal2",
+    "runner_up": "rpthorp",
+    "champion_roster_id": 5,
+    "runner_up_roster_id": 2
+  },
+  {
+    "year": 2023,
+    "champion": "gordonulus",
+    "runner_up": "rpthorp",
+    "champion_roster_id": 9,
+    "runner_up_roster_id": 13
+  },
+  {
+    "year": 2024,
+    "champion": "spaceman917",
+    "runner_up": "robertwneal2",
+    "champion_roster_id": 1,
+    "runner_up_roster_id": 14
+  },
+  {
+    "year": 2025,
+    "champion": null,
+    "runner_up": null,
+    "champion_roster_id": null,
+    "runner_up_roster_id": null
+  }
+]

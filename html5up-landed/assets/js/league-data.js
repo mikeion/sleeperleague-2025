@@ -1164,6 +1164,18 @@ async function renderAllTimeStats() {
             console.log('No MFL data available:', mflError);
         }
 
+        // Load Yahoo historical data
+        let yahooData = null;
+        try {
+            const yahooResponse = await fetch('/assets/data/yahoo_dashboard_data.json');
+            if (yahooResponse.ok) {
+                yahooData = await yahooResponse.json();
+                console.log('Yahoo data loaded:', yahooData);
+            }
+        } catch (yahooError) {
+            console.log('No Yahoo data available:', yahooError);
+        }
+
         // Get all available seasons
         const sleeperSeasons = await loadAvailableSeasons();
 
@@ -1227,6 +1239,75 @@ async function renderAllTimeStats() {
                         pointsAgainst: yearData.points_against,
                         finish: null,
                         platform: 'MFL'
+                    });
+                });
+            });
+        }
+
+        // Add Yahoo data to seasonResults and managerStats
+        if (yahooData) {
+            // Add Yahoo years to seasons array
+            yahooData.years.forEach(year => {
+                seasons.push({
+                    season: year,
+                    platform: 'Yahoo',
+                    name: `${year} Season (Yahoo)`
+                });
+            });
+            // Add Yahoo champions to season results
+            yahooData.champions.forEach(champ => {
+                seasonResults.push({
+                    season: champ.year,
+                    champion: champ.champion.display_name,
+                    runnerUp: champ.runner_up.display_name,
+                    platform: 'Yahoo'
+                });
+            });
+
+            // Initialize manager stats from Yahoo data
+            yahooData.manager_stats.forEach(yahooManager => {
+                const userId = yahooManager.username;
+
+                // Check if manager already exists (from MFL data)
+                if (!managerStats[userId]) {
+                    managerStats[userId] = {
+                        name: yahooManager.display_name,
+                        userId: userId,
+                        username: userId,
+                        seasons: [],
+                        championships: 0,
+                        runnerUps: 0,
+                        playoffAppearances: 0,
+                        totalWins: 0,
+                        totalLosses: 0,
+                        totalTies: 0,
+                        totalPointsFor: 0,
+                        totalPointsAgainst: 0,
+                        seasonFinishes: [],
+                        bestFinish: null,
+                        worstFinish: null
+                    };
+                }
+
+                // Add to existing stats
+                managerStats[userId].championships += yahooManager.totals.championships;
+                managerStats[userId].totalWins += yahooManager.totals.wins;
+                managerStats[userId].totalLosses += yahooManager.totals.losses;
+                managerStats[userId].totalTies += yahooManager.totals.ties;
+                managerStats[userId].totalPointsFor += yahooManager.totals.points_for;
+                managerStats[userId].totalPointsAgainst += yahooManager.totals.points_against;
+
+                // Add Yahoo seasons
+                Object.entries(yahooManager.years).forEach(([year, yearData]) => {
+                    managerStats[userId].seasons.push({
+                        year: parseInt(year),
+                        wins: yearData.wins,
+                        losses: yearData.losses,
+                        ties: yearData.ties,
+                        pointsFor: yearData.points_for,
+                        pointsAgainst: yearData.points_against,
+                        finish: null,
+                        platform: 'Yahoo'
                     });
                 });
             });
@@ -1344,8 +1425,9 @@ async function renderAllTimeStats() {
                                     const championUsername = userProfiles[championUser.user_id] || championUser.user_id.toString().toLowerCase();
                                     if (managerStats[championUsername]) {
                                         managerStats[championUsername].championships++;
-                                        championName = championUser.display_name;
-                                        console.log(`${championUser.display_name} won ${season.season} championship`);
+                                        // Use getDisplayName for first name
+                                        championName = getDisplayName(managerStats[championUsername]);
+                                        console.log(`${championName} won ${season.season} championship`);
                                     }
                                 }
                             }
@@ -1359,8 +1441,9 @@ async function renderAllTimeStats() {
                                     const runnerUpUsername = userProfiles[runnerUpUser.user_id] || runnerUpUser.user_id.toString().toLowerCase();
                                     if (managerStats[runnerUpUsername]) {
                                         managerStats[runnerUpUsername].runnerUps++;
-                                        runnerUpName = runnerUpUser.display_name;
-                                        console.log(`${runnerUpUser.display_name} was ${season.season} runner-up`);
+                                        // Use getDisplayName for first name
+                                        runnerUpName = getDisplayName(managerStats[runnerUpUsername]);
+                                        console.log(`${runnerUpName} was ${season.season} runner-up`);
                                     }
                                 }
                             }
@@ -1431,7 +1514,7 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
                     <button onclick="sortDynastyTable('championships')" class="button small">Championships</button>
                     <button onclick="sortDynastyTable('winPct')" class="button small">Win %</button>
                     <button onclick="sortDynastyTable('totalPoints')" class="button small">Total Points</button>
-                    <button onclick="sortDynastyTable('avgPts')" class="button small">Avg Pts/Season</button>
+                    <button onclick="sortDynastyTable('avgPts')" class="button small">Avg PPG</button>
                 </p>
 
                 <div class="table-wrapper">
@@ -1443,157 +1526,11 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
                                 <th style="cursor: pointer;" onclick="sortDynastyTable('championships')" id="sort-champs">Championships</th>
                                 <th style="cursor: pointer;" onclick="sortDynastyTable('winPct')" id="sort-winpct">Win %</th>
                                 <th>Record</th>
-                                <th style="cursor: pointer;" onclick="sortDynastyTable('avgPts')" id="sort-avgpts">Avg Pts/Season</th>
+                                <th style="cursor: pointer;" onclick="sortDynastyTable('avgPts')" id="sort-avgpts">Avg PPG</th>
                                 <th>Seasons</th>
                             </tr>
                         </thead>
                         <tbody id="dynasty-rankings-tbody">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Career Records -->
-            <div style="margin-bottom: 60px;">
-                <h3 style="text-align: center; margin-bottom: 20px;">📊 Interesting Stats & Records</h3>
-                <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 20px;">
-                    The stories behind the numbers
-                </p>
-
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                    ${(() => {
-                        // Best single season
-                        let bestSeason = { manager: '', points: 0, year: '' };
-                        managers.forEach(m => {
-                            m.seasons.forEach(s => {
-                                if (s.pointsFor > bestSeason.points) {
-                                    bestSeason = { manager: m.name, points: s.pointsFor, year: s.year };
-                                }
-                            });
-                        });
-                        return generateRecordCard('Best Single Season', bestSeason.manager, `${bestSeason.points.toFixed(1)} pts (${bestSeason.year})`, '⭐');
-                    })()}
-
-                    ${(() => {
-                        // Playoff heartbreak - runner-ups without a championship
-                        const heartbreak = [...managers]
-                            .filter(m => m.runnerUps > 0 && m.championships === 0)
-                            .sort((a,b) => b.runnerUps - a.runnerUps)[0];
-                        return heartbreak
-                            ? generateRecordCard('Playoff Heartbreak', heartbreak.name, `${heartbreak.runnerUps} runner-up${heartbreak.runnerUps > 1 ? 's' : ''}, 0 titles`, '💔')
-                            : generateRecordCard('Playoff Heartbreak', 'N/A', 'All finalists won a title!', '💔');
-                    })()}
-
-                    ${(() => {
-                        // Boom or Bust - highest variance in season performance
-                        const boomBust = [...managers]
-                            .filter(m => m.seasons.length >= 3)
-                            .map(m => {
-                                const seasonWinPcts = m.seasons.map(s => {
-                                    const games = s.wins + s.losses + s.ties;
-                                    return games > 0 ? (s.wins / games) * 100 : 0;
-                                });
-                                const avg = seasonWinPcts.reduce((a,b) => a+b, 0) / seasonWinPcts.length;
-                                const variance = seasonWinPcts.reduce((sum, pct) => sum + Math.pow(pct - avg, 2), 0) / seasonWinPcts.length;
-                                const stdDev = Math.sqrt(variance);
-                                return { ...m, stdDev, best: Math.max(...seasonWinPcts), worst: Math.min(...seasonWinPcts) };
-                            })
-                            .sort((a,b) => b.stdDev - a.stdDev)[0];
-                        return boomBust
-                            ? generateRecordCard('Boom or Bust', boomBust.name, `${boomBust.best.toFixed(0)}% best, ${boomBust.worst.toFixed(0)}% worst season`, '📊')
-                            : generateRecordCard('Boom or Bust', 'N/A', 'Not enough data', '📊');
-                    })()}
-
-                    ${(() => {
-                        // The Bridesmaid - most runner-up finishes
-                        const bridesmaid = [...managers].sort((a,b) => b.runnerUps - a.runnerUps)[0];
-                        if (bridesmaid && bridesmaid.runnerUps > 0) {
-                            return generateRecordCard('The Bridesmaid', bridesmaid.name, `${bridesmaid.runnerUps} runner-up finish${bridesmaid.runnerUps > 1 ? 'es' : ''}, ${bridesmaid.championships} title${bridesmaid.championships !== 1 ? 's' : ''}`, '🥈');
-                        } else {
-                            // Back-to-back champion alternative
-                            const backToBack = managers.find(m => {
-                                // Check if won consecutive years
-                                const champYears = seasonResults
-                                    .filter(r => r.champion === m.name)
-                                    .map(r => parseInt(r.season))
-                                    .sort((a,b) => a - b);
-                                for (let i = 0; i < champYears.length - 1; i++) {
-                                    if (champYears[i+1] - champYears[i] === 1) return true;
-                                }
-                                return false;
-                            });
-                            if (backToBack) {
-                                return generateRecordCard('Back-to-Back Champ', backToBack.name, `Consecutive titles`, '🔥');
-                            }
-                            return generateRecordCard('Parity League', 'Everyone', 'No repeat finalists yet!', '⚖️');
-                        }
-                    })()}
-
-                    ${(() => {
-                        // The Comeback Kid - worst season immediately followed by best season
-                        let comeback = { manager: '', turnaround: 0, worstYear: '', bestYear: '', worstRecord: '', bestRecord: '' };
-                        managers.filter(m => m.seasons.length >= 2).forEach(m => {
-                            const sortedSeasons = [...m.seasons].sort((a,b) => a.year - b.year);
-                            for (let i = 0; i < sortedSeasons.length - 1; i++) {
-                                const s1 = sortedSeasons[i];
-                                const s2 = sortedSeasons[i + 1];
-                                const games1 = s1.wins + s1.losses + s1.ties;
-                                const games2 = s2.wins + s2.losses + s2.ties;
-                                if (games1 > 0 && games2 > 0) {
-                                    const winPct1 = (s1.wins / games1) * 100;
-                                    const winPct2 = (s2.wins / games2) * 100;
-                                    const turnaround = winPct2 - winPct1;
-                                    if (turnaround > comeback.turnaround) {
-                                        comeback = {
-                                            manager: m.name,
-                                            turnaround,
-                                            worstYear: s1.year,
-                                            bestYear: s2.year,
-                                            worstRecord: `${s1.wins}-${s1.losses}`,
-                                            bestRecord: `${s2.wins}-${s2.losses}`
-                                        };
-                                    }
-                                }
-                            }
-                        });
-                        return comeback.manager
-                            ? generateRecordCard('The Comeback Kid', comeback.manager, `${comeback.worstRecord} (${comeback.worstYear}) → ${comeback.bestRecord} (${comeback.bestYear})`, '🔄')
-                            : generateRecordCard('The Comeback Kid', 'N/A', 'Not enough data', '🔄');
-                    })()}
-
-                </div>
-
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Manager</th>
-                                <th>Total Points</th>
-                                <th>PPG</th>
-                                <th>Best Season</th>
-                                <th>Worst Season</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-    `;
-
-    [...managers].sort((a, b) => b.totalPointsFor - a.totalPointsFor).forEach(manager => {
-        const bestSeasonPts = Math.max(...manager.seasons.map(s => s.pointsFor));
-        const worstSeasonPts = Math.min(...manager.seasons.map(s => s.pointsFor));
-        const displayName = getDisplayName(manager);
-
-        html += `
-            <tr>
-                <td><strong>${displayName}</strong></td>
-                <td>${manager.totalPointsFor.toFixed(1)}</td>
-                <td>${manager.avgPointsPerGame.toFixed(2)}</td>
-                <td style="color: #4CAF50;">${bestSeasonPts.toFixed(1)}</td>
-                <td style="color: #f44336;">${worstSeasonPts.toFixed(1)}</td>
-            </tr>
-        `;
-    });
-
-    html += `
                         </tbody>
                     </table>
                 </div>
@@ -1665,7 +1602,7 @@ function sortDynastyTable(sortBy) {
             sortedManagers = managers.sort((a, b) => b.totalPointsFor - a.totalPointsFor);
             break;
         case 'avgPts':
-            sortedManagers = managers.sort((a, b) => b.avgPointsPerSeason - a.avgPointsPerSeason);
+            sortedManagers = managers.sort((a, b) => b.avgPointsPerGame - a.avgPointsPerGame);
             break;
         default:
             sortedManagers = managers;
@@ -1674,7 +1611,7 @@ function sortDynastyTable(sortBy) {
     // Update sort indicators in headers
     document.getElementById('sort-champs').innerHTML = 'Championships' + (sortBy === 'championships' ? ' ▼' : '');
     document.getElementById('sort-winpct').innerHTML = 'Win %' + (sortBy === 'winPct' ? ' ▼' : '');
-    document.getElementById('sort-avgpts').innerHTML = 'Avg Pts/Season' + (sortBy === 'avgPts' ? ' ▼' : '');
+    document.getElementById('sort-avgpts').innerHTML = 'Avg PPG' + (sortBy === 'avgPts' ? ' ▼' : '');
 
     // Update button styles to show active sort
     const buttons = document.querySelectorAll('.view-content button.small');
@@ -1688,16 +1625,17 @@ function sortDynastyTable(sortBy) {
     tbody.innerHTML = sortedManagers.map((manager, index) => {
         const medal = index === 0 ? '👑' : index === 1 ? '🥈' : index === 2 ? '🥉' : '';
         const displayName = getDisplayName(manager);
+        const userLink = `user.html?username=${encodeURIComponent(manager.username || manager.userId)}`;
         return `
             <tr>
                 <td><strong>${medal} ${index + 1}</strong></td>
-                <td><strong>${displayName}</strong></td>
+                <td><strong><a href="${userLink}" style="color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor;">${displayName}</a></strong></td>
                 <td style="font-size: 1.2em; color: ${manager.championships > 0 ? '#FFD700' : 'inherit'};">
                     ${manager.championships > 0 ? '🏆 ' : ''}${manager.championships}
                 </td>
                 <td>${manager.winPct.toFixed(1)}%</td>
                 <td>${manager.totalWins}-${manager.totalLosses}${manager.totalTies > 0 ? '-' + manager.totalTies : ''}</td>
-                <td>${manager.avgPointsPerSeason.toFixed(1)}</td>
+                <td>${manager.avgPointsPerGame.toFixed(1)}</td>
                 <td>${manager.seasons.length}</td>
             </tr>
         `;
@@ -2071,3 +2009,385 @@ document.addEventListener('DOMContentLoaded', () => {
     setupViewTabs();
     initDashboard();
 });
+
+// User Profile Page
+async function renderUserProfile(username) {
+    const container = document.getElementById('user-content');
+    const nameHeader = document.getElementById('user-name');
+    const subtitle = document.getElementById('user-subtitle');
+    
+    container.innerHTML = '<p style="text-align: center;">Loading user profile...</p>';
+
+    try {
+        // Normalize username to lowercase
+        const normalizedUsername = username.toLowerCase();
+
+        // Load historical data
+        let mflData = null;
+        let yahooData = null;
+
+        try {
+            const mflResponse = await fetch('/assets/data/mfl_dashboard_data.json');
+            if (mflResponse.ok) mflData = await mflResponse.json();
+        } catch (e) { console.log('No MFL data'); }
+
+        try {
+            const yahooResponse = await fetch('/assets/data/yahoo_dashboard_data.json');
+            if (yahooResponse.ok) yahooData = await yahooResponse.json();
+        } catch (e) { console.log('No Yahoo data'); }
+
+        // Get Sleeper data
+        const sleeperSeasons = await loadAvailableSeasons();
+        
+        // Find user data across all platforms
+        let userData = {
+            username: normalizedUsername,
+            displayName: getDisplayName({ username: normalizedUsername }),
+            seasons: [],
+            totalWins: 0,
+            totalLosses: 0,
+            totalTies: 0,
+            totalPointsFor: 0,
+            totalPointsAgainst: 0,
+            championships: 0,
+            runnerUps: 0,
+            playoffAppearances: 0
+        };
+
+        // Collect MFL data
+        if (mflData && mflData.manager_stats) {
+            const mflUser = mflData.manager_stats.find(m => m.username === normalizedUsername);
+            if (mflUser) {
+                userData.totalWins += mflUser.totals.wins;
+                userData.totalLosses += mflUser.totals.losses;
+                userData.totalTies += mflUser.totals.ties;
+                userData.totalPointsFor += mflUser.totals.points_for;
+                userData.totalPointsAgainst += mflUser.totals.points_against;
+                userData.championships += mflUser.totals.championships;
+
+                Object.entries(mflUser.years).forEach(([year, yearData]) => {
+                    userData.seasons.push({
+                        year: parseInt(year),
+                        platform: 'MFL',
+                        wins: yearData.wins,
+                        losses: yearData.losses,
+                        ties: yearData.ties,
+                        pointsFor: yearData.points_for,
+                        pointsAgainst: yearData.points_against,
+                        champion: yearData.champion
+                    });
+                });
+            }
+        }
+
+        // Collect Yahoo data
+        if (yahooData && yahooData.manager_stats) {
+            const yahooUser = yahooData.manager_stats.find(m => m.username === normalizedUsername);
+            if (yahooUser) {
+                userData.totalWins += yahooUser.totals.wins;
+                userData.totalLosses += yahooUser.totals.losses;
+                userData.totalTies += yahooUser.totals.ties;
+                userData.totalPointsFor += yahooUser.totals.points_for;
+                userData.totalPointsAgainst += yahooUser.totals.points_against;
+                userData.championships += yahooUser.totals.championships;
+
+                Object.entries(yahooUser.years).forEach(([year, yearData]) => {
+                    userData.seasons.push({
+                        year: parseInt(year),
+                        platform: 'Yahoo',
+                        wins: yearData.wins,
+                        losses: yearData.losses,
+                        ties: yearData.ties,
+                        pointsFor: yearData.points_for,
+                        pointsAgainst: yearData.points_against,
+                        champion: yearData.champion
+                    });
+                });
+            }
+        }
+
+        // Collect Sleeper data
+        for (const season of sleeperSeasons) {
+            try {
+                const rosters = await fetchData(getRostersUrl(season.leagueId));
+                const users = await fetchData(getUsersUrl(season.leagueId));
+
+                // Fetch user profiles for usernames
+                const userProfiles = {};
+                for (const user of users) {
+                    try {
+                        const profile = await fetchData(`${API_BASE}/user/${user.user_id}`);
+                        if (profile && profile.username) {
+                            userProfiles[user.user_id] = profile.username.toLowerCase();
+                        }
+                    } catch (e) {}
+                }
+
+                // Find this user's roster
+                const userEntry = Object.entries(userProfiles).find(([userId, uname]) => uname === normalizedUsername);
+                if (userEntry) {
+                    const [userId, uname] = userEntry;
+                    const roster = rosters.find(r => r.owner_id === userId);
+
+                    if (roster) {
+                        const wins = roster.settings?.wins || 0;
+                        const losses = roster.settings?.losses || 0;
+                        const ties = roster.settings?.ties || 0;
+                        const pointsFor = roster.settings?.fpts || 0;
+                        const pointsAgainst = roster.settings?.fpts_against || 0;
+
+                        userData.totalWins += wins;
+                        userData.totalLosses += losses;
+                        userData.totalTies += ties;
+                        userData.totalPointsFor += pointsFor;
+                        userData.totalPointsAgainst += pointsAgainst;
+
+                        userData.seasons.push({
+                            year: season.season,
+                            platform: 'Sleeper',
+                            wins,
+                            losses,
+                            ties,
+                            pointsFor,
+                            pointsAgainst,
+                            champion: false // Will check later
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error(`Error loading Sleeper data for ${season.season}:`, error);
+            }
+        }
+
+        // Sort seasons by year
+        userData.seasons.sort((a, b) => a.year - b.year);
+
+        // Check if user exists
+        if (userData.seasons.length === 0) {
+            container.innerHTML = `
+                <p style="text-align: center; color: #f44336;">
+                    User "${username}" not found in league data.
+                </p>
+                <p style="text-align: center;">
+                    <a href="alltime.html">Back to Dynasty Rankings</a>
+                </p>
+            `;
+            return;
+        }
+
+        // Update header
+        nameHeader.textContent = userData.displayName;
+        const totalGames = userData.totalWins + userData.totalLosses + userData.totalTies;
+        const winPct = totalGames > 0 ? (userData.totalWins / totalGames * 100).toFixed(1) : '0.0';
+        subtitle.textContent = `${userData.totalWins}-${userData.totalLosses}${userData.totalTies > 0 ? '-' + userData.totalTies : ''} (${winPct}%) • ${userData.championships} Championship${userData.championships !== 1 ? 's' : ''}`;
+
+        // Render profile
+        renderUserProfileContent(userData);
+
+    } catch (error) {
+        console.error('Error rendering user profile:', error);
+        container.innerHTML = '<p style="text-align: center; color: #f44336;">Error loading user profile. Please try again.</p>';
+    }
+}
+
+function renderUserProfileContent(userData) {
+    const container = document.getElementById('user-content');
+
+    const totalGames = userData.totalWins + userData.totalLosses + userData.totalTies;
+    const winPct = totalGames > 0 ? (userData.totalWins / totalGames * 100).toFixed(1) : '0.0';
+    const avgPointsPerGame = totalGames > 0 ? (userData.totalPointsFor / totalGames).toFixed(1) : '0.0';
+
+    let html = `
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <!-- Back Navigation -->
+            <p style="margin-bottom: 30px;">
+                <a href="alltime.html">← Back to Dynasty Rankings</a>
+            </p>
+
+            <!-- Career Overview Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 8px; color: white; text-align: center;">
+                    <div style="font-size: 2em; font-weight: bold;">${userData.seasons.length}</div>
+                    <div style="opacity: 0.9;">Seasons</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 20px; border-radius: 8px; color: white; text-align: center;">
+                    <div style="font-size: 2em; font-weight: bold;">${winPct}%</div>
+                    <div style="opacity: 0.9;">Win Percentage</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 20px; border-radius: 8px; color: white; text-align: center;">
+                    <div style="font-size: 2em; font-weight: bold;">${userData.totalPointsFor.toFixed(0)}</div>
+                    <div style="opacity: 0.9;">Total Points</div>
+                </div>
+                <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); padding: 20px; border-radius: 8px; color: white; text-align: center;">
+                    <div style="font-size: 2em; font-weight: bold;">${avgPointsPerGame}</div>
+                    <div style="opacity: 0.9;">Avg PPG</div>
+                </div>
+            </div>
+
+            <!-- Performance Chart -->
+            <div style="margin-bottom: 40px; background: white; padding: 20px; border-radius: 8px;">
+                <h3 style="text-align: center; margin-bottom: 20px;">Performance Over Time</h3>
+                <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 15px;">Points per game (normalized across different league formats)</p>
+                <canvas id="pointsChart" style="max-height: 400px;"></canvas>
+            </div>
+
+            <!-- Year-by-Year Table -->
+            <div style="margin-bottom: 40px;">
+                <h3 style="text-align: center; margin-bottom: 20px;">Season-by-Season Performance</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Platform</th>
+                                <th>Record</th>
+                                <th>Win %</th>
+                                <th>Points For</th>
+                                <th>Points Against</th>
+                                <th>Diff</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+    `;
+
+    userData.seasons.forEach(season => {
+        const games = season.wins + season.losses + season.ties;
+        const seasonWinPct = games > 0 ? (season.wins / games * 100).toFixed(1) : '0.0';
+        const diff = season.pointsFor - season.pointsAgainst;
+        const diffColor = diff > 0 ? '#4CAF50' : '#f44336';
+
+        const platformBadge = {
+            'MFL': '<span style="background: #2196F3; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">MFL</span>',
+            'Yahoo': '<span style="background: #6001D2; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">Yahoo</span>',
+            'Sleeper': '<span style="background: #00CCCB; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">Sleeper</span>'
+        };
+
+        const result = season.champion ? '🏆 Champion' : '';
+
+        html += `
+            <tr>
+                <td><strong>${season.year}</strong></td>
+                <td>${platformBadge[season.platform]}</td>
+                <td>${season.wins}-${season.losses}${season.ties > 0 ? '-' + season.ties : ''}</td>
+                <td>${seasonWinPct}%</td>
+                <td>${season.pointsFor.toFixed(1)}</td>
+                <td>${season.pointsAgainst.toFixed(1)}</td>
+                <td style="color: ${diffColor};">${diff > 0 ? '+' : ''}${diff.toFixed(1)}</td>
+                <td>${result}</td>
+            </tr>
+        `;
+    });
+
+    html += `
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+
+    // Render chart
+    renderPointsChart(userData);
+}
+
+function renderPointsChart(userData) {
+    const ctx = document.getElementById('pointsChart');
+    if (!ctx) return;
+
+    const years = userData.seasons.map(s => s.year);
+    // Calculate points per game for fair comparison across eras
+    const pointsPerGame = userData.seasons.map(s => {
+        const games = s.wins + s.losses + s.ties;
+        return games > 0 ? s.pointsFor / games : 0;
+    });
+    const championYears = userData.seasons.filter(s => s.champion).map(s => s.year);
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: [{
+                label: 'Points Per Game',
+                data: pointsPerGame,
+                borderColor: '#667eea',
+                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                tension: 0.4,
+                fill: true,
+                pointRadius: years.map(y => championYears.includes(y) ? 8 : 4),
+                pointBackgroundColor: years.map(y => championYears.includes(y) ? '#FFD700' : '#667eea'),
+                pointBorderColor: years.map(y => championYears.includes(y) ? '#FFA500' : '#667eea'),
+                pointBorderWidth: years.map(y => championYears.includes(y) ? 3 : 2)
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const year = parseInt(context.label);
+                            const seasonData = userData.seasons.find(s => s.year === year);
+                            const isChampion = championYears.includes(year);
+                            const ppg = context.parsed.y.toFixed(1);
+                            const total = seasonData ? seasonData.pointsFor.toFixed(1) : '?';
+                            const platform = seasonData ? seasonData.platform : '';
+                            return `${ppg} PPG (${total} total)${isChampion ? ' 🏆' : ''} [${platform}]`;
+                        }
+                    }
+                },
+                annotation: {
+                    annotations: {
+                        mflYahoo: {
+                            type: 'line',
+                            xMin: years.indexOf(2020) - 0.5,
+                            xMax: years.indexOf(2020) - 0.5,
+                            borderColor: 'rgba(255, 99, 132, 0.5)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            label: {
+                                display: true,
+                                content: 'Format Change',
+                                position: 'start'
+                            }
+                        },
+                        yahooSleeper: {
+                            type: 'line',
+                            xMin: years.indexOf(2022) - 0.5,
+                            xMax: years.indexOf(2022) - 0.5,
+                            borderColor: 'rgba(75, 192, 192, 0.5)',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            label: {
+                                display: true,
+                                content: 'Yahoo→Sleeper',
+                                position: 'start'
+                            }
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    title: {
+                        display: true,
+                        text: 'Points Per Game'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Season'
+                    }
+                }
+            }
+        }
+    });
+}

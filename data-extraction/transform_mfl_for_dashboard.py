@@ -37,19 +37,37 @@ def get_display_name(franchise_id):
         return mfl_to_sleeper[franchise_id].get('real_name', 'Unknown')
     return 'Unknown'
 
+# Create reverse lookup: real_name -> franchise_id
+name_to_franchise = {}
+for fid, info in mfl_to_sleeper.items():
+    real_name = info.get('real_name', '')
+    if real_name:
+        name_to_franchise[real_name] = fid
+
 # Transform champions data
 transformed_champions = []
 for champ in champions_data:
+    # Try to find runner-up franchise ID by name
+    runner_up_name = champ['runner_up']
+    # Handle special name mappings
+    name_mapping = {
+        'Thorp': 'Ryan',
+        'Chris Attias': 'Chris'
+    }
+    runner_up_display = name_mapping.get(runner_up_name, runner_up_name)
+    if runner_up_name in name_to_franchise:
+        runner_up_display = get_display_name(name_to_franchise[runner_up_name])
+
     transformed_champions.append({
         'year': champ['year'],
         'platform': 'MFL',
         'champion': {
             'username': get_sleeper_username(champ['champion_id']),
-            'display_name': champ['champion'],
+            'display_name': get_display_name(champ['champion_id']),
             'franchise_id': champ['champion_id']
         },
         'runner_up': {
-            'display_name': champ['runner_up']
+            'display_name': runner_up_display
         },
         'championship_score': {
             'champion': float(champ['champion_score']),
@@ -90,11 +108,30 @@ for year, data in mfl_years.items():
                     }
 
                 # Parse season stats
-                wins = int(franchise.get('h2hw', 0))
-                losses = int(franchise.get('h2hl', 0))
-                ties = int(franchise.get('h2ht', 0))
-                points_for = float(franchise.get('pf', 0))
-                points_against = float(franchise.get('pa', 0))
+                # Try individual fields first (some years), then parse from h2hwlt string (2016 division format)
+                if 'h2hw' in franchise:
+                    wins = int(franchise.get('h2hw', 0))
+                    losses = int(franchise.get('h2hl', 0))
+                    ties = int(franchise.get('h2ht', 0))
+                elif 'h2hwlt' in franchise:
+                    # Parse from string format like "14-12-0" or "18-8-0-8"
+                    wlt_parts = franchise['h2hwlt'].split('-')
+                    wins = int(wlt_parts[0]) if len(wlt_parts) > 0 else 0
+                    losses = int(wlt_parts[1]) if len(wlt_parts) > 1 else 0
+                    ties = int(wlt_parts[2]) if len(wlt_parts) > 2 else 0
+                else:
+                    wins = losses = ties = 0
+
+                # Calculate accurate points from averages × games played
+                # The 'pf' field is incomplete in MFL data, but avgpf is accurate
+                total_games = wins + losses + ties
+                if total_games > 0 and 'avgpf' in franchise and 'avgpa' in franchise:
+                    points_for = float(franchise['avgpf']) * total_games
+                    points_against = float(franchise['avgpa']) * total_games
+                else:
+                    # Fallback to raw values if averages not available
+                    points_for = float(franchise.get('pf', 0))
+                    points_against = float(franchise.get('pa', 0))
 
                 # Check if they won championship this year
                 is_champion = any(c['year'] == year and c['champion_id'] == fid for c in champions_data)

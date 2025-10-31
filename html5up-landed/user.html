@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>User Profile - Fantasy League Dashboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@latest/dist/chartjs-plugin-annotation.min.js"></script>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Fantasy Dashboard</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="season.html">Season View</a></li>
+							<li><a href="weekly.html">Weekly Recap</a></li>
+							<li><a href="alltime.html">Dynasty Rankings</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2 id="user-name">Loading...</h2>
+							<p id="user-subtitle">Career statistics and history</p>
+						</header>
+
+						<!-- User Profile Content -->
+						<section id="user-content">
+							<p style="text-align: center;">Loading user profile...</p>
+						</section>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Fantasy League Dashboard</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/league-data.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				// Get username from URL parameter
+				const urlParams = new URLSearchParams(window.location.search);
+				const username = urlParams.get('username') || urlParams.get('id');
+
+				if (username) {
+					renderUserProfile(username);
+				} else {
+					document.getElementById('user-content').innerHTML = `
+						<p style="text-align: center; color: #f44336;">
+							No user specified. Please provide a username in the URL (e.g., ?username=mikeion)
+						</p>
+						<p style="text-align: center;">
+							<a href="alltime.html">Back to Dynasty Rankings</a>
+						</p>
+					`;
+				}
+			});
+		</script>
+
+	</body>
+</html>

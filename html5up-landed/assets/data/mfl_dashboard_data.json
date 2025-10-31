@@ -44,7 +44,7 @@
       "platform": "MFL",
       "champion": {
         "username": "rpthorp",
-        "display_name": "Thorp",
+        "display_name": "Ryan",
         "franchise_id": "0014"
       },
       "runner_up": {
@@ -64,7 +64,7 @@
         "franchise_id": "0008"
       },
       "runner_up": {
-        "display_name": "Chris Attias"
+        "display_name": "Chris"
       },
       "championship_score": {
         "champion": 125.92,
@@ -78,47 +78,47 @@
       "display_name": "Colin",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 18,
+          "losses": 8,
           "ties": 0,
-          "points_for": 1832.24,
-          "points_against": 2484.86,
+          "points_for": 2977.0,
+          "points_against": 2485.6,
           "champion": true
         },
         "2017": {
           "wins": 11,
           "losses": 15,
           "ties": 0,
-          "points_for": 1277.82,
-          "points_against": 2204.24,
+          "points_for": 2077.4,
+          "points_against": 2204.7999999999997,
           "champion": false
         },
         "2018": {
           "wins": 18,
           "losses": 8,
           "ties": 0,
-          "points_for": 1597.12,
-          "points_against": 2586.88,
+          "points_for": 2594.7999999999997,
+          "points_against": 2587.0,
           "champion": false
         },
         "2019": {
           "wins": 11,
           "losses": 15,
           "ties": 0,
-          "points_for": 1756.84,
-          "points_against": 2873.56,
+          "points_for": 2854.7999999999997,
+          "points_against": 2873.0,
           "champion": false
         }
       },
       "totals": {
-        "wins": 40,
-        "losses": 38,
+        "wins": 58,
+        "losses": 46,
         "ties": 0,
-        "points_for": 6464.02,
-        "points_against": 10149.54,
+        "points_for": 10503.999999999998,
+        "points_against": 10150.4,
         "championships": 1,
         "seasons_played": 4,
-        "win_percentage": 0.513
+        "win_percentage": 0.558
       }
     },
     {
@@ -126,267 +126,27 @@
       "display_name": "Josh",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 18,
+          "losses": 8,
           "ties": 0,
-          "points_for": 1484.36,
-          "points_against": 2434.6,
+          "points_for": 2412.7999999999997,
+          "points_against": 2433.6,
           "champion": false
         },
         "2017": {
           "wins": 11,
           "losses": 15,
           "ties": 0,
-          "points_for": 1461.1,
-          "points_against": 2405.3,
+          "points_for": 2373.7999999999997,
+          "points_against": 2405.0,
           "champion": false
         },
         "2018": {
           "wins": 17,
           "losses": 9,
           "ties": 0,
-          "points_for": 1844.1,
-          "points_against": 2516.42,
-          "champion": false
-        }
-      },
-      "totals": {
-        "wins": 28,
-        "losses": 24,
-        "ties": 0,
-        "points_for": 4789.5599999999995,
-        "points_against": 7356.32,
-        "championships": 0,
-        "seasons_played": 3,
-        "win_percentage": 0.538
-      }
-    },
-    {
-      "username": "robbbbbbbb",
-      "display_name": "Robb",
-      "years": {
-        "2016": {
-          "wins": 0,
-          "losses": 0,
-          "ties": 0,
-          "points_for": 1615.56,
-          "points_against": 2365.74,
-          "champion": false
-        },
-        "2017": {
-          "wins": 13,
-          "losses": 13,
-          "ties": 0,
-          "points_for": 1509.82,
-          "points_against": 2339.68,
-          "champion": false
-        },
-        "2018": {
-          "wins": 21,
-          "losses": 5,
-          "ties": 0,
-          "points_for": 1668.48,
-          "points_against": 2467.18,
-          "champion": false
-        },
-        "2019": {
-          "wins": 15,
-          "losses": 11,
-          "ties": 0,
-          "points_for": 1983.94,
-          "points_against": 2889.54,
-          "champion": true
-        }
-      },
-      "totals": {
-        "wins": 49,
-        "losses": 29,
-        "ties": 0,
-        "points_for": 6777.800000000001,
-        "points_against": 10062.14,
-        "championships": 1,
-        "seasons_played": 4,
-        "win_percentage": 0.628
-      }
-    },
-    {
-      "username": "not_in_league",
-      "display_name": "Trevor Barkas",
-      "years": {
-        "2016": {
-          "wins": 0,
-          "losses": 0,
-          "ties": 0,
-          "points_for": 1693.34,
-          "points_against": 2332.6,
-          "champion": false
-        },
-        "2017": {
-          "wins": 16,
-          "losses": 10,
-          "ties": 0,
-          "points_for": 1319.74,
-          "points_against": 2103.0,
-          "champion": false
-        },
-        "2018": {
-          "wins": 9,
-          "losses": 17,
-          "ties": 0,
-          "points_for": 1452.38,
-          "points_against": 2666.94,
-          "champion": false
-        },
-        "2019": {
-          "wins": 12,
-          "losses": 14,
-          "ties": 0,
-          "points_for": 1563.3,
-          "points_against": 2871.54,
-          "champion": false
-        }
-      },
-      "totals": {
-        "wins": 37,
-        "losses": 41,
-        "ties": 0,
-        "points_for": 6028.76,
-        "points_against": 9974.080000000002,
-        "championships": 0,
-        "seasons_played": 4,
-        "win_percentage": 0.474
-      }
-    },
-    {
-      "username": "spaceman917",
-      "display_name": "Nick",
-      "years": {
-        "2016": {
-          "wins": 0,
-          "losses": 0,
-          "ties": 0,
-          "points_for": 1538.18,
-          "points_against": 2387.6,
-          "champion": false
-        },
-        "2017": {
-          "wins": 14,
-          "losses": 12,
-          "ties": 0,
-          "points_for": 1419.12,
-          "points_against": 2321.5,
-          "champion": false
-        },
-        "2018": {
-          "wins": 16,
-          "losses": 10,
-          "ties": 0,
-          "points_for": 1674.02,
-          "points_against": 2546.24,
-          "champion": false
-        },
-        "2019": {
-          "wins": 15,
-          "losses": 11,
-          "ties": 0,
-          "points_for": 1827.92,
-          "points_against": 3044.82,
-          "champion": false
-        }
-      },
-      "totals": {
-        "wins": 45,
-        "losses": 33,
-        "ties": 0,
-        "points_for": 6459.24,
-        "points_against": 10300.16,
-        "championships": 0,
-        "seasons_played": 4,
-        "win_percentage": 0.577
-      }
-    },
-    {
-      "username": "dakodiacbear",
-      "display_name": "Dakota",
-      "years": {
-        "2016": {
-          "wins": 0,
-          "losses": 0,
-          "ties": 0,
-          "points_for": 1624.48,
-          "points_against": 2458.18,
-          "champion": false
-        },
-        "2017": {
-          "wins": 12,
-          "losses": 14,
-          "ties": 0,
-          "points_for": 1434.54,
-          "points_against": 2247.88,
-          "champion": false
-        },
-        "2018": {
-          "wins": 15,
-          "losses": 11,
-          "ties": 0,
-          "points_for": 1604.76,
-          "points_against": 2471.0,
-          "champion": false
-        },
-        "2019": {
-          "wins": 15,
-          "losses": 11,
-          "ties": 0,
-          "points_for": 1844.02,
-          "points_against": 2996.58,
-          "champion": false
-        }
-      },
-      "totals": {
-        "wins": 42,
-        "losses": 36,
-        "ties": 0,
-        "points_for": 6507.799999999999,
-        "points_against": 10173.64,
-        "championships": 0,
-        "seasons_played": 4,
-        "win_percentage": 0.538
-      }
-    },
-    {
-      "username": "not_in_league_chris",
-      "display_name": "Chris Attias",
-      "years": {
-        "2016": {
-          "wins": 0,
-          "losses": 0,
-          "ties": 0,
-          "points_for": 1405.28,
-          "points_against": 2351.42,
-          "champion": false
-        },
-        "2017": {
-          "wins": 16,
-          "losses": 10,
-          "ties": 0,
-          "points_for": 1480.6,
-          "points_against": 2270.48,
-          "champion": false
-        },
-        "2018": {
-          "wins": 15,
-          "losses": 11,
-          "ties": 0,
-          "points_for": 1587.38,
-          "points_against": 2614.26,
-          "champion": false
-        },
-        "2019": {
-          "wins": 15,
-          "losses": 11,
-          "ties": 0,
-          "points_for": 1921.34,
-          "points_against": 2690.24,
+          "points_for": 2997.7999999999997,
+          "points_against": 2516.7999999999997,
           "champion": false
         }
       },
@@ -394,59 +154,299 @@
         "wins": 46,
         "losses": 32,
         "ties": 0,
-        "points_for": 6394.6,
-        "points_against": 9926.4,
+        "points_for": 7784.4,
+        "points_against": 7355.4,
         "championships": 0,
-        "seasons_played": 4,
+        "seasons_played": 3,
         "win_percentage": 0.59
       }
     },
     {
-      "username": "rpthorp",
-      "display_name": "Thorp",
+      "username": "robbbbbbbb",
+      "display_name": "Robb",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
-          "ties": 0,
-          "points_for": 1397.44,
-          "points_against": 2470.84,
-          "champion": false
-        },
-        "2017": {
           "wins": 18,
           "losses": 8,
           "ties": 0,
-          "points_for": 1646.78,
-          "points_against": 2328.1,
+          "points_for": 2626.0,
+          "points_against": 2366.0,
+          "champion": false
+        },
+        "2017": {
+          "wins": 13,
+          "losses": 13,
+          "ties": 0,
+          "points_for": 2454.4,
+          "points_against": 2340.0,
+          "champion": false
+        },
+        "2018": {
+          "wins": 21,
+          "losses": 5,
+          "ties": 0,
+          "points_for": 2711.7999999999997,
+          "points_against": 2467.4,
+          "champion": false
+        },
+        "2019": {
+          "wins": 15,
+          "losses": 11,
+          "ties": 0,
+          "points_for": 3224.0,
+          "points_against": 2888.6,
+          "champion": true
+        }
+      },
+      "totals": {
+        "wins": 67,
+        "losses": 37,
+        "ties": 0,
+        "points_for": 11016.199999999999,
+        "points_against": 10062.0,
+        "championships": 1,
+        "seasons_played": 4,
+        "win_percentage": 0.644
+      }
+    },
+    {
+      "username": "not_in_league",
+      "display_name": "Trevor Barkas",
+      "years": {
+        "2016": {
+          "wins": 18,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 2750.7999999999997,
+          "points_against": 2332.2000000000003,
+          "champion": false
+        },
+        "2017": {
+          "wins": 16,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 2145.0,
+          "points_against": 2103.4,
+          "champion": false
+        },
+        "2018": {
+          "wins": 9,
+          "losses": 17,
+          "ties": 0,
+          "points_for": 2360.7999999999997,
+          "points_against": 2667.6,
+          "champion": false
+        },
+        "2019": {
+          "wins": 12,
+          "losses": 14,
+          "ties": 0,
+          "points_for": 2540.2000000000003,
+          "points_against": 2870.4,
+          "champion": false
+        }
+      },
+      "totals": {
+        "wins": 55,
+        "losses": 49,
+        "ties": 0,
+        "points_for": 9796.8,
+        "points_against": 9973.6,
+        "championships": 0,
+        "seasons_played": 4,
+        "win_percentage": 0.529
+      }
+    },
+    {
+      "username": "spaceman917",
+      "display_name": "Nick",
+      "years": {
+        "2016": {
+          "wins": 16,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 2498.6,
+          "points_against": 2386.7999999999997,
+          "champion": false
+        },
+        "2017": {
+          "wins": 14,
+          "losses": 12,
+          "ties": 0,
+          "points_for": 2306.2000000000003,
+          "points_against": 2321.7999999999997,
           "champion": false
         },
         "2018": {
           "wins": 16,
           "losses": 10,
           "ties": 0,
-          "points_for": 1680.42,
-          "points_against": 2465.0,
+          "points_for": 2719.6,
+          "points_against": 2545.4,
+          "champion": false
+        },
+        "2019": {
+          "wins": 15,
+          "losses": 11,
+          "ties": 0,
+          "points_for": 2969.2000000000003,
+          "points_against": 3044.6,
+          "champion": false
+        }
+      },
+      "totals": {
+        "wins": 61,
+        "losses": 43,
+        "ties": 0,
+        "points_for": 10493.6,
+        "points_against": 10298.6,
+        "championships": 0,
+        "seasons_played": 4,
+        "win_percentage": 0.587
+      }
+    },
+    {
+      "username": "dakodiacbear",
+      "display_name": "Dakota",
+      "years": {
+        "2016": {
+          "wins": 16,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 2639.0,
+          "points_against": 2457.0,
+          "champion": false
+        },
+        "2017": {
+          "wins": 12,
+          "losses": 14,
+          "ties": 0,
+          "points_for": 2332.2000000000003,
+          "points_against": 2249.0,
+          "champion": false
+        },
+        "2018": {
+          "wins": 15,
+          "losses": 11,
+          "ties": 0,
+          "points_for": 2607.7999999999997,
+          "points_against": 2470.0,
+          "champion": false
+        },
+        "2019": {
+          "wins": 15,
+          "losses": 11,
+          "ties": 0,
+          "points_for": 2997.7999999999997,
+          "points_against": 2997.7999999999997,
+          "champion": false
+        }
+      },
+      "totals": {
+        "wins": 58,
+        "losses": 46,
+        "ties": 0,
+        "points_for": 10576.8,
+        "points_against": 10173.8,
+        "championships": 0,
+        "seasons_played": 4,
+        "win_percentage": 0.558
+      }
+    },
+    {
+      "username": "not_in_league_chris",
+      "display_name": "Chris",
+      "years": {
+        "2016": {
+          "wins": 14,
+          "losses": 12,
+          "ties": 0,
+          "points_for": 2282.7999999999997,
+          "points_against": 2350.4,
+          "champion": false
+        },
+        "2017": {
+          "wins": 16,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 2405.0,
+          "points_against": 2269.7999999999997,
+          "champion": false
+        },
+        "2018": {
+          "wins": 15,
+          "losses": 11,
+          "ties": 0,
+          "points_for": 2579.2000000000003,
+          "points_against": 2613.0,
+          "champion": false
+        },
+        "2019": {
+          "wins": 15,
+          "losses": 11,
+          "ties": 0,
+          "points_for": 3122.6,
+          "points_against": 2691.0,
+          "champion": false
+        }
+      },
+      "totals": {
+        "wins": 60,
+        "losses": 44,
+        "ties": 0,
+        "points_for": 10389.6,
+        "points_against": 9924.2,
+        "championships": 0,
+        "seasons_played": 4,
+        "win_percentage": 0.577
+      }
+    },
+    {
+      "username": "rpthorp",
+      "display_name": "Ryan",
+      "years": {
+        "2016": {
+          "wins": 14,
+          "losses": 12,
+          "ties": 0,
+          "points_for": 2269.7999999999997,
+          "points_against": 2470.0,
+          "champion": false
+        },
+        "2017": {
+          "wins": 18,
+          "losses": 8,
+          "ties": 0,
+          "points_for": 2675.4,
+          "points_against": 2327.0,
+          "champion": false
+        },
+        "2018": {
+          "wins": 16,
+          "losses": 10,
+          "ties": 0,
+          "points_for": 2730.0,
+          "points_against": 2464.7999999999997,
           "champion": true
         },
         "2019": {
           "wins": 13,
           "losses": 13,
           "ties": 0,
-          "points_for": 1829.92,
+          "points_for": 2974.4,
           "points_against": 2771.6,
           "champion": false
         }
       },
       "totals": {
-        "wins": 47,
-        "losses": 31,
+        "wins": 61,
+        "losses": 43,
         "ties": 0,
-        "points_for": 6554.56,
-        "points_against": 10035.54,
+        "points_for": 10649.6,
+        "points_against": 10033.4,
         "championships": 1,
         "seasons_played": 4,
-        "win_percentage": 0.603
+        "win_percentage": 0.587
       }
     },
     {
@@ -454,47 +454,47 @@
       "display_name": "Gordon",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 13,
+          "losses": 13,
           "ties": 0,
-          "points_for": 1491.18,
-          "points_against": 2245.58,
+          "points_for": 2423.2000000000003,
+          "points_against": 2246.4,
           "champion": false
         },
         "2017": {
           "wins": 14,
           "losses": 12,
           "ties": 0,
-          "points_for": 1354.96,
-          "points_against": 2196.58,
+          "points_for": 2202.2000000000003,
+          "points_against": 2197.0,
           "champion": false
         },
         "2018": {
           "wins": 17,
           "losses": 9,
           "ties": 0,
-          "points_for": 1526.1,
-          "points_against": 2405.06,
+          "points_for": 2480.4,
+          "points_against": 2405.0,
           "champion": false
         },
         "2019": {
           "wins": 10,
           "losses": 16,
           "ties": 0,
-          "points_for": 1642.86,
-          "points_against": 2954.82,
+          "points_for": 2670.2000000000003,
+          "points_against": 2953.6,
           "champion": false
         }
       },
       "totals": {
-        "wins": 41,
-        "losses": 37,
+        "wins": 54,
+        "losses": 50,
         "ties": 0,
-        "points_for": 6015.099999999999,
-        "points_against": 9802.039999999999,
+        "points_for": 9776.000000000002,
+        "points_against": 9802.0,
         "championships": 0,
         "seasons_played": 4,
-        "win_percentage": 0.526
+        "win_percentage": 0.519
       }
     },
     {
@@ -502,47 +502,47 @@
       "display_name": "Casey",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 13,
+          "losses": 13,
           "ties": 0,
-          "points_for": 1573.62,
-          "points_against": 2524.8,
+          "points_for": 2558.4,
+          "points_against": 2524.6,
           "champion": false
         },
         "2017": {
           "wins": 11,
           "losses": 15,
           "ties": 0,
-          "points_for": 1284.06,
-          "points_against": 2282.18,
+          "points_for": 2087.7999999999997,
+          "points_against": 2282.7999999999997,
           "champion": false
         },
         "2018": {
           "wins": 17,
           "losses": 9,
           "ties": 0,
-          "points_for": 1583.22,
-          "points_against": 2385.18,
+          "points_for": 2574.0,
+          "points_against": 2384.2000000000003,
           "champion": false
         },
         "2019": {
           "wins": 12,
           "losses": 14,
           "ties": 0,
-          "points_for": 1719.86,
-          "points_against": 2887.9,
+          "points_for": 2795.0,
+          "points_against": 2888.6,
           "champion": false
         }
       },
       "totals": {
-        "wins": 40,
-        "losses": 38,
+        "wins": 53,
+        "losses": 51,
         "ties": 0,
-        "points_for": 6160.759999999999,
-        "points_against": 10080.06,
+        "points_for": 10015.2,
+        "points_against": 10080.2,
         "championships": 0,
         "seasons_played": 4,
-        "win_percentage": 0.513
+        "win_percentage": 0.51
       }
     },
     {
@@ -550,95 +550,95 @@
       "display_name": "Vince",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 13,
+          "losses": 13,
           "ties": 0,
-          "points_for": 1435.56,
-          "points_against": 2413.54,
+          "points_for": 2332.2000000000003,
+          "points_against": 2412.7999999999997,
           "champion": false
         },
         "2017": {
           "wins": 19,
           "losses": 7,
           "ties": 0,
-          "points_for": 1732.14,
-          "points_against": 2253.12,
+          "points_for": 2815.7999999999997,
+          "points_against": 2254.2000000000003,
           "champion": true
         },
         "2018": {
           "wins": 8,
           "losses": 18,
           "ties": 0,
-          "points_for": 1416.78,
-          "points_against": 2672.64,
+          "points_for": 2301.0,
+          "points_against": 2672.7999999999997,
           "champion": false
         },
         "2019": {
           "wins": 17,
           "losses": 9,
           "ties": 0,
-          "points_for": 1885.12,
-          "points_against": 2806.96,
+          "points_for": 3062.7999999999997,
+          "points_against": 2808.0,
           "champion": false
         }
       },
       "totals": {
-        "wins": 44,
-        "losses": 34,
+        "wins": 57,
+        "losses": 47,
         "ties": 0,
-        "points_for": 6469.599999999999,
-        "points_against": 10146.259999999998,
+        "points_for": 10511.8,
+        "points_against": 10147.8,
         "championships": 1,
         "seasons_played": 4,
-        "win_percentage": 0.564
+        "win_percentage": 0.548
       }
     },
     {
       "username": "mikeion",
-      "display_name": "Mike Ion",
+      "display_name": "Mike",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 12,
+          "losses": 14,
           "ties": 0,
-          "points_for": 1415.54,
-          "points_against": 2428.52,
+          "points_for": 2301.0,
+          "points_against": 2428.4,
           "champion": false
         },
         "2017": {
           "wins": 13,
           "losses": 13,
           "ties": 0,
-          "points_for": 1496.06,
-          "points_against": 2393.08,
+          "points_for": 2431.0,
+          "points_against": 2392.0,
           "champion": false
         },
         "2018": {
           "wins": 10,
           "losses": 16,
           "ties": 0,
-          "points_for": 1479.94,
-          "points_against": 2635.46,
+          "points_for": 2405.0,
+          "points_against": 2636.4,
           "champion": false
         },
         "2019": {
           "wins": 11,
           "losses": 15,
           "ties": 0,
-          "points_for": 1738.86,
-          "points_against": 2920.74,
+          "points_for": 2826.2000000000003,
+          "points_against": 2919.7999999999997,
           "champion": false
         }
       },
       "totals": {
-        "wins": 34,
-        "losses": 44,
+        "wins": 46,
+        "losses": 58,
         "ties": 0,
-        "points_for": 6130.4,
-        "points_against": 10377.8,
+        "points_for": 9963.2,
+        "points_against": 10376.599999999999,
         "championships": 0,
         "seasons_played": 4,
-        "win_percentage": 0.436
+        "win_percentage": 0.442
       }
     },
     {
@@ -646,47 +646,47 @@
       "display_name": "Robert Neal",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 13,
+          "losses": 13,
           "ties": 0,
-          "points_for": 1484.02,
-          "points_against": 2443.28,
+          "points_for": 2412.7999999999997,
+          "points_against": 2444.0,
           "champion": false
         },
         "2017": {
           "wins": 10,
           "losses": 16,
           "ties": 0,
-          "points_for": 1286.16,
-          "points_against": 2368.62,
+          "points_for": 2090.4,
+          "points_against": 2368.6,
           "champion": false
         },
         "2018": {
           "wins": 9,
           "losses": 17,
           "ties": 0,
-          "points_for": 1539.42,
-          "points_against": 2639.82,
+          "points_for": 2501.2000000000003,
+          "points_against": 2639.0,
           "champion": false
         },
         "2019": {
           "wins": 15,
           "losses": 11,
           "ties": 0,
-          "points_for": 1828.6,
-          "points_against": 3101.8,
+          "points_for": 2971.7999999999997,
+          "points_against": 3101.7999999999997,
           "champion": false
         }
       },
       "totals": {
-        "wins": 34,
-        "losses": 44,
+        "wins": 47,
+        "losses": 57,
         "ties": 0,
-        "points_for": 6138.200000000001,
-        "points_against": 10553.52,
+        "points_for": 9976.199999999999,
+        "points_against": 10553.4,
         "championships": 0,
         "seasons_played": 4,
-        "win_percentage": 0.436
+        "win_percentage": 0.452
       }
     },
     {
@@ -694,39 +694,39 @@
       "display_name": "Unknown",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 11,
+          "losses": 15,
           "ties": 0,
-          "points_for": 1434.04,
-          "points_against": 2324.26,
+          "points_for": 2329.6,
+          "points_against": 2324.4,
           "champion": false
         },
         "2017": {
           "wins": 15,
           "losses": 11,
           "ties": 0,
-          "points_for": 1591.0,
-          "points_against": 2380.54,
+          "points_for": 2584.4,
+          "points_against": 2381.6,
           "champion": false
         },
         "2018": {
           "wins": 10,
           "losses": 16,
           "ties": 0,
-          "points_for": 1447.76,
-          "points_against": 2715.22,
+          "points_for": 2353.0,
+          "points_against": 2714.4,
           "champion": false
         }
       },
       "totals": {
-        "wins": 25,
-        "losses": 27,
+        "wins": 36,
+        "losses": 42,
         "ties": 0,
-        "points_for": 4472.8,
-        "points_against": 7420.02,
+        "points_for": 7267.0,
+        "points_against": 7420.4,
         "championships": 0,
         "seasons_played": 3,
-        "win_percentage": 0.481
+        "win_percentage": 0.462
       }
     },
     {
@@ -734,47 +734,47 @@
       "display_name": "Shane",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 10,
+          "losses": 16,
           "ties": 0,
-          "points_for": 1377.3,
-          "points_against": 2541.08,
+          "points_for": 2238.6,
+          "points_against": 2540.2000000000003,
           "champion": false
         },
         "2017": {
           "wins": 6,
           "losses": 20,
           "ties": 0,
-          "points_for": 1097.66,
-          "points_against": 2334.38,
+          "points_for": 1783.6,
+          "points_against": 2334.7999999999997,
           "champion": false
         },
         "2018": {
           "wins": 1,
           "losses": 25,
           "ties": 0,
-          "points_for": 1225.76,
-          "points_against": 2543.76,
+          "points_for": 1991.6,
+          "points_against": 2542.7999999999997,
           "champion": false
         },
         "2019": {
           "wins": 13,
           "losses": 13,
           "ties": 0,
-          "points_for": 1851.02,
-          "points_against": 2971.8,
+          "points_for": 3008.2000000000003,
+          "points_against": 2971.7999999999997,
           "champion": false
         }
       },
       "totals": {
-        "wins": 20,
-        "losses": 58,
+        "wins": 30,
+        "losses": 74,
         "ties": 0,
-        "points_for": 5551.74,
-        "points_against": 10391.02,
+        "points_for": 9022.0,
+        "points_against": 10389.599999999999,
         "championships": 0,
         "seasons_played": 4,
-        "win_percentage": 0.256
+        "win_percentage": 0.288
       }
     },
     {
@@ -782,39 +782,39 @@
       "display_name": "Matt Irons",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 10,
+          "losses": 16,
           "ties": 0,
-          "points_for": 1299.48,
-          "points_against": 2359.48,
+          "points_for": 2111.2000000000003,
+          "points_against": 2358.2000000000003,
           "champion": false
         },
         "2017": {
           "wins": 10,
           "losses": 16,
           "ties": 0,
-          "points_for": 1330.86,
-          "points_against": 2299.42,
+          "points_for": 2163.2000000000003,
+          "points_against": 2298.4,
           "champion": false
         },
         "2018": {
           "wins": 11,
           "losses": 15,
           "ties": 0,
-          "points_for": 1616.72,
-          "points_against": 2711.92,
+          "points_for": 2626.0,
+          "points_against": 2711.7999999999997,
           "champion": false
         }
       },
       "totals": {
-        "wins": 21,
-        "losses": 31,
+        "wins": 31,
+        "losses": 47,
         "ties": 0,
-        "points_for": 4247.06,
-        "points_against": 7370.82,
+        "points_for": 6900.400000000001,
+        "points_against": 7368.4,
         "championships": 0,
         "seasons_played": 3,
-        "win_percentage": 0.404
+        "win_percentage": 0.397
       }
     },
     {
@@ -822,18 +822,18 @@
       "display_name": "Archie",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 9,
+          "losses": 17,
           "ties": 0,
-          "points_for": 1317.66,
-          "points_against": 2490.5,
+          "points_for": 2142.4,
+          "points_against": 2490.7999999999997,
           "champion": false
         },
         "2017": {
           "wins": 12,
           "losses": 14,
           "ties": 0,
-          "points_for": 1497.64,
+          "points_for": 2433.6,
           "points_against": 2457.0,
           "champion": false
         },
@@ -841,28 +841,28 @@
           "wins": 19,
           "losses": 7,
           "ties": 0,
-          "points_for": 1862.9,
-          "points_against": 2618.78,
+          "points_for": 3026.4,
+          "points_against": 2618.2000000000003,
           "champion": false
         },
         "2019": {
           "wins": 8,
           "losses": 18,
           "ties": 0,
-          "points_for": 1487.9,
-          "points_against": 2784.16,
+          "points_for": 2418.0,
+          "points_against": 2784.6,
           "champion": false
         }
       },
       "totals": {
-        "wins": 39,
-        "losses": 39,
+        "wins": 48,
+        "losses": 56,
         "ties": 0,
-        "points_for": 6166.1,
-        "points_against": 10350.44,
+        "points_for": 10020.4,
+        "points_against": 10350.6,
         "championships": 0,
         "seasons_played": 4,
-        "win_percentage": 0.5
+        "win_percentage": 0.462
       }
     },
     {
@@ -870,47 +870,47 @@
       "display_name": "Lorna Porter",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 10,
+          "losses": 16,
           "ties": 0,
-          "points_for": 1452.66,
-          "points_against": 2517.8,
+          "points_for": 2360.7999999999997,
+          "points_against": 2516.7999999999997,
           "champion": false
         },
         "2017": {
           "wins": 12,
           "losses": 14,
           "ties": 0,
-          "points_for": 1236.64,
-          "points_against": 2196.32,
+          "points_for": 2009.8,
+          "points_against": 2197.0,
           "champion": false
         },
         "2018": {
           "wins": 12,
           "losses": 14,
           "ties": 0,
-          "points_for": 1390.48,
-          "points_against": 2702.02,
+          "points_for": 2259.4,
+          "points_against": 2701.4,
           "champion": false
         },
         "2019": {
           "wins": 9,
           "losses": 17,
           "ties": 0,
-          "points_for": 1747.36,
-          "points_against": 3043.68,
+          "points_for": 2839.2000000000003,
+          "points_against": 3044.6,
           "champion": false
         }
       },
       "totals": {
-        "wins": 33,
-        "losses": 45,
+        "wins": 43,
+        "losses": 61,
         "ties": 0,
-        "points_for": 5827.14,
-        "points_against": 10459.820000000002,
+        "points_for": 9469.2,
+        "points_against": 10459.8,
         "championships": 0,
         "seasons_played": 4,
-        "win_percentage": 0.423
+        "win_percentage": 0.413
       }
     },
     {
@@ -918,47 +918,47 @@
       "display_name": "Sam Lester",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 8,
+          "losses": 18,
           "ties": 0,
-          "points_for": 1340.88,
-          "points_against": 2617.64,
+          "points_for": 2178.7999999999997,
+          "points_against": 2618.2000000000003,
           "champion": false
         },
         "2017": {
           "wins": 19,
           "losses": 7,
           "ties": 0,
-          "points_for": 1518.1,
-          "points_against": 2232.56,
+          "points_for": 2467.4,
+          "points_against": 2233.4,
           "champion": false
         },
         "2018": {
           "wins": 13,
           "losses": 13,
           "ties": 0,
-          "points_for": 1642.0,
-          "points_against": 2565.52,
+          "points_for": 2667.6,
+          "points_against": 2566.2000000000003,
           "champion": false
         },
         "2019": {
           "wins": 17,
           "losses": 9,
           "ties": 0,
-          "points_for": 1916.56,
-          "points_against": 2847.86,
+          "points_for": 3114.7999999999997,
+          "points_against": 2847.0,
           "champion": false
         }
       },
       "totals": {
-        "wins": 49,
-        "losses": 29,
+        "wins": 57,
+        "losses": 47,
         "ties": 0,
-        "points_for": 6417.539999999999,
-        "points_against": 10263.58,
+        "points_for": 10428.599999999999,
+        "points_against": 10264.800000000001,
         "championships": 0,
         "seasons_played": 4,
-        "win_percentage": 0.628
+        "win_percentage": 0.548
       }
     },
     {
@@ -966,39 +966,39 @@
       "display_name": "Ben",
       "years": {
         "2016": {
-          "wins": 0,
-          "losses": 0,
+          "wins": 6,
+          "losses": 20,
           "ties": 0,
-          "points_for": 1337.22,
-          "points_against": 2490.16,
+          "points_for": 2173.6,
+          "points_against": 2490.7999999999997,
           "champion": false
         },
         "2017": {
           "wins": 8,
           "losses": 18,
           "ties": 0,
-          "points_for": 1387.14,
-          "points_against": 2381.58,
+          "points_for": 2254.2000000000003,
+          "points_against": 2381.6,
           "champion": false
         },
         "2018": {
           "wins": 6,
           "losses": 20,
           "ties": 0,
-          "points_for": 1408.94,
-          "points_against": 2702.42,
+          "points_for": 2290.6,
+          "points_against": 2701.4,
           "champion": false
         }
       },
       "totals": {
-        "wins": 14,
-        "losses": 38,
+        "wins": 20,
+        "losses": 58,
         "ties": 0,
-        "points_for": 4133.3,
-        "points_against": 7574.16,
+        "points_for": 6718.4,
+        "points_against": 7573.799999999999,
         "championships": 0,
         "seasons_played": 3,
-        "win_percentage": 0.269
+        "win_percentage": 0.256
       }
     }
   ]

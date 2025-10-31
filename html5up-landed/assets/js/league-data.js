@@ -1417,7 +1417,7 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
         <div style="max-width: 1400px; margin: 0 auto;">
             <p style="text-align: center; color: #666; margin-bottom: 40px;">
                 Career stats across ${seasons.length} season${seasons.length > 1 ? 's' : ''}
-                (${seasons[seasons.length - 1].season} - ${seasons[0].season})
+                (${seasons[0].season} - ${seasons[seasons.length - 1].season})
             </p>
 
             <!-- Dynasty Rankings -->

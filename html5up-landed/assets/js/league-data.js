@@ -2277,7 +2277,8 @@ function renderUserProfileContent(userData) {
                                 <th>Points For</th>
                                 <th>Points Against</th>
                                 <th>Diff</th>
-                                <th>Result</th>
+                                <th>Reg. Season</th>
+                                <th>Playoffs</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -2295,15 +2296,20 @@ function renderUserProfileContent(userData) {
             'Sleeper': '<span style="background: #00CCCB; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">Sleeper</span>'
         };
 
-        // Build result string - prioritize playoff results over regular season
-        let result = '';
+        // Regular season finish
+        let regularSeasonFinish = '';
+        if (season.finish && season.totalTeams) {
+            regularSeasonFinish = `${season.finish}/${season.totalTeams}`;
+        }
+
+        // Playoff result
+        let playoffResult = '';
         if (season.champion) {
-            result = '🏆 Champion';
+            playoffResult = '🏆 1st';
         } else if (season.runnerUp) {
-            result = '🥈 Runner-up';
-        } else if (season.finish && season.totalTeams) {
-            // Show regular season placement for non-playoff teams
-            result = `${season.finish}/${season.totalTeams}`;
+            playoffResult = '🥈 2nd';
+        } else {
+            playoffResult = '-';
         }
 
         html += `
@@ -2315,7 +2321,8 @@ function renderUserProfileContent(userData) {
                 <td>${season.pointsFor.toFixed(1)}</td>
                 <td>${season.pointsAgainst.toFixed(1)}</td>
                 <td style="color: ${diffColor};">${diff > 0 ? '+' : ''}${diff.toFixed(1)}</td>
-                <td>${result}</td>
+                <td>${regularSeasonFinish}</td>
+                <td>${playoffResult}</td>
             </tr>
         `;
     });

@@ -1,0 +1,170 @@
+{
+  "year": 2019,
+  "platform": "MyFantasyLeague",
+  "league_id": "59111",
+  "teams": [
+    {
+      "franchise_id": "0001",
+      "team_name": "The Fournette Awakens",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0001.jpg",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0001.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0002",
+      "team_name": "Moore than a Thielen",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "https://www46.myfantasyleague.com/fflnetdynamic2018/59111_franchise_logo0002.jpg",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2018/59111_franchise_icon0002.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0003",
+      "team_name": "The Rise of Sky-Rodgers",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "http://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0003.jpg",
+      "icon": "http://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0003.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0004",
+      "team_name": "Awww, Bitch",
+      "sleeper_username": "shane",
+      "sleeper_display_name": "unknown",
+      "real_name": "Shane",
+      "logo": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0004.jpg",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0004.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0005",
+      "team_name": "Hot Chubb Thomas Machine",
+      "sleeper_username": "chris_attias",
+      "sleeper_display_name": "unknown",
+      "real_name": "Chris Attias",
+      "logo": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0005.jpg",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0005.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0006",
+      "team_name": "Follow Godwin",
+      "sleeper_username": "gordonulus",
+      "sleeper_display_name": "Gordonulus",
+      "real_name": "Gordon",
+      "logo": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0006.jpg",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0006.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0007",
+      "team_name": "Archie",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Archie",
+      "logo": "",
+      "icon": "",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0008",
+      "team_name": "The Lutz Jedi",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "http://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0008.jpg",
+      "icon": "http://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0008.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0009",
+      "team_name": "Cookin with Mahomie",
+      "sleeper_username": "vince",
+      "sleeper_display_name": "unknown",
+      "real_name": "Vince",
+      "logo": "",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0009.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0010",
+      "team_name": "Dere-Zeke My Balls",
+      "sleeper_username": "robertwneal2",
+      "sleeper_display_name": "robertwneal2",
+      "real_name": "Robert Neal",
+      "logo": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0010.jpg",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0010.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0011",
+      "team_name": "Chark Attack",
+      "sleeper_username": "dakodiacbear",
+      "sleeper_display_name": "DakodiacBear",
+      "real_name": "Dakota",
+      "logo": "http://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0011.jpg",
+      "icon": "http://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0011.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0012",
+      "team_name": "I wonder what the limit of characters is for team name length. OK I\u2019ll just keep typing endlessly then... No? Still not stopping me?",
+      "sleeper_username": "caseyforeverunclean",
+      "sleeper_display_name": "CaseyForeverUnclean",
+      "real_name": "Casey",
+      "logo": "http://www.queenili.com/wp-content/uploads/2013/02/ruxinstroke.jpg",
+      "icon": "https://s-media-cache-ak0.pinimg.com/originals/de/cb/51/decb5176b24eee0f7a2bf7eabbc141b8.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0013",
+      "team_name": "The Chewbacca Defense",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Lorna Porter",
+      "logo": "https://qph.fs.quoracdn.net/main-qimg-805b9fe3dc74fec34d8c05a522f01ae1",
+      "icon": "https://qph.fs.quoracdn.net/main-qimg-805b9fe3dc74fec34d8c05a522f01ae1",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0014",
+      "team_name": "Thorp",
+      "sleeper_username": "rpthorp",
+      "sleeper_display_name": "rpthorp",
+      "real_name": "Thorp",
+      "logo": "",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_icon0014.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0015",
+      "team_name": "Josh Jacobs Jingleheimer, Shit.",
+      "sleeper_username": "mikeion",
+      "sleeper_display_name": "mikeion",
+      "real_name": "Mike Ion",
+      "logo": "https://media.giphy.com/media/f7SrHZ3G5TqAggHhxq/giphy.gif",
+      "icon": "https://media.giphy.com/media/f7SrHZ3G5TqAggHhxq/giphy.gif",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0016",
+      "team_name": "The MilLe'Veon Falcon",
+      "sleeper_username": "not_in_league",
+      "sleeper_display_name": "Trevor Barkas",
+      "real_name": "Trevor Barkas",
+      "logo": "http://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_logo0016.jpg",
+      "icon": "http://www46.myfantasyleague.com/fflnetdynamic2019/59111_franchise_icon0016.jpg",
+      "division": "00"
+    }
+  ],
+  "standings": [],
+  "total_weeks": 14,
+  "playoff_start_week": 15
+}

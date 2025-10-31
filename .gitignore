@@ -4,6 +4,13 @@
 # Dependencies
 node_modules/
 
+# Credentials and secrets
+.yahoo_credentials
+*_credentials
+*.secret
+.env
+.env.local
+
 # OS files
 .DS_Store
 Thumbs.db

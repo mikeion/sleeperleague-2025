@@ -1,0 +1,210 @@
+{
+  "year": 2017,
+  "platform": "MyFantasyLeague",
+  "league_id": "59111",
+  "teams": [
+    {
+      "franchise_id": "0001",
+      "team_name": "It's Miller Time",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_icon0001.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0002",
+      "team_name": "You Can Crowell But You Can't Hyde ",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "",
+      "icon": "",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0003",
+      "team_name": "From First to Worst",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "http://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_logo0003.jpg",
+      "icon": "http://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_icon0003.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0004",
+      "team_name": "Brees-ing to Sacco Cup",
+      "sleeper_username": "shane",
+      "sleeper_display_name": "unknown",
+      "real_name": "Shane",
+      "logo": "",
+      "icon": "",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0005",
+      "team_name": "Attius!",
+      "sleeper_username": "chris_attias",
+      "sleeper_display_name": "unknown",
+      "real_name": "Chris Attias",
+      "logo": "",
+      "icon": "",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0006",
+      "team_name": "Gordon and Gordon",
+      "sleeper_username": "gordonulus",
+      "sleeper_display_name": "Gordonulus",
+      "real_name": "Gordon",
+      "logo": "http://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_logo0006.jpg",
+      "icon": "http://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_icon0006.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0007",
+      "team_name": "Archie",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Archie",
+      "logo": "",
+      "icon": "",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0008",
+      "team_name": "Swimming with the Fishes",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "http://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_logo0008.jpg",
+      "icon": "http://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_icon0008.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0009",
+      "team_name": "The SuhhhDudes",
+      "sleeper_username": "vince",
+      "sleeper_display_name": "unknown",
+      "real_name": "Vince",
+      "logo": "",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2016/59111_franchise_icon0009.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0010",
+      "team_name": "Chalupa Batmen",
+      "sleeper_username": "robertwneal2",
+      "sleeper_display_name": "robertwneal2",
+      "real_name": "Robert Neal",
+      "logo": "https://yt3.ggpht.com/-vdWR-FPYyD4/AAAAAAAAAAI/AAAAAAAAAAA/kOIh6mUeaEA/s900-c-k-no/photo.jpg",
+      "icon": "https://svite-league-apps-img.s3.amazonaws.com/team-284303-s3.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0011",
+      "team_name": "Overflowing Rivers",
+      "sleeper_username": "dakodiacbear",
+      "sleeper_display_name": "DakodiacBear",
+      "real_name": "Dakota",
+      "logo": "",
+      "icon": "http://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_icon0011.jpg",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0012",
+      "team_name": "Forever Unclean",
+      "sleeper_username": "caseyforeverunclean",
+      "sleeper_display_name": "CaseyForeverUnclean",
+      "real_name": "Casey",
+      "logo": "http://www.queenili.com/wp-content/uploads/2013/02/ruxinstroke.jpg",
+      "icon": "https://s-media-cache-ak0.pinimg.com/originals/de/cb/51/decb5176b24eee0f7a2bf7eabbc141b8.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0013",
+      "team_name": "Immeasurable Non-Binary Gender Human's Team",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Lorna Porter",
+      "logo": "https://www46.myfantasyleague.com/fflnetdynamic2016/59111_franchise_logo0013.jpg",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2016/59111_franchise_icon0013.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0014",
+      "team_name": "Thorpedoes",
+      "sleeper_username": "rpthorp",
+      "sleeper_display_name": "rpthorp",
+      "real_name": "Thorp",
+      "logo": "",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_icon0014.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0015",
+      "team_name": "Brady's Deflated Balls",
+      "sleeper_username": "mikeion",
+      "sleeper_display_name": "mikeion",
+      "real_name": "Mike Ion",
+      "logo": "",
+      "icon": "",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0016",
+      "team_name": "Trevor",
+      "sleeper_username": "not_in_league",
+      "sleeper_display_name": "Trevor Barkas",
+      "real_name": "Trevor Barkas",
+      "logo": "",
+      "icon": "",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0017",
+      "team_name": "Chris",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "",
+      "icon": "",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0018",
+      "team_name": "Two Gurleys One Cup",
+      "sleeper_username": "bigdog11",
+      "sleeper_display_name": "BigDog11",
+      "real_name": "",
+      "logo": "",
+      "icon": "",
+      "division": "00"
+    },
+    {
+      "franchise_id": "0019",
+      "team_name": "Failed Imagineers Club",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "",
+      "icon": "https://www46.myfantasyleague.com/fflnetdynamic2017/59111_franchise_icon0019.jpg",
+      "division": "01"
+    },
+    {
+      "franchise_id": "0020",
+      "team_name": "Sack tap",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "",
+      "logo": "",
+      "icon": "",
+      "division": "00"
+    }
+  ],
+  "standings": [],
+  "total_weeks": 14,
+  "playoff_start_week": 15
+}

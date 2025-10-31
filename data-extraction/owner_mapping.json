@@ -1,0 +1,160 @@
+{
+  "mfl_to_sleeper": {
+    "0001": {
+      "mfl_franchise_id": "0001",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Nick",
+      "notes": "Team names: It's Miller Time, Melvin Gordon, The Fournette Awakens"
+    },
+    "0002": {
+      "mfl_franchise_id": "0002",
+      "sleeper_username": "sambam805",
+      "sleeper_display_name": "SamBam805",
+      "real_name": "Sam Lester",
+      "notes": "Team names: Cooper Troopers, You Can Crowell But You Can't Hyde, Moore than a Thielen"
+    },
+    "0003": {
+      "mfl_franchise_id": "0003",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Colin",
+      "notes": "Team names: Phil lives down by the River, From First to Worst, I HOPkins, The Rise of Sky-Rodgers"
+    },
+    "0004": {
+      "mfl_franchise_id": "0004",
+      "sleeper_username": "shane",
+      "sleeper_display_name": "unknown",
+      "real_name": "Shane",
+      "notes": "Team names: Julio Daddy?, Brees-ing to Sacco Cup, Shane, Awww Bitch"
+    },
+    "0005": {
+      "mfl_franchise_id": "0005",
+      "sleeper_username": "chris_attias",
+      "sleeper_display_name": "unknown",
+      "real_name": "Chris Attias",
+      "notes": "Team names: Senor Negro, Attius!, Men In Tights, Hot Chubb Thomas Machine"
+    },
+    "0006": {
+      "mfl_franchise_id": "0006",
+      "sleeper_username": "gordonulus",
+      "sleeper_display_name": "Gordonulus",
+      "real_name": "Gordon",
+      "notes": "Team names: Kirbstompers, Gordon and Gordon, Saquon not Sacco, Follow Godwin"
+    },
+    "0007": {
+      "mfl_franchise_id": "0007",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Archie",
+      "notes": "Team name: Archie (all 4 years)"
+    },
+    "0008": {
+      "mfl_franchise_id": "0008",
+      "sleeper_username": "robbbbbbbb",
+      "sleeper_display_name": "robbbbbbbb",
+      "real_name": "Robb",
+      "notes": "Team names: I Think I Cam, Swimming with the Fishes, No this is Patrick, The Lutz Jedi"
+    },
+    "0009": {
+      "mfl_franchise_id": "0009",
+      "sleeper_username": "vince",
+      "sleeper_display_name": "unknown",
+      "real_name": "Vince",
+      "notes": "Team names: The SuhhhDudes, The SuhhhDudes, Keuchly Do you love me?, Cookin with Mahomie"
+    },
+    "0010": {
+      "mfl_franchise_id": "0010",
+      "sleeper_username": "robertwneal2",
+      "sleeper_display_name": "robertwneal2",
+      "real_name": "Robert Neal",
+      "notes": "Team names: Chalupa Batmen, Chalupa Batmen, Gurleys Gone Wild, Dere-Zeke My Balls"
+    },
+    "0011": {
+      "mfl_franchise_id": "0011",
+      "sleeper_username": "dakodiacbear",
+      "sleeper_display_name": "DakodiacBear",
+      "real_name": "Dakota",
+      "notes": "Team names: David Johnson's Johnson, Overflowing Rivers, Dakota, Chark Attack"
+    },
+    "0012": {
+      "mfl_franchise_id": "0012",
+      "sleeper_username": "caseyforeverunclean",
+      "sleeper_display_name": "CaseyForeverUnclean",
+      "real_name": "Casey",
+      "notes": "Team names: Forever Unclean, Forever Unclean, FOURtuNETTE, (very long name)"
+    },
+    "0013": {
+      "mfl_franchise_id": "0013",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Lorna Porter",
+      "notes": "Team names: Immeasurable Non-Binary Gender Human's Team, Lorna, The Chewbacca Defense - NOT IN CURRENT SLEEPER LEAGUE"
+    },
+    "0014": {
+      "mfl_franchise_id": "0014",
+      "sleeper_username": "rpthorp",
+      "sleeper_display_name": "rpthorp",
+      "real_name": "Thorp",
+      "notes": "Team names: Thorpedoes, Thorpedoes, Thorpedos, Thorp"
+    },
+    "0015": {
+      "mfl_franchise_id": "0015",
+      "sleeper_username": "mikeion",
+      "sleeper_display_name": "mikeion",
+      "real_name": "Mike Ion",
+      "notes": "Team names: The Brown Notes, Brady's Deflated Balls, Make America Gronk Again, Josh Jacobs Jingleheimer Shit"
+    },
+    "0016": {
+      "mfl_franchise_id": "0016",
+      "sleeper_username": "not_in_league",
+      "sleeper_display_name": "Trevor Barkas",
+      "real_name": "Trevor Barkas",
+      "notes": "Team names: Trevor, Trevor, Royale with Cheese, The MilLe'Veon Falcon - NO LONGER IN LEAGUE"
+    },
+    "0017": {
+      "mfl_franchise_id": "0017",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Ben",
+      "notes": "Team names: Ben, Chris, Totally Intentional - LEFT BEFORE 2019"
+    },
+    "0018": {
+      "mfl_franchise_id": "0018",
+      "sleeper_username": "bigdog11",
+      "sleeper_display_name": "BigDog11",
+      "notes": "Team names: Big Dogs United, Two Gurleys One Cup, Conner This is Judgement Day - LEFT BEFORE 2019"
+    },
+    "0019": {
+      "mfl_franchise_id": "0019",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Matt Irons",
+      "notes": "Team names: Matt, Failed Imagineers Club, A Plethora of Piñatas - LEFT BEFORE 2019"
+    },
+    "0020": {
+      "mfl_franchise_id": "0020",
+      "sleeper_username": "unknown",
+      "sleeper_display_name": "unknown",
+      "real_name": "Josh",
+      "notes": "Team names: Doctor's without Bortles, Sack tap, its me Ya Boyd - LEFT BEFORE 2019"
+    }
+  },
+  "sleeper_users": [
+    "BigDog11",
+    "fishy11",
+    "Spaceman917",
+    "otterboi",
+    "robbbbbbbb",
+    "SamBam805",
+    "elliottkaser",
+    "Gordonulus",
+    "DakodiacBear",
+    "rpthorp",
+    "robertwneal2",
+    "mikeion",
+    "CaseyForeverUnclean",
+    "buddygalletti"
+  ],
+  "notes": "Mapping between MFL franchise IDs (2016-2019) and current Sleeper league members. Some franchises from MFL are not in current Sleeper league."
+}

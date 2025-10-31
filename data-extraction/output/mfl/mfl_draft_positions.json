@@ -245,5 +245,66 @@
       "division": "DIVISION01"
     }
   },
-  "2019": {}
+  "2019": {
+    "0003": {
+      "pick": 1,
+      "division": "WEST_COAST"
+    },
+    "0001": {
+      "pick": 2,
+      "division": "WEST_COAST"
+    },
+    "0002": {
+      "pick": 3,
+      "division": "WEST_COAST"
+    },
+    "0016": {
+      "pick": 4,
+      "division": "WEST_COAST"
+    },
+    "0011": {
+      "pick": 5,
+      "division": "WEST_COAST"
+    },
+    "0008": {
+      "pick": 6,
+      "division": "WEST_COAST"
+    },
+    "0007": {
+      "pick": 7,
+      "division": "WEST_COAST"
+    },
+    "0015": {
+      "pick": 8,
+      "division": "WEST_COAST"
+    },
+    "0009": {
+      "pick": 2,
+      "division": "EAST_COAST"
+    },
+    "0014": {
+      "pick": 3,
+      "division": "EAST_COAST"
+    },
+    "0010": {
+      "pick": 4,
+      "division": "EAST_COAST"
+    },
+    "0012": {
+      "pick": 5,
+      "division": "EAST_COAST"
+    },
+    "0018": {
+      "pick": 6,
+      "division": "EAST_COAST"
+    },
+    "0020": {
+      "pick": 7,
+      "division": "EAST_COAST"
+    },
+    "0006": {
+      "pick": 8,
+      "division": "EAST_COAST"
+    }
+  }
 }

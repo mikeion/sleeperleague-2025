@@ -121,7 +121,7 @@
           "points_against": 2873.0,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 1,
           "finish": 12,
           "total_teams": 16
         }
@@ -237,7 +237,7 @@
           "points_against": 2888.6,
           "champion": true,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 6,
           "finish": 3,
           "total_teams": 16
         }
@@ -301,7 +301,7 @@
           "points_against": 2870.4,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 4,
           "finish": 11,
           "total_teams": 16
         }
@@ -365,7 +365,7 @@
           "points_against": 3044.6,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 2,
           "finish": 7,
           "total_teams": 16
         }
@@ -429,7 +429,7 @@
           "points_against": 2997.7999999999997,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 5,
           "finish": 5,
           "total_teams": 16
         }
@@ -557,7 +557,7 @@
           "points_against": 2771.6,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 3,
           "finish": 9,
           "total_teams": 16
         }
@@ -621,7 +621,7 @@
           "points_against": 2953.6,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 8,
           "finish": 14,
           "total_teams": 16
         }
@@ -685,7 +685,7 @@
           "points_against": 2888.6,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 5,
           "finish": 10,
           "total_teams": 16
         }
@@ -749,7 +749,7 @@
           "points_against": 2808.0,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 2,
           "finish": 2,
           "total_teams": 16
         }
@@ -813,7 +813,7 @@
           "points_against": 2919.7999999999997,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 8,
           "finish": 13,
           "total_teams": 16
         }
@@ -877,7 +877,7 @@
           "points_against": 3101.7999999999997,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 4,
           "finish": 6,
           "total_teams": 16
         }
@@ -1109,7 +1109,7 @@
           "points_against": 2784.6,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 7,
           "finish": 16,
           "total_teams": 16
         }
@@ -1237,7 +1237,7 @@
           "points_against": 2847.0,
           "champion": false,
           "runner_up": false,
-          "draft_pick": null,
+          "draft_pick": 3,
           "finish": 1,
           "total_teams": 16
         }

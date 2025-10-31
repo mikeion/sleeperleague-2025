@@ -1,5 +1,5 @@
 [build]
-  publish = "."
+  publish = "html5up-landed"
   command = "echo 'No build command required'"
 
 [[headers]]

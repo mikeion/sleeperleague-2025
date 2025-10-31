@@ -1429,17 +1429,29 @@ async function renderAllTimeStats() {
                         let runnerUpName = null;
 
                         // Track champion
-                        if (yearPlayoffs.champion && managerStats[yearPlayoffs.champion]) {
-                            managerStats[yearPlayoffs.champion].championships++;
-                            championName = getDisplayName(managerStats[yearPlayoffs.champion]);
-                            console.log(`${championName} won ${season.season} championship`);
+                        if (yearPlayoffs.champion) {
+                            if (managerStats[yearPlayoffs.champion]) {
+                                managerStats[yearPlayoffs.champion].championships++;
+                                championName = getDisplayName(managerStats[yearPlayoffs.champion]);
+                                console.log(`${championName} won ${season.season} championship`);
+                            } else {
+                                // Manager not in managerStats yet, use username as fallback
+                                championName = yearPlayoffs.champion;
+                                console.log(`${championName} won ${season.season} championship (not in managerStats)`);
+                            }
                         }
 
                         // Track runner-up
-                        if (yearPlayoffs.runner_up && managerStats[yearPlayoffs.runner_up]) {
-                            managerStats[yearPlayoffs.runner_up].runnerUps++;
-                            runnerUpName = getDisplayName(managerStats[yearPlayoffs.runner_up]);
-                            console.log(`${runnerUpName} was ${season.season} runner-up`);
+                        if (yearPlayoffs.runner_up) {
+                            if (managerStats[yearPlayoffs.runner_up]) {
+                                managerStats[yearPlayoffs.runner_up].runnerUps++;
+                                runnerUpName = getDisplayName(managerStats[yearPlayoffs.runner_up]);
+                                console.log(`${runnerUpName} was ${season.season} runner-up`);
+                            } else {
+                                // Manager not in managerStats yet, use username as fallback
+                                runnerUpName = yearPlayoffs.runner_up;
+                                console.log(`${runnerUpName} was ${season.season} runner-up (not in managerStats)`);
+                            }
                         }
 
                         // Track Sacko
@@ -1449,7 +1461,7 @@ async function renderAllTimeStats() {
                             console.log(`${sackoName} got the Sacko in ${season.season}`);
                         }
 
-                        // Store in seasonResults for League History display
+                        // Store in seasonResults for League History display (always push, even if names are null)
                         seasonResults.push({
                             season: season.season,
                             champion: championName,

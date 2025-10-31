@@ -1513,7 +1513,6 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
                     <strong>Sort by:</strong>
                     <button onclick="sortDynastyTable('championships')" class="button small">Championships</button>
                     <button onclick="sortDynastyTable('winPct')" class="button small">Win %</button>
-                    <button onclick="sortDynastyTable('totalPoints')" class="button small">Total Points</button>
                     <button onclick="sortDynastyTable('avgPts')" class="button small">Avg PPG</button>
                 </p>
 

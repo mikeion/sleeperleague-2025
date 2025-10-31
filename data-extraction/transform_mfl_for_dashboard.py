@@ -155,6 +155,28 @@ for year, data in mfl_years.items():
                 if is_champion:
                     manager_stats[username]['totals']['championships'] += 1
 
+# Calculate placements for each year
+for year in [2016, 2017, 2018, 2019]:
+    # Get all managers who played that year
+    year_standings = []
+    for username, stats in manager_stats.items():
+        if year in stats['years']:
+            year_data = stats['years'][year]
+            year_standings.append({
+                'username': username,
+                'wins': year_data['wins'],
+                'points_for': year_data['points_for']
+            })
+
+    # Sort by wins DESC, then points_for DESC (standard fantasy football tiebreaker)
+    year_standings.sort(key=lambda x: (x['wins'], x['points_for']), reverse=True)
+
+    # Assign placements
+    total_teams = len(year_standings)
+    for placement, standing in enumerate(year_standings, 1):
+        manager_stats[standing['username']]['years'][year]['finish'] = placement
+        manager_stats[standing['username']]['years'][year]['total_teams'] = total_teams
+
 # Calculate win percentages
 for username, stats in manager_stats.items():
     total_games = stats['totals']['wins'] + stats['totals']['losses'] + stats['totals']['ties']

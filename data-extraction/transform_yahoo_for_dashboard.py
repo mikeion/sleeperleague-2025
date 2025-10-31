@@ -127,6 +127,28 @@ def transform_yahoo_data():
             ).lower()):
                 manager['totals']['championships'] += 1
 
+    # Calculate placements for each year
+    for year in dashboard_data['years']:
+        # Get all managers who played that year
+        year_standings = []
+        for username, stats in dashboard_data['manager_stats'].items():
+            if str(year) in stats['years']:
+                year_data = stats['years'][str(year)]
+                year_standings.append({
+                    'username': username,
+                    'wins': year_data['wins'],
+                    'points_for': year_data['points_for']
+                })
+
+        # Sort by wins DESC, then points_for DESC
+        year_standings.sort(key=lambda x: (x['wins'], x['points_for']), reverse=True)
+
+        # Assign placements
+        total_teams = len(year_standings)
+        for placement, standing in enumerate(year_standings, 1):
+            dashboard_data['manager_stats'][standing['username']]['years'][str(year)]['finish'] = placement
+            dashboard_data['manager_stats'][standing['username']]['years'][str(year)]['total_teams'] = total_teams
+
     # Convert manager_stats dict to list
     dashboard_data['manager_stats'] = list(dashboard_data['manager_stats'].values())
 

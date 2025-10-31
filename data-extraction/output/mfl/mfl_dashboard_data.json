@@ -83,7 +83,9 @@
           "ties": 0,
           "points_for": 2977.0,
           "points_against": 2485.6,
-          "champion": true
+          "champion": true,
+          "finish": 1,
+          "total_teams": 20
         },
         "2017": {
           "wins": 11,
@@ -91,7 +93,9 @@
           "ties": 0,
           "points_for": 2077.4,
           "points_against": 2204.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 16,
+          "total_teams": 20
         },
         "2018": {
           "wins": 18,
@@ -99,7 +103,9 @@
           "ties": 0,
           "points_for": 2594.7999999999997,
           "points_against": 2587.0,
-          "champion": false
+          "champion": false,
+          "finish": 3,
+          "total_teams": 20
         },
         "2019": {
           "wins": 11,
@@ -107,7 +113,9 @@
           "ties": 0,
           "points_for": 2854.7999999999997,
           "points_against": 2873.0,
-          "champion": false
+          "champion": false,
+          "finish": 12,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -131,7 +139,9 @@
           "ties": 0,
           "points_for": 2412.7999999999997,
           "points_against": 2433.6,
-          "champion": false
+          "champion": false,
+          "finish": 4,
+          "total_teams": 20
         },
         "2017": {
           "wins": 11,
@@ -139,7 +149,9 @@
           "ties": 0,
           "points_for": 2373.7999999999997,
           "points_against": 2405.0,
-          "champion": false
+          "champion": false,
+          "finish": 14,
+          "total_teams": 20
         },
         "2018": {
           "wins": 17,
@@ -147,7 +159,9 @@
           "ties": 0,
           "points_for": 2997.7999999999997,
           "points_against": 2516.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 4,
+          "total_teams": 20
         }
       },
       "totals": {
@@ -171,7 +185,9 @@
           "ties": 0,
           "points_for": 2626.0,
           "points_against": 2366.0,
-          "champion": false
+          "champion": false,
+          "finish": 3,
+          "total_teams": 20
         },
         "2017": {
           "wins": 13,
@@ -179,7 +195,9 @@
           "ties": 0,
           "points_for": 2454.4,
           "points_against": 2340.0,
-          "champion": false
+          "champion": false,
+          "finish": 9,
+          "total_teams": 20
         },
         "2018": {
           "wins": 21,
@@ -187,7 +205,9 @@
           "ties": 0,
           "points_for": 2711.7999999999997,
           "points_against": 2467.4,
-          "champion": false
+          "champion": false,
+          "finish": 1,
+          "total_teams": 20
         },
         "2019": {
           "wins": 15,
@@ -195,7 +215,9 @@
           "ties": 0,
           "points_for": 3224.0,
           "points_against": 2888.6,
-          "champion": true
+          "champion": true,
+          "finish": 3,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -219,7 +241,9 @@
           "ties": 0,
           "points_for": 2750.7999999999997,
           "points_against": 2332.2000000000003,
-          "champion": false
+          "champion": false,
+          "finish": 2,
+          "total_teams": 20
         },
         "2017": {
           "wins": 16,
@@ -227,7 +251,9 @@
           "ties": 0,
           "points_for": 2145.0,
           "points_against": 2103.4,
-          "champion": false
+          "champion": false,
+          "finish": 5,
+          "total_teams": 20
         },
         "2018": {
           "wins": 9,
@@ -235,7 +261,9 @@
           "ties": 0,
           "points_for": 2360.7999999999997,
           "points_against": 2667.6,
-          "champion": false
+          "champion": false,
+          "finish": 17,
+          "total_teams": 20
         },
         "2019": {
           "wins": 12,
@@ -243,7 +271,9 @@
           "ties": 0,
           "points_for": 2540.2000000000003,
           "points_against": 2870.4,
-          "champion": false
+          "champion": false,
+          "finish": 11,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -267,7 +297,9 @@
           "ties": 0,
           "points_for": 2498.6,
           "points_against": 2386.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 6,
+          "total_teams": 20
         },
         "2017": {
           "wins": 14,
@@ -275,7 +307,9 @@
           "ties": 0,
           "points_for": 2306.2000000000003,
           "points_against": 2321.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 7,
+          "total_teams": 20
         },
         "2018": {
           "wins": 16,
@@ -283,7 +317,9 @@
           "ties": 0,
           "points_for": 2719.6,
           "points_against": 2545.4,
-          "champion": false
+          "champion": false,
+          "finish": 8,
+          "total_teams": 20
         },
         "2019": {
           "wins": 15,
@@ -291,7 +327,9 @@
           "ties": 0,
           "points_for": 2969.2000000000003,
           "points_against": 3044.6,
-          "champion": false
+          "champion": false,
+          "finish": 7,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -315,7 +353,9 @@
           "ties": 0,
           "points_for": 2639.0,
           "points_against": 2457.0,
-          "champion": false
+          "champion": false,
+          "finish": 5,
+          "total_teams": 20
         },
         "2017": {
           "wins": 12,
@@ -323,7 +363,9 @@
           "ties": 0,
           "points_for": 2332.2000000000003,
           "points_against": 2249.0,
-          "champion": false
+          "champion": false,
+          "finish": 12,
+          "total_teams": 20
         },
         "2018": {
           "wins": 15,
@@ -331,7 +373,9 @@
           "ties": 0,
           "points_for": 2607.7999999999997,
           "points_against": 2470.0,
-          "champion": false
+          "champion": false,
+          "finish": 9,
+          "total_teams": 20
         },
         "2019": {
           "wins": 15,
@@ -339,7 +383,9 @@
           "ties": 0,
           "points_for": 2997.7999999999997,
           "points_against": 2997.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 5,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -363,7 +409,9 @@
           "ties": 0,
           "points_for": 2282.7999999999997,
           "points_against": 2350.4,
-          "champion": false
+          "champion": false,
+          "finish": 7,
+          "total_teams": 20
         },
         "2017": {
           "wins": 16,
@@ -371,7 +419,9 @@
           "ties": 0,
           "points_for": 2405.0,
           "points_against": 2269.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 4,
+          "total_teams": 20
         },
         "2018": {
           "wins": 15,
@@ -379,7 +429,9 @@
           "ties": 0,
           "points_for": 2579.2000000000003,
           "points_against": 2613.0,
-          "champion": false
+          "champion": false,
+          "finish": 10,
+          "total_teams": 20
         },
         "2019": {
           "wins": 15,
@@ -387,7 +439,9 @@
           "ties": 0,
           "points_for": 3122.6,
           "points_against": 2691.0,
-          "champion": false
+          "champion": false,
+          "finish": 4,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -411,7 +465,9 @@
           "ties": 0,
           "points_for": 2269.7999999999997,
           "points_against": 2470.0,
-          "champion": false
+          "champion": false,
+          "finish": 8,
+          "total_teams": 20
         },
         "2017": {
           "wins": 18,
@@ -419,7 +475,9 @@
           "ties": 0,
           "points_for": 2675.4,
           "points_against": 2327.0,
-          "champion": false
+          "champion": false,
+          "finish": 3,
+          "total_teams": 20
         },
         "2018": {
           "wins": 16,
@@ -427,7 +485,9 @@
           "ties": 0,
           "points_for": 2730.0,
           "points_against": 2464.7999999999997,
-          "champion": true
+          "champion": true,
+          "finish": 7,
+          "total_teams": 20
         },
         "2019": {
           "wins": 13,
@@ -435,7 +495,9 @@
           "ties": 0,
           "points_for": 2974.4,
           "points_against": 2771.6,
-          "champion": false
+          "champion": false,
+          "finish": 9,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -459,7 +521,9 @@
           "ties": 0,
           "points_for": 2423.2000000000003,
           "points_against": 2246.4,
-          "champion": false
+          "champion": false,
+          "finish": 10,
+          "total_teams": 20
         },
         "2017": {
           "wins": 14,
@@ -467,7 +531,9 @@
           "ties": 0,
           "points_for": 2202.2000000000003,
           "points_against": 2197.0,
-          "champion": false
+          "champion": false,
+          "finish": 8,
+          "total_teams": 20
         },
         "2018": {
           "wins": 17,
@@ -475,7 +541,9 @@
           "ties": 0,
           "points_for": 2480.4,
           "points_against": 2405.0,
-          "champion": false
+          "champion": false,
+          "finish": 6,
+          "total_teams": 20
         },
         "2019": {
           "wins": 10,
@@ -483,7 +551,9 @@
           "ties": 0,
           "points_for": 2670.2000000000003,
           "points_against": 2953.6,
-          "champion": false
+          "champion": false,
+          "finish": 14,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -507,7 +577,9 @@
           "ties": 0,
           "points_for": 2558.4,
           "points_against": 2524.6,
-          "champion": false
+          "champion": false,
+          "finish": 9,
+          "total_teams": 20
         },
         "2017": {
           "wins": 11,
@@ -515,7 +587,9 @@
           "ties": 0,
           "points_for": 2087.7999999999997,
           "points_against": 2282.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 15,
+          "total_teams": 20
         },
         "2018": {
           "wins": 17,
@@ -523,7 +597,9 @@
           "ties": 0,
           "points_for": 2574.0,
           "points_against": 2384.2000000000003,
-          "champion": false
+          "champion": false,
+          "finish": 5,
+          "total_teams": 20
         },
         "2019": {
           "wins": 12,
@@ -531,7 +607,9 @@
           "ties": 0,
           "points_for": 2795.0,
           "points_against": 2888.6,
-          "champion": false
+          "champion": false,
+          "finish": 10,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -555,7 +633,9 @@
           "ties": 0,
           "points_for": 2332.2000000000003,
           "points_against": 2412.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 12,
+          "total_teams": 20
         },
         "2017": {
           "wins": 19,
@@ -563,7 +643,9 @@
           "ties": 0,
           "points_for": 2815.7999999999997,
           "points_against": 2254.2000000000003,
-          "champion": true
+          "champion": true,
+          "finish": 1,
+          "total_teams": 20
         },
         "2018": {
           "wins": 8,
@@ -571,7 +653,9 @@
           "ties": 0,
           "points_for": 2301.0,
           "points_against": 2672.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 18,
+          "total_teams": 20
         },
         "2019": {
           "wins": 17,
@@ -579,7 +663,9 @@
           "ties": 0,
           "points_for": 3062.7999999999997,
           "points_against": 2808.0,
-          "champion": false
+          "champion": false,
+          "finish": 2,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -603,7 +689,9 @@
           "ties": 0,
           "points_for": 2301.0,
           "points_against": 2428.4,
-          "champion": false
+          "champion": false,
+          "finish": 13,
+          "total_teams": 20
         },
         "2017": {
           "wins": 13,
@@ -611,7 +699,9 @@
           "ties": 0,
           "points_for": 2431.0,
           "points_against": 2392.0,
-          "champion": false
+          "champion": false,
+          "finish": 10,
+          "total_teams": 20
         },
         "2018": {
           "wins": 10,
@@ -619,7 +709,9 @@
           "ties": 0,
           "points_for": 2405.0,
           "points_against": 2636.4,
-          "champion": false
+          "champion": false,
+          "finish": 14,
+          "total_teams": 20
         },
         "2019": {
           "wins": 11,
@@ -627,7 +719,9 @@
           "ties": 0,
           "points_for": 2826.2000000000003,
           "points_against": 2919.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 13,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -651,7 +745,9 @@
           "ties": 0,
           "points_for": 2412.7999999999997,
           "points_against": 2444.0,
-          "champion": false
+          "champion": false,
+          "finish": 11,
+          "total_teams": 20
         },
         "2017": {
           "wins": 10,
@@ -659,7 +755,9 @@
           "ties": 0,
           "points_for": 2090.4,
           "points_against": 2368.6,
-          "champion": false
+          "champion": false,
+          "finish": 18,
+          "total_teams": 20
         },
         "2018": {
           "wins": 9,
@@ -667,7 +765,9 @@
           "ties": 0,
           "points_for": 2501.2000000000003,
           "points_against": 2639.0,
-          "champion": false
+          "champion": false,
+          "finish": 16,
+          "total_teams": 20
         },
         "2019": {
           "wins": 15,
@@ -675,7 +775,9 @@
           "ties": 0,
           "points_for": 2971.7999999999997,
           "points_against": 3101.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 6,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -699,7 +801,9 @@
           "ties": 0,
           "points_for": 2329.6,
           "points_against": 2324.4,
-          "champion": false
+          "champion": false,
+          "finish": 14,
+          "total_teams": 20
         },
         "2017": {
           "wins": 15,
@@ -707,7 +811,9 @@
           "ties": 0,
           "points_for": 2584.4,
           "points_against": 2381.6,
-          "champion": false
+          "champion": false,
+          "finish": 6,
+          "total_teams": 20
         },
         "2018": {
           "wins": 10,
@@ -715,7 +821,9 @@
           "ties": 0,
           "points_for": 2353.0,
           "points_against": 2714.4,
-          "champion": false
+          "champion": false,
+          "finish": 15,
+          "total_teams": 20
         }
       },
       "totals": {
@@ -739,7 +847,9 @@
           "ties": 0,
           "points_for": 2238.6,
           "points_against": 2540.2000000000003,
-          "champion": false
+          "champion": false,
+          "finish": 16,
+          "total_teams": 20
         },
         "2017": {
           "wins": 6,
@@ -747,7 +857,9 @@
           "ties": 0,
           "points_for": 1783.6,
           "points_against": 2334.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 20,
+          "total_teams": 20
         },
         "2018": {
           "wins": 1,
@@ -755,7 +867,9 @@
           "ties": 0,
           "points_for": 1991.6,
           "points_against": 2542.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 20,
+          "total_teams": 20
         },
         "2019": {
           "wins": 13,
@@ -763,7 +877,9 @@
           "ties": 0,
           "points_for": 3008.2000000000003,
           "points_against": 2971.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 8,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -787,7 +903,9 @@
           "ties": 0,
           "points_for": 2111.2000000000003,
           "points_against": 2358.2000000000003,
-          "champion": false
+          "champion": false,
+          "finish": 17,
+          "total_teams": 20
         },
         "2017": {
           "wins": 10,
@@ -795,7 +913,9 @@
           "ties": 0,
           "points_for": 2163.2000000000003,
           "points_against": 2298.4,
-          "champion": false
+          "champion": false,
+          "finish": 17,
+          "total_teams": 20
         },
         "2018": {
           "wins": 11,
@@ -803,7 +923,9 @@
           "ties": 0,
           "points_for": 2626.0,
           "points_against": 2711.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 13,
+          "total_teams": 20
         }
       },
       "totals": {
@@ -827,7 +949,9 @@
           "ties": 0,
           "points_for": 2142.4,
           "points_against": 2490.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 18,
+          "total_teams": 20
         },
         "2017": {
           "wins": 12,
@@ -835,7 +959,9 @@
           "ties": 0,
           "points_for": 2433.6,
           "points_against": 2457.0,
-          "champion": false
+          "champion": false,
+          "finish": 11,
+          "total_teams": 20
         },
         "2018": {
           "wins": 19,
@@ -843,7 +969,9 @@
           "ties": 0,
           "points_for": 3026.4,
           "points_against": 2618.2000000000003,
-          "champion": false
+          "champion": false,
+          "finish": 2,
+          "total_teams": 20
         },
         "2019": {
           "wins": 8,
@@ -851,7 +979,9 @@
           "ties": 0,
           "points_for": 2418.0,
           "points_against": 2784.6,
-          "champion": false
+          "champion": false,
+          "finish": 16,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -875,7 +1005,9 @@
           "ties": 0,
           "points_for": 2360.7999999999997,
           "points_against": 2516.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 15,
+          "total_teams": 20
         },
         "2017": {
           "wins": 12,
@@ -883,7 +1015,9 @@
           "ties": 0,
           "points_for": 2009.8,
           "points_against": 2197.0,
-          "champion": false
+          "champion": false,
+          "finish": 13,
+          "total_teams": 20
         },
         "2018": {
           "wins": 12,
@@ -891,7 +1025,9 @@
           "ties": 0,
           "points_for": 2259.4,
           "points_against": 2701.4,
-          "champion": false
+          "champion": false,
+          "finish": 12,
+          "total_teams": 20
         },
         "2019": {
           "wins": 9,
@@ -899,7 +1035,9 @@
           "ties": 0,
           "points_for": 2839.2000000000003,
           "points_against": 3044.6,
-          "champion": false
+          "champion": false,
+          "finish": 15,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -923,7 +1061,9 @@
           "ties": 0,
           "points_for": 2178.7999999999997,
           "points_against": 2618.2000000000003,
-          "champion": false
+          "champion": false,
+          "finish": 19,
+          "total_teams": 20
         },
         "2017": {
           "wins": 19,
@@ -931,7 +1071,9 @@
           "ties": 0,
           "points_for": 2467.4,
           "points_against": 2233.4,
-          "champion": false
+          "champion": false,
+          "finish": 2,
+          "total_teams": 20
         },
         "2018": {
           "wins": 13,
@@ -939,7 +1081,9 @@
           "ties": 0,
           "points_for": 2667.6,
           "points_against": 2566.2000000000003,
-          "champion": false
+          "champion": false,
+          "finish": 11,
+          "total_teams": 20
         },
         "2019": {
           "wins": 17,
@@ -947,7 +1091,9 @@
           "ties": 0,
           "points_for": 3114.7999999999997,
           "points_against": 2847.0,
-          "champion": false
+          "champion": false,
+          "finish": 1,
+          "total_teams": 16
         }
       },
       "totals": {
@@ -971,7 +1117,9 @@
           "ties": 0,
           "points_for": 2173.6,
           "points_against": 2490.7999999999997,
-          "champion": false
+          "champion": false,
+          "finish": 20,
+          "total_teams": 20
         },
         "2017": {
           "wins": 8,
@@ -979,7 +1127,9 @@
           "ties": 0,
           "points_for": 2254.2000000000003,
           "points_against": 2381.6,
-          "champion": false
+          "champion": false,
+          "finish": 19,
+          "total_teams": 20
         },
         "2018": {
           "wins": 6,
@@ -987,7 +1137,9 @@
           "ties": 0,
           "points_for": 2290.6,
           "points_against": 2701.4,
-          "champion": false
+          "champion": false,
+          "finish": 19,
+          "total_teams": 20
         }
       },
       "totals": {

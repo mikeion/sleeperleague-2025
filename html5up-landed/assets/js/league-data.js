@@ -2079,7 +2079,9 @@ async function renderUserProfile(username) {
                         ties: yearData.ties,
                         pointsFor: yearData.points_for,
                         pointsAgainst: yearData.points_against,
-                        champion: yearData.champion
+                        champion: yearData.champion,
+                        finish: yearData.finish || null,
+                        totalTeams: yearData.total_teams || null
                     });
                 });
             }
@@ -2105,7 +2107,9 @@ async function renderUserProfile(username) {
                         ties: yearData.ties,
                         pointsFor: yearData.points_for,
                         pointsAgainst: yearData.points_against,
-                        champion: yearData.champion
+                        champion: yearData.champion,
+                        finish: yearData.finish || null,
+                        totalTeams: yearData.total_teams || null
                     });
                 });
             }
@@ -2128,6 +2132,22 @@ async function renderUserProfile(username) {
                     } catch (e) {}
                 }
 
+                // Calculate standings for this season
+                const standings = rosters
+                    .map(r => ({
+                        owner_id: r.owner_id,
+                        wins: r.settings?.wins || 0,
+                        losses: r.settings?.losses || 0,
+                        ties: r.settings?.ties || 0,
+                        fpts: r.settings?.fpts || 0
+                    }))
+                    .sort((a, b) => {
+                        if (b.wins !== a.wins) return b.wins - a.wins;
+                        return b.fpts - a.fpts;
+                    });
+
+                const totalTeams = rosters.length;
+
                 // Find this user's roster
                 const userEntry = Object.entries(userProfiles).find(([userId, uname]) => uname === normalizedUsername);
                 if (userEntry) {
@@ -2140,6 +2160,9 @@ async function renderUserProfile(username) {
                         const ties = roster.settings?.ties || 0;
                         const pointsFor = roster.settings?.fpts || 0;
                         const pointsAgainst = roster.settings?.fpts_against || 0;
+
+                        // Find placement
+                        const finish = standings.findIndex(s => s.owner_id === userId) + 1;
 
                         userData.totalWins += wins;
                         userData.totalLosses += losses;
@@ -2155,7 +2178,9 @@ async function renderUserProfile(username) {
                             ties,
                             pointsFor,
                             pointsAgainst,
-                            champion: false // Will check later
+                            champion: false, // Will check later
+                            finish,
+                            totalTeams
                         });
                     }
                 }
@@ -2268,7 +2293,21 @@ function renderUserProfileContent(userData) {
             'Sleeper': '<span style="background: #00CCCB; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">Sleeper</span>'
         };
 
-        const result = season.champion ? '🏆 Champion' : '';
+        // Build result string with placement
+        let result = '';
+        if (season.champion) {
+            result = '🏆 Champion';
+        } else if (season.finish && season.totalTeams) {
+            const placement = `${season.finish}/${season.totalTeams}`;
+            // Add medal for top 3 finishes
+            if (season.finish === 2) {
+                result = `🥈 ${placement}`;
+            } else if (season.finish === 3) {
+                result = `🥉 ${placement}`;
+            } else {
+                result = placement;
+            }
+        }
 
         html += `
             <tr>

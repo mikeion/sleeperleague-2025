@@ -41,7 +41,9 @@
           "ties": 0,
           "points_for": 1544.24,
           "points_against": 1213.08,
-          "champion": true
+          "champion": true,
+          "finish": 1,
+          "total_teams": 14
         },
         "2021": {
           "wins": 9,
@@ -49,7 +51,9 @@
           "ties": 0,
           "points_for": 1365.22,
           "points_against": 1330.34,
-          "champion": false
+          "champion": false,
+          "finish": 3,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -71,7 +75,9 @@
           "ties": 0,
           "points_for": 1511.94,
           "points_against": 1308.02,
-          "champion": false
+          "champion": false,
+          "finish": 2,
+          "total_teams": 14
         },
         "2021": {
           "wins": 4,
@@ -79,7 +85,9 @@
           "ties": 0,
           "points_for": 1281.28,
           "points_against": 1502.88,
-          "champion": false
+          "champion": false,
+          "finish": 14,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -101,7 +109,9 @@
           "ties": 0,
           "points_for": 1408.04,
           "points_against": 1412.82,
-          "champion": false
+          "champion": false,
+          "finish": 5,
+          "total_teams": 14
         },
         "2021": {
           "wins": 7,
@@ -109,7 +119,9 @@
           "ties": 0,
           "points_for": 1568.32,
           "points_against": 1412.34,
-          "champion": false
+          "champion": false,
+          "finish": 8,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -131,7 +143,9 @@
           "ties": 0,
           "points_for": 1371.02,
           "points_against": 1450.56,
-          "champion": false
+          "champion": false,
+          "finish": 6,
+          "total_teams": 14
         },
         "2021": {
           "wins": 6,
@@ -139,7 +153,9 @@
           "ties": 0,
           "points_for": 1447.12,
           "points_against": 1480.54,
-          "champion": false
+          "champion": false,
+          "finish": 11,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -161,7 +177,9 @@
           "ties": 0,
           "points_for": 1399.5,
           "points_against": 1284.9,
-          "champion": false
+          "champion": false,
+          "finish": 8,
+          "total_teams": 14
         },
         "2021": {
           "wins": 9,
@@ -169,7 +187,9 @@
           "ties": 0,
           "points_for": 1363.98,
           "points_against": 1374.8,
-          "champion": false
+          "champion": false,
+          "finish": 4,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -191,7 +211,9 @@
           "ties": 0,
           "points_for": 1414.78,
           "points_against": 1387.58,
-          "champion": false
+          "champion": false,
+          "finish": 4,
+          "total_teams": 14
         },
         "2021": {
           "wins": 6,
@@ -199,7 +221,9 @@
           "ties": 0,
           "points_for": 1608.44,
           "points_against": 1513.06,
-          "champion": false
+          "champion": false,
+          "finish": 10,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -221,7 +245,9 @@
           "ties": 0,
           "points_for": 1405.84,
           "points_against": 1370.48,
-          "champion": false
+          "champion": false,
+          "finish": 7,
+          "total_teams": 14
         },
         "2021": {
           "wins": 4,
@@ -229,7 +255,9 @@
           "ties": 0,
           "points_for": 1331.12,
           "points_against": 1515.42,
-          "champion": false
+          "champion": false,
+          "finish": 12,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -251,7 +279,9 @@
           "ties": 0,
           "points_for": 1393.82,
           "points_against": 1213.96,
-          "champion": false
+          "champion": false,
+          "finish": 3,
+          "total_teams": 14
         },
         "2021": {
           "wins": 8,
@@ -259,7 +289,9 @@
           "ties": 0,
           "points_for": 1518.0,
           "points_against": 1470.1,
-          "champion": false
+          "champion": false,
+          "finish": 6,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -281,7 +313,9 @@
           "ties": 0,
           "points_for": 1386.12,
           "points_against": 1267.0,
-          "champion": false
+          "champion": false,
+          "finish": 9,
+          "total_teams": 14
         },
         "2021": {
           "wins": 7,
@@ -289,7 +323,9 @@
           "ties": 0,
           "points_for": 1498.2,
           "points_against": 1450.1,
-          "champion": false
+          "champion": false,
+          "finish": 9,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -311,7 +347,9 @@
           "ties": 0,
           "points_for": 1190.4,
           "points_against": 1212.52,
-          "champion": false
+          "champion": false,
+          "finish": 10,
+          "total_teams": 14
         },
         "2021": {
           "wins": 8,
@@ -319,7 +357,9 @@
           "ties": 0,
           "points_for": 1433.42,
           "points_against": 1422.62,
-          "champion": false
+          "champion": false,
+          "finish": 7,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -341,7 +381,9 @@
           "ties": 0,
           "points_for": 1279.8,
           "points_against": 1472.28,
-          "champion": false
+          "champion": false,
+          "finish": 11,
+          "total_teams": 14
         },
         "2021": {
           "wins": 4,
@@ -349,7 +391,9 @@
           "ties": 0,
           "points_for": 1316.6,
           "points_against": 1473.08,
-          "champion": false
+          "champion": false,
+          "finish": 13,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -371,7 +415,9 @@
           "ties": 0,
           "points_for": 1203.66,
           "points_against": 1525.44,
-          "champion": false
+          "champion": false,
+          "finish": 12,
+          "total_teams": 14
         },
         "2021": {
           "wins": 9,
@@ -379,7 +425,9 @@
           "ties": 0,
           "points_for": 1442.22,
           "points_against": 1430.78,
-          "champion": true
+          "champion": true,
+          "finish": 2,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -401,7 +449,9 @@
           "ties": 0,
           "points_for": 1144.3,
           "points_against": 1331.08,
-          "champion": false
+          "champion": false,
+          "finish": 13,
+          "total_teams": 14
         },
         "2021": {
           "wins": 9,
@@ -409,7 +459,9 @@
           "ties": 0,
           "points_for": 1588.46,
           "points_against": 1429.28,
-          "champion": false
+          "champion": false,
+          "finish": 1,
+          "total_teams": 14
         }
       },
       "totals": {
@@ -431,7 +483,9 @@
           "ties": 0,
           "points_for": 1328.86,
           "points_against": 1532.6,
-          "champion": false
+          "champion": false,
+          "finish": 14,
+          "total_teams": 14
         },
         "2021": {
           "wins": 8,
@@ -439,7 +493,9 @@
           "ties": 0,
           "points_for": 1589.68,
           "points_against": 1546.72,
-          "champion": false
+          "champion": false,
+          "finish": 5,
+          "total_teams": 14
         }
       },
       "totals": {

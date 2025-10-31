@@ -241,6 +241,7 @@ function combineTeamData(rosters, users) {
 // Render standings table
 function renderStandings(teams) {
     const tbody = document.querySelector('#standings-table tbody');
+    if (!tbody) return; // Skip if standings table doesn't exist on this page
     tbody.innerHTML = teams.map((team, index) => {
         const record = `${team.wins}-${team.losses}${team.ties > 0 ? `-${team.ties}` : ''}`;
         const differential = (team.pointsFor - team.pointsAgainst).toFixed(2);

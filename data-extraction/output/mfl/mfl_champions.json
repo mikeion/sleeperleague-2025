@@ -1,0 +1,34 @@
+[
+  {
+    "year": 2016,
+    "champion": "Colin",
+    "champion_id": "0003",
+    "runner_up": "Josh",
+    "champion_score": "126.78",
+    "runner_up_score": "74.46"
+  },
+  {
+    "year": 2017,
+    "champion": "Vince",
+    "champion_id": "0009",
+    "runner_up": "Gordon",
+    "champion_score": "133.28",
+    "runner_up_score": "88.86"
+  },
+  {
+    "year": 2018,
+    "champion": "Thorp",
+    "champion_id": "0014",
+    "runner_up": "Josh",
+    "champion_score": "131.78",
+    "runner_up_score": "98.36"
+  },
+  {
+    "year": 2019,
+    "champion": "Robb",
+    "champion_id": "0008",
+    "runner_up": "Chris Attias",
+    "champion_score": "125.92",
+    "runner_up_score": "121.08"
+  }
+]

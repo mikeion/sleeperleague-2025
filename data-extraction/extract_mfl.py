@@ -57,7 +57,7 @@ def extract_league_data(year):
 
     # Fetch standings
     print(f"  Fetching standings...")
-    data['league_standings'] = fetch_mfl_data(year, 'leaguestandings')
+    data['league_standings'] = fetch_mfl_data(year, 'leagueStandings')
 
     # Fetch rosters
     print(f"  Fetching rosters...")

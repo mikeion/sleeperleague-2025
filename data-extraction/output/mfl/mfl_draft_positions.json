@@ -1,0 +1,249 @@
+{
+  "2016": {
+    "0005": {
+      "pick": 1,
+      "division": "DIVISION00"
+    },
+    "0006": {
+      "pick": 2,
+      "division": "DIVISION00"
+    },
+    "0004": {
+      "pick": 3,
+      "division": "DIVISION00"
+    },
+    "0008": {
+      "pick": 4,
+      "division": "DIVISION00"
+    },
+    "0003": {
+      "pick": 5,
+      "division": "DIVISION00"
+    },
+    "0002": {
+      "pick": 6,
+      "division": "DIVISION00"
+    },
+    "0007": {
+      "pick": 7,
+      "division": "DIVISION00"
+    },
+    "0001": {
+      "pick": 8,
+      "division": "DIVISION00"
+    },
+    "0009": {
+      "pick": 9,
+      "division": "DIVISION00"
+    },
+    "0010": {
+      "pick": 10,
+      "division": "DIVISION00"
+    },
+    "0015": {
+      "pick": 1,
+      "division": "DIVISION01"
+    },
+    "0017": {
+      "pick": 2,
+      "division": "DIVISION01"
+    },
+    "0014": {
+      "pick": 3,
+      "division": "DIVISION01"
+    },
+    "0012": {
+      "pick": 4,
+      "division": "DIVISION01"
+    },
+    "0011": {
+      "pick": 5,
+      "division": "DIVISION01"
+    },
+    "0013": {
+      "pick": 6,
+      "division": "DIVISION01"
+    },
+    "0016": {
+      "pick": 7,
+      "division": "DIVISION01"
+    },
+    "0018": {
+      "pick": 8,
+      "division": "DIVISION01"
+    },
+    "0019": {
+      "pick": 9,
+      "division": "DIVISION01"
+    },
+    "0020": {
+      "pick": 10,
+      "division": "DIVISION01"
+    }
+  },
+  "2017": {
+    "0005": {
+      "pick": 1,
+      "division": "DIVISION00"
+    },
+    "0020": {
+      "pick": 2,
+      "division": "DIVISION00"
+    },
+    "0015": {
+      "pick": 3,
+      "division": "DIVISION00"
+    },
+    "0011": {
+      "pick": 4,
+      "division": "DIVISION00"
+    },
+    "0016": {
+      "pick": 5,
+      "division": "DIVISION00"
+    },
+    "0007": {
+      "pick": 6,
+      "division": "DIVISION00"
+    },
+    "0018": {
+      "pick": 7,
+      "division": "DIVISION00"
+    },
+    "0008": {
+      "pick": 8,
+      "division": "DIVISION00"
+    },
+    "0006": {
+      "pick": 9,
+      "division": "DIVISION00"
+    },
+    "0003": {
+      "pick": 10,
+      "division": "DIVISION00"
+    },
+    "0010": {
+      "pick": 1,
+      "division": "DIVISION01"
+    },
+    "0009": {
+      "pick": 2,
+      "division": "DIVISION01"
+    },
+    "0014": {
+      "pick": 3,
+      "division": "DIVISION01"
+    },
+    "0019": {
+      "pick": 4,
+      "division": "DIVISION01"
+    },
+    "0004": {
+      "pick": 5,
+      "division": "DIVISION01"
+    },
+    "0013": {
+      "pick": 6,
+      "division": "DIVISION01"
+    },
+    "0001": {
+      "pick": 7,
+      "division": "DIVISION01"
+    },
+    "0017": {
+      "pick": 8,
+      "division": "DIVISION01"
+    },
+    "0002": {
+      "pick": 9,
+      "division": "DIVISION01"
+    },
+    "0012": {
+      "pick": 10,
+      "division": "DIVISION01"
+    }
+  },
+  "2018": {
+    "0005": {
+      "pick": 1,
+      "division": "DIVISION00"
+    },
+    "0020": {
+      "pick": 2,
+      "division": "DIVISION00"
+    },
+    "0015": {
+      "pick": 3,
+      "division": "DIVISION00"
+    },
+    "0011": {
+      "pick": 4,
+      "division": "DIVISION00"
+    },
+    "0016": {
+      "pick": 5,
+      "division": "DIVISION00"
+    },
+    "0007": {
+      "pick": 6,
+      "division": "DIVISION00"
+    },
+    "0018": {
+      "pick": 7,
+      "division": "DIVISION00"
+    },
+    "0008": {
+      "pick": 8,
+      "division": "DIVISION00"
+    },
+    "0006": {
+      "pick": 9,
+      "division": "DIVISION00"
+    },
+    "0003": {
+      "pick": 10,
+      "division": "DIVISION00"
+    },
+    "0010": {
+      "pick": 1,
+      "division": "DIVISION01"
+    },
+    "0009": {
+      "pick": 2,
+      "division": "DIVISION01"
+    },
+    "0014": {
+      "pick": 3,
+      "division": "DIVISION01"
+    },
+    "0019": {
+      "pick": 4,
+      "division": "DIVISION01"
+    },
+    "0004": {
+      "pick": 5,
+      "division": "DIVISION01"
+    },
+    "0013": {
+      "pick": 6,
+      "division": "DIVISION01"
+    },
+    "0001": {
+      "pick": 7,
+      "division": "DIVISION01"
+    },
+    "0017": {
+      "pick": 8,
+      "division": "DIVISION01"
+    },
+    "0002": {
+      "pick": 9,
+      "division": "DIVISION01"
+    },
+    "0012": {
+      "pick": 10,
+      "division": "DIVISION01"
+    }
+  },
+  "2019": {}
+}

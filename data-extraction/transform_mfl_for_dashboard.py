@@ -21,6 +21,10 @@ for year in [2016, 2017, 2018, 2019]:
     with open(f'output/mfl/mfl_{year}.json', 'r') as f:
         mfl_years[year] = json.load(f)
 
+# Load draft positions
+with open('output/mfl/mfl_draft_positions.json', 'r') as f:
+    draft_positions = json.load(f)
+
 def get_sleeper_username(franchise_id):
     """Map MFL franchise ID to Sleeper username"""
     franchise_id = str(franchise_id).zfill(4)
@@ -151,6 +155,11 @@ for year, data in mfl_years.items():
                             is_runner_up = True
                             break
 
+                # Get draft position if available
+                draft_pick = None
+                if str(year) in draft_positions and fid in draft_positions[str(year)]:
+                    draft_pick = draft_positions[str(year)][fid]['pick']
+
                 manager_stats[username]['years'][year] = {
                     'wins': wins,
                     'losses': losses,
@@ -158,7 +167,8 @@ for year, data in mfl_years.items():
                     'points_for': points_for,
                     'points_against': points_against,
                     'champion': is_champion,
-                    'runner_up': is_runner_up
+                    'runner_up': is_runner_up,
+                    'draft_pick': draft_pick
                 }
 
                 # Update totals

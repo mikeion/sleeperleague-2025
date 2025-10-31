@@ -2082,7 +2082,8 @@ async function renderUserProfile(username) {
                         champion: yearData.champion,
                         runnerUp: yearData.runner_up || false,
                         finish: yearData.finish || null,
-                        totalTeams: yearData.total_teams || null
+                        totalTeams: yearData.total_teams || null,
+                        draftPick: yearData.draft_pick || null
                     });
                 });
             }
@@ -2272,6 +2273,7 @@ function renderUserProfileContent(userData) {
                             <tr>
                                 <th>Year</th>
                                 <th>Platform</th>
+                                <th>Draft</th>
                                 <th>Record</th>
                                 <th>Win %</th>
                                 <th>PPG</th>
@@ -2314,10 +2316,13 @@ function renderUserProfileContent(userData) {
             playoffResult = '-';
         }
 
+        const draftDisplay = season.draftPick ? season.draftPick : '-';
+
         html += `
             <tr>
                 <td><strong>${season.year}</strong></td>
                 <td>${platformBadge[season.platform]}</td>
+                <td>${draftDisplay}</td>
                 <td>${season.wins}-${season.losses}${season.ties > 0 ? '-' + season.ties : ''}</td>
                 <td>${seasonWinPct}%</td>
                 <td>${ppg}</td>

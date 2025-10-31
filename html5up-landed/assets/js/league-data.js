@@ -2274,6 +2274,7 @@ function renderUserProfileContent(userData) {
                                 <th>Platform</th>
                                 <th>Record</th>
                                 <th>Win %</th>
+                                <th>PPG</th>
                                 <th>Points For</th>
                                 <th>Points Against</th>
                                 <th>Diff</th>
@@ -2287,6 +2288,7 @@ function renderUserProfileContent(userData) {
     userData.seasons.forEach(season => {
         const games = season.wins + season.losses + season.ties;
         const seasonWinPct = games > 0 ? (season.wins / games * 100).toFixed(1) : '0.0';
+        const ppg = games > 0 ? (season.pointsFor / games).toFixed(1) : '0.0';
         const diff = season.pointsFor - season.pointsAgainst;
         const diffColor = diff > 0 ? '#4CAF50' : '#f44336';
 
@@ -2318,6 +2320,7 @@ function renderUserProfileContent(userData) {
                 <td>${platformBadge[season.platform]}</td>
                 <td>${season.wins}-${season.losses}${season.ties > 0 ? '-' + season.ties : ''}</td>
                 <td>${seasonWinPct}%</td>
+                <td>${ppg}</td>
                 <td>${season.pointsFor.toFixed(1)}</td>
                 <td>${season.pointsAgainst.toFixed(1)}</td>
                 <td style="color: ${diffColor};">${diff > 0 ? '+' : ''}${diff.toFixed(1)}</td>

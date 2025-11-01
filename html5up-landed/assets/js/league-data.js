@@ -1439,6 +1439,10 @@ async function renderAllTimeStats() {
                         let championName = null;
                         let runnerUpName = null;
 
+                        console.log(`Processing playoffs for ${season.season}`);
+                        console.log(`Champion from JSON: ${yearPlayoffs.champion}`);
+                        console.log(`Manager keys available:`, Object.keys(managerStats));
+
                         // Track champion
                         if (yearPlayoffs.champion) {
                             if (managerStats[yearPlayoffs.champion]) {

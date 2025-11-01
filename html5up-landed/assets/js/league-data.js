@@ -1463,6 +1463,17 @@ async function renderAllTimeStats() {
                             }
                         }
 
+                        // Track third place
+                        let thirdPlaceName = null;
+                        if (yearPlayoffs.third_place) {
+                            if (managerStats[yearPlayoffs.third_place]) {
+                                thirdPlaceName = getDisplayName(managerStats[yearPlayoffs.third_place]);
+                            } else {
+                                // Manager not in managerStats yet, use username as fallback
+                                thirdPlaceName = yearPlayoffs.third_place;
+                            }
+                        }
+
                         // Track Sacko
                         let sackoName = null;
                         if (yearPlayoffs.sacko) {
@@ -1480,6 +1491,7 @@ async function renderAllTimeStats() {
                             season: season.season,
                             champion: championName,
                             runnerUp: runnerUpName,
+                            thirdPlace: thirdPlaceName,
                             sacko: sackoName
                         });
                     }
@@ -1581,7 +1593,8 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
             <div style="padding: 20px; background: linear-gradient(135deg, ${hasChampion ? '#FFD700' : '#667eea'} 0%, ${hasChampion ? '#FFA500' : '#764ba2'} 100%); border-radius: 8px; color: white; text-align: center;">
                 <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">${season.season}</div>
                 <div style="font-size: 1.1em; opacity: 0.95; margin-bottom: 5px;">${hasChampion ? '🏆 ' : ''}${championName}</div>
-                ${result?.runnerUp ? `<div style="font-size: 0.85em; opacity: 0.8; margin-bottom: 5px;">Runner-up: ${result.runnerUp}</div>` : ''}
+                ${result?.runnerUp ? `<div style="font-size: 0.85em; opacity: 0.8; margin-bottom: 5px;">🥈 Runner-up: ${result.runnerUp}</div>` : ''}
+                ${result?.thirdPlace ? `<div style="font-size: 0.85em; opacity: 0.8; margin-bottom: 5px;">🥉 3rd: ${result.thirdPlace}</div>` : ''}
                 ${result?.sacko ? `<div style="font-size: 0.85em; opacity: 0.8;">💩 Sacko: ${result.sacko}</div>` : ''}
             </div>
         `;

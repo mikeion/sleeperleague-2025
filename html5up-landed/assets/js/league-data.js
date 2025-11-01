@@ -680,6 +680,7 @@ async function renderCurrentMatchups(week) {
 
     // Create matchup cards
     const container = document.getElementById('matchups-grid');
+    if (!container) return; // Skip if matchups grid doesn't exist on this page
     let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">';
 
     Object.values(matchupPairs).forEach(pair => {

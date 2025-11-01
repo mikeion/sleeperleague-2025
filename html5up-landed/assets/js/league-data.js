@@ -1606,8 +1606,11 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
             <!-- League History Timeline -->
             <div style="margin-bottom: 60px;">
                 <h3 style="text-align: center; margin-bottom: 20px;">📅 League History</h3>
-                <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 20px;">
+                <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 10px;">
                     Championship results by year
+                </p>
+                <p style="text-align: center; color: #e74c3c; font-size: 0.85em; font-style: italic; margin-bottom: 20px;">
+                    ⚠️ Data validation in progress - some results may need verification
                 </p>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">

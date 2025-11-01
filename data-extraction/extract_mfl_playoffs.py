@@ -91,18 +91,20 @@ def get_playoff_results(year):
                 games = [games]
 
             # First game in final round
+            # In Sacco bracket, loser of the final gets the Sacko (last place)
             sacco_game = games[0]
             away_id = sacco_game['away']['franchise_id']
             home_id = sacco_game['home']['franchise_id']
             away_score = float(sacco_game['away']['points'])
             home_score = float(sacco_game['home']['points'])
 
+            # Loser gets the Sacko
             if away_score > home_score:
-                results['sacko'] = get_owner_name(away_id)
+                results['sacko'] = get_owner_name(home_id)  # home lost
             else:
-                results['sacko'] = get_owner_name(home_id)
+                results['sacko'] = get_owner_name(away_id)  # away lost
 
-            print(f"Sacko: {results['sacko']} (won the Sacco Bracket)")
+            print(f"Sacko: {results['sacko']} (lost the Sacco Bracket final)")
             print(f"  Score: {away_score} - {home_score}")
 
     # Get 3rd Place Bracket (id=4)

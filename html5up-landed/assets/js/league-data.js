@@ -1438,6 +1438,7 @@ async function renderAllTimeStats() {
                 console.log(`Checking playoffs for ${season.season}, sleeperPlayoffs exists:`, !!sleeperPlayoffs);
                 if (sleeperPlayoffs) {
                     const yearPlayoffs = sleeperPlayoffs.find(p => p.year === season.season);
+                    console.log(`yearPlayoffs for ${season.season}:`, yearPlayoffs);
                     if (yearPlayoffs) {
                         let championName = null;
                         let runnerUpName = null;

@@ -1346,9 +1346,7 @@ async function renderAllTimeStats() {
         seasons.sort((a, b) => a.season - b.season);
 
         // Fetch Sleeper data for each season
-        console.log('Sleeper seasons to process:', sleeperSeasons);
         for (const season of sleeperSeasons) {
-            console.log(`Starting to process season ${season.season}`);
             try {
                 const leagueData = await fetchData(getLeagueUrl(season.leagueId));
                 const rosters = await fetchData(getRostersUrl(season.leagueId));
@@ -1435,30 +1433,22 @@ async function renderAllTimeStats() {
                 }
 
                 // Use pre-extracted playoff results
-                console.log(`Checking playoffs for ${season.season}, sleeperPlayoffs exists:`, !!sleeperPlayoffs);
                 if (sleeperPlayoffs) {
                     // Convert season to number for comparison (Sleeper API returns season as string)
                     const seasonYear = parseInt(season.season);
                     const yearPlayoffs = sleeperPlayoffs.find(p => p.year === seasonYear);
-                    console.log(`yearPlayoffs for ${seasonYear}:`, yearPlayoffs);
                     if (yearPlayoffs) {
                         let championName = null;
                         let runnerUpName = null;
-
-                        console.log(`Processing playoffs for ${seasonYear}`);
-                        console.log(`Champion from JSON: ${yearPlayoffs.champion}`);
-                        console.log(`Manager keys available:`, Object.keys(managerStats));
 
                         // Track champion
                         if (yearPlayoffs.champion) {
                             if (managerStats[yearPlayoffs.champion]) {
                                 managerStats[yearPlayoffs.champion].championships++;
                                 championName = getDisplayName(managerStats[yearPlayoffs.champion]);
-                                console.log(`${championName} won ${seasonYear} championship`);
                             } else {
                                 // Manager not in managerStats yet, use username as fallback
                                 championName = yearPlayoffs.champion;
-                                console.log(`${championName} won ${seasonYear} championship (not in managerStats)`);
                             }
                         }
 
@@ -1467,26 +1457,30 @@ async function renderAllTimeStats() {
                             if (managerStats[yearPlayoffs.runner_up]) {
                                 managerStats[yearPlayoffs.runner_up].runnerUps++;
                                 runnerUpName = getDisplayName(managerStats[yearPlayoffs.runner_up]);
-                                console.log(`${runnerUpName} was ${seasonYear} runner-up`);
                             } else {
                                 // Manager not in managerStats yet, use username as fallback
                                 runnerUpName = yearPlayoffs.runner_up;
-                                console.log(`${runnerUpName} was ${seasonYear} runner-up (not in managerStats)`);
                             }
                         }
 
                         // Track Sacko
-                        if (yearPlayoffs.sacko && managerStats[yearPlayoffs.sacko]) {
-                            managerStats[yearPlayoffs.sacko].sackos++;
-                            const sackoName = getDisplayName(managerStats[yearPlayoffs.sacko]);
-                            console.log(`${sackoName} got the Sacko in ${seasonYear}`);
+                        let sackoName = null;
+                        if (yearPlayoffs.sacko) {
+                            if (managerStats[yearPlayoffs.sacko]) {
+                                managerStats[yearPlayoffs.sacko].sackos++;
+                                sackoName = getDisplayName(managerStats[yearPlayoffs.sacko]);
+                            } else {
+                                // Manager not in managerStats yet, use username as fallback
+                                sackoName = yearPlayoffs.sacko;
+                            }
                         }
 
-                        // Store in seasonResults for League History display (always push, even if names are null)
+                        // Store in seasonResults for League History display
                         seasonResults.push({
                             season: season.season,
                             champion: championName,
-                            runnerUp: runnerUpName
+                            runnerUp: runnerUpName,
+                            sacko: sackoName
                         });
                     }
                 }
@@ -1571,7 +1565,7 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
             <div style="margin-bottom: 60px;">
                 <h3 style="text-align: center; margin-bottom: 20px;">📅 League History</h3>
                 <p style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 20px;">
-                    Champions by year
+                    Championship results by year
                 </p>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
@@ -1585,9 +1579,10 @@ function renderDynastyRankings(managerStats, seasons, seasonResults) {
 
         html += `
             <div style="padding: 20px; background: linear-gradient(135deg, ${hasChampion ? '#FFD700' : '#667eea'} 0%, ${hasChampion ? '#FFA500' : '#764ba2'} 100%); border-radius: 8px; color: white; text-align: center;">
-                <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 5px;">${season.season}</div>
-                <div style="font-size: 1.1em; opacity: 0.95;">${hasChampion ? '🏆 ' : ''}${championName}</div>
-                ${result?.runnerUp ? `<div style="font-size: 0.85em; opacity: 0.8; margin-top: 5px;">Runner-up: ${result.runnerUp}</div>` : ''}
+                <div style="font-size: 1.5em; font-weight: bold; margin-bottom: 10px;">${season.season}</div>
+                <div style="font-size: 1.1em; opacity: 0.95; margin-bottom: 5px;">${hasChampion ? '🏆 ' : ''}${championName}</div>
+                ${result?.runnerUp ? `<div style="font-size: 0.85em; opacity: 0.8; margin-bottom: 5px;">Runner-up: ${result.runnerUp}</div>` : ''}
+                ${result?.sacko ? `<div style="font-size: 0.85em; opacity: 0.8;">💩 Sacko: ${result.sacko}</div>` : ''}
             </div>
         `;
     });

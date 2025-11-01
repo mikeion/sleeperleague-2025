@@ -1,0 +1,30 @@
+[
+  {
+    "year": 2016,
+    "champion": "Colin",
+    "runner_up": "Josh",
+    "third_place": "Robb",
+    "sacko": "Ben"
+  },
+  {
+    "year": 2017,
+    "champion": "Vince",
+    "runner_up": "Gordon",
+    "third_place": "Ryan",
+    "sacko": "Shane"
+  },
+  {
+    "year": 2018,
+    "champion": "Ryan",
+    "runner_up": "Josh",
+    "third_place": null,
+    "sacko": "Vince"
+  },
+  {
+    "year": 2019,
+    "champion": "Robb",
+    "runner_up": "Chris",
+    "third_place": null,
+    "sacko": "Casey"
+  }
+]

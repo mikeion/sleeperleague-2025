@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Extract playoff results from MyFantasyLeague data
+Extract playoff results from MyFantasyLeague playoff brackets
 """
 import requests
 import json
@@ -18,7 +18,7 @@ def get_owner_name(franchise_id):
     return f'Franchise {franchise_id}'
 
 def get_playoff_results(year):
-    """Get playoff results for a given year"""
+    """Get playoff results for a given year using playoff bracket API"""
     league_id = '59111'
     base_url = f'https://api.myfantasyleague.com/{year}/export'
 
@@ -26,123 +26,129 @@ def get_playoff_results(year):
     print(f'{year} PLAYOFFS')
     print('='*80)
 
-    # Fetch weeks 14, 15, 16 (playoff weeks)
-    playoff_weeks = []
-    for week in [14, 15, 16]:
-        params = {
-            'TYPE': 'weeklyResults',
-            'L': league_id,
-            'W': str(week),
-            'JSON': '1'
-        }
+    results = {
+        'year': year,
+        'champion': None,
+        'runner_up': None,
+        'third_place': None,
+        'sacko': None
+    }
 
-        response = requests.get(base_url, params=params)
-        data = response.json()
+    # Get Championship Bracket (id=1) - final game is championship
+    params = {
+        'TYPE': 'playoffBracket',
+        'L': league_id,
+        'BRACKET_ID': '1',
+        'JSON': '1'
+    }
+    response = requests.get(base_url, params=params)
+    champ_bracket = response.json()
 
-        print(f'\nWeek {week}:')
+    if 'playoffBracket' in champ_bracket and 'playoffRound' in champ_bracket['playoffBracket']:
+        rounds = champ_bracket['playoffBracket']['playoffRound']
+        if not isinstance(rounds, list):
+            rounds = [rounds]
 
-        if 'weeklyResults' in data and 'matchup' in data['weeklyResults']:
-            matchups = data['weeklyResults']['matchup']
-            if not isinstance(matchups, list):
-                matchups = [matchups]
+        # Last round is the championship
+        final_round = rounds[-1]
+        if 'playoffGame' in final_round:
+            games = final_round['playoffGame']
+            if not isinstance(games, list):
+                games = [games]
 
-            week_data = []
-            for matchup in matchups:
-                franchises = matchup.get('franchise', [])
-                if not isinstance(franchises, list):
-                    franchises = [franchises]
+            # First game in final round is championship
+            champ_game = games[0]
+            away_id = champ_game['away']['franchise_id']
+            home_id = champ_game['home']['franchise_id']
+            away_score = float(champ_game['away']['points'])
+            home_score = float(champ_game['home']['points'])
 
-                if len(franchises) >= 2:
-                    f1 = franchises[0]
-                    f2 = franchises[1]
+            if away_score > home_score:
+                results['champion'] = get_owner_name(away_id)
+                results['runner_up'] = get_owner_name(home_id)
+            else:
+                results['champion'] = get_owner_name(home_id)
+                results['runner_up'] = get_owner_name(away_id)
 
-                    id1 = f1.get('id', '?')
-                    id2 = f2.get('id', '?')
-                    score1 = f1.get('score', 'N/A')
-                    score2 = f2.get('score', 'N/A')
+            print(f"Championship: {results['champion']} defeated {results['runner_up']}")
+            print(f"  Score: {away_score} - {home_score}")
 
-                    name1 = get_owner_name(id1)
-                    name2 = get_owner_name(id2)
+    # Get Sacco Bracket (id=2) - winner gets Sacko
+    params['BRACKET_ID'] = '2'
+    response = requests.get(base_url, params=params)
+    sacco_bracket = response.json()
 
-                    winner = '?'
-                    winner_id = '?'
-                    if score1 != 'N/A' and score2 != 'N/A':
-                        if float(score1) > float(score2):
-                            winner = name1
-                            winner_id = id1
-                        else:
-                            winner = name2
-                            winner_id = id2
+    if 'playoffBracket' in sacco_bracket and 'playoffRound' in sacco_bracket['playoffBracket']:
+        rounds = sacco_bracket['playoffBracket']['playoffRound']
+        if not isinstance(rounds, list):
+            rounds = [rounds]
 
-                    is_playoff = matchup.get('playoff', 'N') == 'Y'
-                    bracket = matchup.get('bracket', '?')
+        # Last round - winner gets Sacko
+        final_round = rounds[-1]
+        if 'playoffGame' in final_round:
+            games = final_round['playoffGame']
+            if not isinstance(games, list):
+                games = [games]
 
-                    bracket_label = ''
-                    if is_playoff:
-                        if bracket == '1':
-                            bracket_label = ' [Championship Bracket]'
-                        elif bracket == '2':
-                            bracket_label = ' [Sacco Bracket]'
-                        else:
-                            bracket_label = f' [Bracket {bracket}]'
+            # First game in final round
+            sacco_game = games[0]
+            away_id = sacco_game['away']['franchise_id']
+            home_id = sacco_game['home']['franchise_id']
+            away_score = float(sacco_game['away']['points'])
+            home_score = float(sacco_game['home']['points'])
 
-                    print(f'  {name1} ({score1}) vs {name2} ({score2}) - Winner: {winner}{bracket_label}')
+            if away_score > home_score:
+                results['sacko'] = get_owner_name(away_id)
+            else:
+                results['sacko'] = get_owner_name(home_id)
 
-                    week_data.append({
-                        'team1': name1,
-                        'team1_id': id1,
-                        'team1_score': score1,
-                        'team2': name2,
-                        'team2_id': id2,
-                        'team2_score': score2,
-                        'winner': winner,
-                        'winner_id': winner_id,
-                        'is_playoff': is_playoff,
-                        'bracket': bracket
-                    })
+            print(f"Sacko: {results['sacko']} (won the Sacco Bracket)")
+            print(f"  Score: {away_score} - {home_score}")
 
-            playoff_weeks.append({
-                'week': week,
-                'matchups': week_data
-            })
+    # Get 3rd Place Bracket (id=4)
+    params['BRACKET_ID'] = '4'
+    response = requests.get(base_url, params=params)
+    third_bracket = response.json()
 
-    # Find championship game (week 16, first matchup is usually championship)
-    print(f'\n{"="*80}')
-    print(f'{year} CHAMPION:')
-    print(f'{"="*80}')
+    if 'playoffBracket' in third_bracket and 'playoffRound' in third_bracket['playoffBracket']:
+        playoff_round = third_bracket['playoffBracket']['playoffRound']
+        if 'playoffGame' in playoff_round:
+            game = playoff_round['playoffGame']
+            away_id = game['away']['franchise_id']
+            home_id = game['home']['franchise_id']
+            away_score = float(game['away']['points'])
+            home_score = float(game['home']['points'])
 
-    champion = None
-    for week_data in playoff_weeks:
-        if week_data['week'] == 16:
-            # First matchup in week 16 is typically the championship
-            if week_data['matchups']:
-                matchup = week_data['matchups'][0]
-                runner_up = matchup["team1"] if matchup["winner"] == matchup["team2"] else matchup["team2"]
-                print(f'{matchup["winner"]} - defeated {runner_up} in championship')
-                print(f'Final Score: {matchup["team1"]} {matchup["team1_score"]} - {matchup["team2_score"]} {matchup["team2"]}')
-                champion = {
-                    'year': year,
-                    'champion': matchup["winner"],
-                    'champion_id': matchup["winner_id"],
-                    'runner_up': runner_up,
-                    'champion_score': matchup["team1_score"] if matchup["winner"] == matchup["team1"] else matchup["team2_score"],
-                    'runner_up_score': matchup["team2_score"] if matchup["winner"] == matchup["team1"] else matchup["team1_score"]
-                }
+            if away_score > home_score:
+                results['third_place'] = get_owner_name(away_id)
+            else:
+                results['third_place'] = get_owner_name(home_id)
 
-    return playoff_weeks, champion
+            print(f"3rd Place: {results['third_place']}")
+            print(f"  Score: {away_score} - {home_score}")
+
+    return results
 
 if __name__ == "__main__":
-    all_champions = []
+    all_results = []
     for year in [2016, 2017, 2018, 2019]:
-        playoff_data, champion = get_playoff_results(year)
-        if champion:
-            all_champions.append(champion)
+        results = get_playoff_results(year)
+        if results:
+            all_results.append(results)
 
-    # Save champions data
-    with open('output/mfl/mfl_champions.json', 'w') as f:
-        json.dump(all_champions, f, indent=2)
+    # Save playoff results
+    with open('output/mfl/mfl_playoff_results.json', 'w') as f:
+        json.dump(all_results, f, indent=2)
 
-    print(f'\n\nChampions data saved to output/mfl/mfl_champions.json')
+    print(f'\n\n{"="*80}')
+    print('Playoff results saved to output/mfl/mfl_playoff_results.json')
+    print('='*80)
     print('\nSummary:')
-    for champ in all_champions:
-        print(f'  {champ["year"]}: {champ["champion"]}')
+    for result in all_results:
+        print(f"\n{result['year']}:")
+        print(f"  🏆 Champion: {result['champion']}")
+        print(f"  🥈 Runner-up: {result['runner_up']}")
+        if result['third_place']:
+            print(f"  🥉 3rd Place: {result['third_place']}")
+        if result['sacko']:
+            print(f"  💩 Sacko: {result['sacko']}")

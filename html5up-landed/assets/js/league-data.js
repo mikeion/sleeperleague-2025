@@ -1188,6 +1188,18 @@ async function renderAllTimeStats() {
             console.log('No Yahoo data available:', yahooError);
         }
 
+        // Load MFL playoff results
+        let mflPlayoffs = null;
+        try {
+            const mflPlayoffsResponse = await fetch('/assets/data/mfl_playoff_results.json');
+            if (mflPlayoffsResponse.ok) {
+                mflPlayoffs = await mflPlayoffsResponse.json();
+                console.log('MFL playoff results loaded:', mflPlayoffs);
+            }
+        } catch (mflPlayoffsError) {
+            console.log('No MFL playoff results:', mflPlayoffsError);
+        }
+
         // Load Sleeper playoff results
         let sleeperPlayoffs = null;
         try {
@@ -1222,10 +1234,15 @@ async function renderAllTimeStats() {
             });
             // Add MFL champions to season results
             mflData.champions.forEach(champ => {
+                // Find playoff data for this year
+                const playoffData = mflPlayoffs?.find(p => p.year === champ.year);
+
                 seasonResults.push({
                     season: champ.year,
                     champion: champ.champion.display_name,
                     runnerUp: champ.runner_up.display_name,
+                    thirdPlace: playoffData?.third_place || null,
+                    sacko: playoffData?.sacko || null,
                     platform: 'MFL'
                 });
             });
@@ -1267,6 +1284,19 @@ async function renderAllTimeStats() {
                     });
                 });
             });
+
+            // Track Sackos from MFL playoff results
+            if (mflPlayoffs) {
+                mflPlayoffs.forEach(playoff => {
+                    if (playoff.sacko) {
+                        // Find the manager by display name (MFL uses display names)
+                        const manager = Object.values(managerStats).find(m => m.name === playoff.sacko);
+                        if (manager) {
+                            manager.sackos++;
+                        }
+                    }
+                });
+            }
         }
 
         // Add Yahoo data to seasonResults and managerStats

@@ -1346,7 +1346,9 @@ async function renderAllTimeStats() {
         seasons.sort((a, b) => a.season - b.season);
 
         // Fetch Sleeper data for each season
+        console.log('Sleeper seasons to process:', sleeperSeasons);
         for (const season of sleeperSeasons) {
+            console.log(`Starting to process season ${season.season}`);
             try {
                 const leagueData = await fetchData(getLeagueUrl(season.leagueId));
                 const rosters = await fetchData(getRostersUrl(season.leagueId));
@@ -1433,6 +1435,7 @@ async function renderAllTimeStats() {
                 }
 
                 // Use pre-extracted playoff results
+                console.log(`Checking playoffs for ${season.season}, sleeperPlayoffs exists:`, !!sleeperPlayoffs);
                 if (sleeperPlayoffs) {
                     const yearPlayoffs = sleeperPlayoffs.find(p => p.year === season.season);
                     if (yearPlayoffs) {

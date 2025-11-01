@@ -1437,13 +1437,15 @@ async function renderAllTimeStats() {
                 // Use pre-extracted playoff results
                 console.log(`Checking playoffs for ${season.season}, sleeperPlayoffs exists:`, !!sleeperPlayoffs);
                 if (sleeperPlayoffs) {
-                    const yearPlayoffs = sleeperPlayoffs.find(p => p.year === season.season);
-                    console.log(`yearPlayoffs for ${season.season}:`, yearPlayoffs);
+                    // Convert season to number for comparison (Sleeper API returns season as string)
+                    const seasonYear = parseInt(season.season);
+                    const yearPlayoffs = sleeperPlayoffs.find(p => p.year === seasonYear);
+                    console.log(`yearPlayoffs for ${seasonYear}:`, yearPlayoffs);
                     if (yearPlayoffs) {
                         let championName = null;
                         let runnerUpName = null;
 
-                        console.log(`Processing playoffs for ${season.season}`);
+                        console.log(`Processing playoffs for ${seasonYear}`);
                         console.log(`Champion from JSON: ${yearPlayoffs.champion}`);
                         console.log(`Manager keys available:`, Object.keys(managerStats));
 
@@ -1452,11 +1454,11 @@ async function renderAllTimeStats() {
                             if (managerStats[yearPlayoffs.champion]) {
                                 managerStats[yearPlayoffs.champion].championships++;
                                 championName = getDisplayName(managerStats[yearPlayoffs.champion]);
-                                console.log(`${championName} won ${season.season} championship`);
+                                console.log(`${championName} won ${seasonYear} championship`);
                             } else {
                                 // Manager not in managerStats yet, use username as fallback
                                 championName = yearPlayoffs.champion;
-                                console.log(`${championName} won ${season.season} championship (not in managerStats)`);
+                                console.log(`${championName} won ${seasonYear} championship (not in managerStats)`);
                             }
                         }
 
@@ -1465,11 +1467,11 @@ async function renderAllTimeStats() {
                             if (managerStats[yearPlayoffs.runner_up]) {
                                 managerStats[yearPlayoffs.runner_up].runnerUps++;
                                 runnerUpName = getDisplayName(managerStats[yearPlayoffs.runner_up]);
-                                console.log(`${runnerUpName} was ${season.season} runner-up`);
+                                console.log(`${runnerUpName} was ${seasonYear} runner-up`);
                             } else {
                                 // Manager not in managerStats yet, use username as fallback
                                 runnerUpName = yearPlayoffs.runner_up;
-                                console.log(`${runnerUpName} was ${season.season} runner-up (not in managerStats)`);
+                                console.log(`${runnerUpName} was ${seasonYear} runner-up (not in managerStats)`);
                             }
                         }
 
@@ -1477,7 +1479,7 @@ async function renderAllTimeStats() {
                         if (yearPlayoffs.sacko && managerStats[yearPlayoffs.sacko]) {
                             managerStats[yearPlayoffs.sacko].sackos++;
                             const sackoName = getDisplayName(managerStats[yearPlayoffs.sacko]);
-                            console.log(`${sackoName} got the Sacko in ${season.season}`);
+                            console.log(`${sackoName} got the Sacko in ${seasonYear}`);
                         }
 
                         // Store in seasonResults for League History display (always push, even if names are null)

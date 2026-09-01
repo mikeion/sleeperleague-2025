@@ -83,43 +83,47 @@ what the model at the foot of the page predicts from these six numbers alone.}}
 
 \vspace{{6pt}}
 \begin{{itemize}}[leftmargin=1.4em,itemsep=2.5pt,topsep=0pt]
-\item \textbf{{Waiver claims made}} --- how many you put in across a season, the ones
-      you lost included.
-\item \textbf{{Points per FAAB dollar}} --- points a claimed player scored
-      \emph{{while in your starting lineup}}, divided by what you paid. Bench points
-      do not count.
-\item \textbf{{Overpaid on won bids}} --- how far above the \emph{{next-highest}} bid you
-      landed on a contested claim. Money you did not have to spend.
-\item \textbf{{Busts in rounds 1--4}} --- how many of your four early picks, per
-      season, came in 50+ points below what that slot usually returns. Malik
-      Nabers, taken 14th in 2025, played four games and finished 119 points below
-      what pick 14 gives you: one bust.
+\item \textbf{{Waiver claims}} --- how many you put in per season, the ones you lost
+      included.
+\item \textbf{{Points per FAAB dollar}} --- points a claimed player scored \emph{{while
+      you started him}}, divided by what you paid. Bench points do not count.
+\item \textbf{{Overpaid per bid}} --- how far above the \emph{{next-highest}} bid you
+      landed on a contested claim: money you did not have to spend.
+\item \textbf{{Busts in rounds 1--4}} --- early picks finishing 50+ points below what
+      that slot usually returns. Malik Nabers, taken 14th in 2025, played four
+      games and came in 119 points light: one bust.
 \item \textbf{{Steals in rounds 8--14}} --- the mirror of a bust, same threshold. Rico
-      Dowdle, taken 154th in 2025, finished as the 17th-best running back: one
-      steal.
+      Dowdle, taken 154th in 2025, finished RB17: one steal.
 \item \textbf{{Started the right players}} --- the share of your best possible lineup
-      you actually started, judged after the fact.
+      you actually started, judged with hindsight.
 \end{{itemize}}
 
 \vspace{{11pt}}
 {{\large\bfseries Why none of this explains very much}}
 
 \vspace{{6pt}}
-Not because managers are all alike. The spread of season win rates has an SD of
-\textbf{{0.152}}; fourteen tosses of a fair coin give \textbf{{0.134}} of that on
-their own, leaving \textbf{{0.072}} for real differences. A good manager here does
-sit near a \textbf{{0.57}} weekly win probability and a poor one near
-\textbf{{0.43}} --- eight wins against six. The gap is real; the noise over
-fourteen games is simply twice its size.
+Not because managers are alike. The spread of season win rates has an SD of
+\textbf{{0.152}}; fourteen tosses of a fair coin give \textbf{{0.134}} of that
+alone, leaving \textbf{{0.072}} for real differences --- a good manager here sits
+near a \textbf{{0.57}} weekly win probability and a poor one near \textbf{{0.43}},
+eight wins against six. The gap is real; the noise is simply twice its size.
 
 \vspace{{6pt}}
-That caps what any model can reach: even a \emph{{perfect}} measure of manager
-quality explains only about \textbf{{23\%}} of win totals here. These six columns
-reach 6\%, a quarter of what is available, and 11\% against points scored.
-Against 252 other Sleeper leagues ours sits near the \textbf{{15th percentile}}
-for how much a manager matters at all --- the median league has managers
-differing three times as much. Nobody here pulls far ahead, because nobody here
-has quit.
+That caps what any model can reach. Suppose you somehow knew every manager's
+\emph{{true}} long-run scoring level --- not his noisy fourteen-week sample, but the
+exact figure he would converge to over hundreds of weeks. Predicting a single
+season's record from that alone would get you about \textbf{{23\%}} of the way,
+because the season is still fourteen weighted coin flips laid on top. It is the
+batting-average problem: a true .300 hitter and a true .270 hitter swap places
+constantly over fourteen at-bats.
+
+\vspace{{6pt}}
+So 23\% is the ceiling for anybody, with any data. These six columns reach 6\% of
+the total, about a quarter of what is reachable, and 11\% when judged against
+points scored rather than games won. Measured against 252 other Sleeper leagues,
+ours sits near the \textbf{{15th percentile}} for how much a manager matters at
+all --- the median league has managers differing three times as much as ours do.
+Nobody here pulls far ahead, because nobody here has quit.
 
 \vspace{{6pt}}
 \begin{{itemize}}[leftmargin=1.4em,itemsep=2.5pt,topsep=0pt]

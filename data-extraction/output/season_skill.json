@@ -1,0 +1,137 @@
+{
+ "Spaceman917": {
+  "actual": 5860.66,
+  "optimal": 6431.619999999999,
+  "from_draft": 4675.159999999999,
+  "from_wire": 1185.5,
+  "weeks": 56.0,
+  "adds": 104.0,
+  "faab": 392.0
+ },
+ "DakodiacBear": {
+  "actual": 5900.38,
+  "optimal": 6358.359999999999,
+  "from_draft": 4046.6999999999994,
+  "from_wire": 1853.6799999999996,
+  "weeks": 56.0,
+  "adds": 127.0,
+  "faab": 389.0
+ },
+ "elliottkaser": {
+  "actual": 1527.0400000000002,
+  "optimal": 1572.84,
+  "from_draft": 745.3199999999999,
+  "from_wire": 781.72,
+  "weeks": 14.0,
+  "adds": 36.0,
+  "faab": 100.0
+ },
+ "buddygalletti": {
+  "actual": 6147.880000000001,
+  "optimal": 6536.360000000001,
+  "from_draft": 4855.4,
+  "from_wire": 1292.4800000000002,
+  "weeks": 56.0,
+  "adds": 98.0,
+  "faab": 362.0
+ },
+ "otterboi": {
+  "actual": 5808.719999999999,
+  "optimal": 6249.160000000001,
+  "from_draft": 3505.7399999999993,
+  "from_wire": 2302.9800000000005,
+  "weeks": 56.0,
+  "adds": 128.0,
+  "faab": 396.0
+ },
+ "fishy11": {
+  "actual": 6191.04,
+  "optimal": 6622.020000000001,
+  "from_draft": 4393.500000000001,
+  "from_wire": 1797.5399999999995,
+  "weeks": 56.0,
+  "adds": 83.0,
+  "faab": 394.0
+ },
+ "BigDog11": {
+  "actual": 6282.5,
+  "optimal": 6836.14,
+  "from_draft": 4871.599999999999,
+  "from_wire": 1410.9,
+  "weeks": 56.0,
+  "adds": 85.0,
+  "faab": 296.0
+ },
+ "robbbbbbbb": {
+  "actual": 6056.140000000001,
+  "optimal": 6489.619999999999,
+  "from_draft": 4222.56,
+  "from_wire": 1833.58,
+  "weeks": 56.0,
+  "adds": 146.0,
+  "faab": 397.0
+ },
+ "Gordonulus": {
+  "actual": 5777.98,
+  "optimal": 6306.239999999999,
+  "from_draft": 4251.839999999999,
+  "from_wire": 1526.14,
+  "weeks": 56.0,
+  "adds": 116.0,
+  "faab": 395.0
+ },
+ "SamBam805": {
+  "actual": 5810.120000000003,
+  "optimal": 6304.46,
+  "from_draft": 4327.52,
+  "from_wire": 1482.6000000000006,
+  "weeks": 56.0,
+  "adds": 93.0,
+  "faab": 299.0
+ },
+ "mikeion": {
+  "actual": 5739.359999999999,
+  "optimal": 6251.24,
+  "from_draft": 4892.539999999998,
+  "from_wire": 846.82,
+  "weeks": 56.0,
+  "adds": 55.0,
+  "faab": 245.0
+ },
+ "CaseyForeverUnclean": {
+  "actual": 5771.34,
+  "optimal": 6264.060000000001,
+  "from_draft": 4534.06,
+  "from_wire": 1237.2799999999997,
+  "weeks": 56.0,
+  "adds": 70.0,
+  "faab": 360.0
+ },
+ "rpthorp": {
+  "actual": 6435.3,
+  "optimal": 6883.1,
+  "from_draft": 4458.86,
+  "from_wire": 1976.44,
+  "weeks": 56.0,
+  "adds": 125.0,
+  "faab": 404.0
+ },
+ "robertwneal2": {
+  "actual": 6657.399999999999,
+  "optimal": 7221.940000000003,
+  "from_draft": 4544.6,
+  "from_wire": 2112.7999999999997,
+  "weeks": 56.0,
+  "adds": 105.0,
+  "faab": 430.0
+ },
+ "CaptainBigCup": {
+  "actual": 4173.9,
+  "optimal": 4570.880000000001,
+  "from_draft": 2405.5,
+  "from_wire": 1768.4000000000003,
+  "weeks": 42.0,
+  "adds": 112.0,
+  "faab": 304.0
+ }
+}

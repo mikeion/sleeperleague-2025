@@ -618,112 +618,106 @@
   }
  ],
  "ranks": {
-  "elliottkaser": {
-   "waiver claims": 1,
-   "points per $": 1,
-   "overpay $": 1,
-   "early busts": 15,
-   "lineup %": 1
-  },
   "rpthorp": {
-   "waiver claims": 2,
-   "points per $": 5,
-   "overpay $": 3,
-   "early busts": 5,
-   "lineup %": 5
-  },
-  "robertwneal2": {
-   "waiver claims": 3,
+   "waiver claims": 1,
    "points per $": 4,
    "overpay $": 2,
-   "early busts": 9,
-   "lineup %": 10
-  },
-  "robbbbbbbb": {
-   "waiver claims": 4,
-   "points per $": 7,
-   "overpay $": 4,
-   "early busts": 7,
+   "early busts": 5,
    "lineup %": 4
   },
-  "otterboi": {
-   "waiver claims": 5,
-   "points per $": 8,
-   "overpay $": 7,
-   "early busts": 10,
-   "lineup %": 6
-  },
-  "CaptainBigCup": {
-   "waiver claims": 6,
-   "points per $": 12,
-   "overpay $": 13,
-   "early busts": 12,
-   "lineup %": 14
-  },
-  "SamBam805": {
-   "waiver claims": 7,
+  "robertwneal2": {
+   "waiver claims": 2,
    "points per $": 3,
-   "overpay $": 6,
-   "early busts": 11,
-   "lineup %": 8
-  },
-  "Gordonulus": {
-   "waiver claims": 8,
-   "points per $": 13,
-   "overpay $": 15,
-   "early busts": 14,
-   "lineup %": 13
-  },
-  "BigDog11": {
-   "waiver claims": 9,
-   "points per $": 2,
-   "overpay $": 11,
-   "early busts": 4,
-   "lineup %": 11
-  },
-  "DakodiacBear": {
-   "waiver claims": 10,
-   "points per $": 10,
-   "overpay $": 5,
-   "early busts": 2,
-   "lineup %": 7
-  },
-  "Spaceman917": {
-   "waiver claims": 11,
-   "points per $": 9,
-   "overpay $": 8,
-   "early busts": 6,
-   "lineup %": 15
-  },
-  "buddygalletti": {
-   "waiver claims": 12,
-   "points per $": 14,
-   "overpay $": 12,
-   "early busts": 3,
-   "lineup %": 2
-  },
-  "fishy11": {
-   "waiver claims": 13,
-   "points per $": 6,
-   "overpay $": 10,
-   "early busts": 1,
-   "lineup %": 3
-  },
-  "CaseyForeverUnclean": {
-   "waiver claims": 14,
-   "points per $": 11,
-   "overpay $": 9,
-   "early busts": 8,
+   "overpay $": 1,
+   "early busts": 9,
    "lineup %": 9
   },
-  "mikeion": {
-   "waiver claims": 15,
-   "points per $": 15,
+  "robbbbbbbb": {
+   "waiver claims": 3,
+   "points per $": 6,
+   "overpay $": 3,
+   "early busts": 7,
+   "lineup %": 3
+  },
+  "otterboi": {
+   "waiver claims": 4,
+   "points per $": 7,
+   "overpay $": 6,
+   "early busts": 10,
+   "lineup %": 5
+  },
+  "CaptainBigCup": {
+   "waiver claims": 5,
+   "points per $": 11,
+   "overpay $": 12,
+   "early busts": 12,
+   "lineup %": 13
+  },
+  "SamBam805": {
+   "waiver claims": 6,
+   "points per $": 2,
+   "overpay $": 5,
+   "early busts": 11,
+   "lineup %": 7
+  },
+  "Gordonulus": {
+   "waiver claims": 7,
+   "points per $": 12,
    "overpay $": 14,
-   "early busts": 13,
+   "early busts": 14,
    "lineup %": 12
+  },
+  "BigDog11": {
+   "waiver claims": 8,
+   "points per $": 1,
+   "overpay $": 10,
+   "early busts": 4,
+   "lineup %": 10
+  },
+  "DakodiacBear": {
+   "waiver claims": 9,
+   "points per $": 9,
+   "overpay $": 4,
+   "early busts": 2,
+   "lineup %": 6
+  },
+  "Spaceman917": {
+   "waiver claims": 10,
+   "points per $": 8,
+   "overpay $": 7,
+   "early busts": 6,
+   "lineup %": 14
+  },
+  "buddygalletti": {
+   "waiver claims": 11,
+   "points per $": 13,
+   "overpay $": 11,
+   "early busts": 3,
+   "lineup %": 1
+  },
+  "fishy11": {
+   "waiver claims": 12,
+   "points per $": 5,
+   "overpay $": 9,
+   "early busts": 1,
+   "lineup %": 2
+  },
+  "CaseyForeverUnclean": {
+   "waiver claims": 13,
+   "points per $": 10,
+   "overpay $": 8,
+   "early busts": 8,
+   "lineup %": 8
+  },
+  "mikeion": {
+   "waiver claims": 14,
+   "points per $": 14,
+   "overpay $": 13,
+   "early busts": 13,
+   "lineup %": 11
   }
  },
+ "n_ranked": 14,
  "beta": {
   "waiver claims": 0.263009554348156,
   "points per $": 0.22160027885246872,

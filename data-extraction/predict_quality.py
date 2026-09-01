@@ -149,12 +149,22 @@ def main():
         print(f"  {f:22}{b:>+15.2f}{'helps' if b > 0 else 'hurts':>12}")
 
     print("\n" + "=" * 78)
-    print("  WHERE EACH MANAGER RANKS  (1 = best of 14, career averages)")
+    print("  WHERE EACH MANAGER RANKS  (career averages, 3+ seasons only)")
     print("=" * 78)
+    # Ranking needs a stable per-manager average, so require three seasons.
+    # The model above still uses every manager-season, including short stints.
+    MIN_SEASONS = 3
     agg = collections.defaultdict(lambda: collections.defaultdict(list))
+    seasons = collections.defaultdict(set)
     for r in rows:
+        seasons[r["who"]].add(r["yr"])
         for f in FEATURES: agg[r["who"]][f].append(r[f])
+    dropped = sorted(w for w in agg if len(seasons[w]) < MIN_SEASONS)
+    for w in dropped: del agg[w]
     who_list = list(agg)
+    if dropped:
+        print(f"  (excluded, fewer than {MIN_SEASONS} seasons: "
+              + ", ".join(f"{w} [{len(seasons[w])}]" for w in dropped) + ")")
     print(f"  {'manager':22}" + "".join(f"{f[:12]:>14}" for f in FEATURES))
     ranks = {}
     for f in FEATURES:
@@ -165,7 +175,7 @@ def main():
     for w in sorted(who_list, key=lambda w: statistics.mean(ranks[w].values())):
         mark = " <<<" if w in ("mikeion", "Gordonulus") else ""
         print(f"  {w:22}" + "".join(f"{ranks[w][f]:>14}" for f in FEATURES) + mark)
-    json.dump({"rows": rows, "ranks": ranks, "beta": dict(zip(FEATURES, beta[1:])),
+    json.dump({"rows": rows, "ranks": ranks, "n_ranked": len(who_list), "beta": dict(zip(FEATURES, beta[1:])),
                "loo_r2": best_r2, "lam": best_lam},
               open(OUT / "predict_quality.json", "w"), indent=1)
 

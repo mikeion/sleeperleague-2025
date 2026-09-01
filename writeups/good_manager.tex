@@ -1,0 +1,612 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{natbib}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue]{hyperref}
+\captionsetup{font=small,labelfont=bf}
+\bibliographystyle{plainnat}
+
+\title{\vspace{-2.2em}What Makes a Good Fantasy Football Manager?}
+\author{Evidence from one league over ten years and 252 leagues over one}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+\vspace{-1.2em}
+
+\begin{abstract}
+\noindent Fantasy football managers hold two incompatible beliefs at once: that
+the game is mostly luck, and that some managers are reliably good. We reconcile
+them by decomposing weekly team scores into persistent manager quality and
+week-to-week noise, and deriving the probability that the better manager wins.
+We began expecting to find a low and general ceiling on skill. That is not what
+the data show. In one fourteen-team league observed over four seasons the
+intraclass correlation is $0.039$ --- a manager one standard deviation above
+average wins only $55.7\%$ of his weeks, and $0.110$ estimated season by season
+--- but across 252 public leagues the median is $0.294$, where the same manager
+wins $67.6\%$. Skill content is
+therefore a property of the \emph{league}, not of the game. About half the
+difference is attributable to disengagement rather than judgment: dropping the
+two lowest-scoring managers from each league moves the median from $0.294$ to
+$0.164$, and the typical worst team scores $80\%$ of its league average against
+$93\%$ in the tightly-contested league we study in detail. Within that league,
+what most distinguishes managers is early-round draft outcomes ($r=0.805$ with
+persistent scoring) --- but draft performance does not persist across eras
+($r=-0.157$), so what looks like drafting skill is largely a draft that worked.
+The one behaviour that is both learnable and demonstrably rewarded is waiver
+claim volume.
+\end{abstract}
+
+\section{Introduction}
+
+Ask a fantasy football league who its best manager is and you will get a
+confident answer. Ask the same people whether the game is mostly luck and most
+will say yes. Both convictions are usually held by the same person, and neither
+is usually accompanied by a number.
+
+They are not, in fact, contradictory. If persistent differences in manager
+quality are small relative to week-to-week scoring noise, a real and stable
+advantage still produces a win rate near a coin flip in any single week, and a
+fourteen-game season is far too short to reveal it. Whether that describes a
+given league is an empirical question with a specific answer, and the answer
+turns out to vary enormously from league to league.
+
+We set out to estimate the ceiling on manager skill, expecting to find it low
+and roughly universal. The first half of that was right for the league we know
+best and wrong in general. Our contributions are:
+
+\begin{enumerate}
+\item A variance decomposition of weekly scores into persistent manager quality
+and noise, and a closed-form map from it to the probability that the better
+manager wins (Section~\ref{sec:methods}).
+\item Detailed estimates for one fourteen-team league over four seasons, where
+$\rho = 0.039$ and the attainable edge is very small
+(Section~\ref{sec:oneleague}).
+\item The same estimate in 252 public leagues, where the median is $0.294$ and
+the studied league sits near the 15th percentile on a like-for-like basis ---
+falsifying the hypothesis that the ceiling is general (Section~\ref{sec:many}).
+\item Evidence that roughly half of the typical league's apparent skill gap is
+disengagement rather than judgment (Section~\ref{sec:dead}).
+\item A within-league analysis of which manager behaviours track quality, and
+the finding that the strongest one does not persist across a decade
+(Sections~\ref{sec:behaviour}--\ref{sec:persistence}).
+\end{enumerate}
+
+\subsection*{Related work}
+
+\citet{beckersun2016} formulate draft and lineup management as a mixed-integer
+program, with weekly scoring modelled bilinearly as the product of a player's
+innate ability at a statistic and his opponent's ability to defend it. Two of
+their results anchor ours. Their Table~3 reports mean absolute weekly forecast
+errors of $6.77$ points at running back against a mean of $7.46$, and $4.61$ at
+tight end against $4.72$: the typical miss is 87--98\% of the typical score.
+And when their optimizer is granted perfect knowledge of the season's outcomes,
+it wins a ten-team league $24.7\%$ of the time against a $10\%$ baseline.
+Omniscience is worth a factor of $2.5$.
+
+\citet{lutz2015} applies support vector regression and neural networks to six
+seasons of quarterback data, reaching a best mean absolute error of $6.22$
+points and a mean relative error of $0.42$, without materially beating the
+linear baselines he compares against.
+
+Both papers ask how well weekly scores can be \emph{predicted}. We ask what the
+irreducible residual implies for the attainable edge, and we work backwards from
+realised outcomes rather than forwards from projections. We are not aware of a
+published variance budget for head-to-head fantasy football, nor of an estimate
+of how much that budget varies across leagues.
+
+\section{Data}\label{sec:data}
+
+\paragraph{The focal league.} A fourteen-team, half-PPR, head-to-head league
+running since 2016, with a starting lineup of QB / RB / RB / WR / WR / TE /
+FLEX / WRRB\_FLEX / K / DEF and four bench slots. It has used three platforms:
+MyFantasyLeague 2016--19, Yahoo 2020--21, Sleeper since 2022. Primary analysis
+uses the Sleeper era, from which we obtain every draft pick, every weekly matchup
+with the full starter list and per-player points, every roster, and every
+transaction \emph{including failed waiver claims with their bid amounts}. This
+gives 770 manager-weeks, 798 draft picks, and 1{,}089 reconstructable waiver
+auctions. We restrict to weeks 1--14, the fantasy regular season.
+
+The earlier eras enter only in Section~\ref{sec:persistence}. Of those, only the
+2016--17 drafts are recoverable: 2018 returns picks with an empty player field,
+2019 returns no draft results, and the 2020--21 Yahoo export contains standings
+and matchups but no player-level data. The MyFantasyLeague seasons are also
+structurally different --- twenty franchises drafting as two \emph{independent}
+ten-team drafts from a shared player pool --- and stored no scoring rules, so
+player values there are computed in half-PPR and may not match what that league
+actually scored.
+
+\paragraph{The comparison sample.} To ask whether the focal league is typical we
+snowball-sampled public Sleeper leagues, alternating between collecting the
+leagues a known user belongs to and the members of a newly seen league, starting
+from the focal league's members. We retained completed 2025 seasons with at
+least eight managers and ten scored weeks, yielding \textbf{252 leagues}. Only
+aggregate quantities are kept: league size, scoring type, roster positions, and
+the matrix of weekly scores with managers reduced to integers. No usernames,
+team names, or league names from third-party leagues are stored or reported.
+
+This is a convenience sample reached through one league's social graph, and is
+not a random draw from all Sleeper leagues. Section~\ref{sec:limits} returns to
+what that does and does not threaten.
+
+\section{Methods}\label{sec:methods}
+
+\subsection{A season as an accounting identity}
+
+Before any model, note that a season decomposes exactly. Let $O_m$ be the points
+manager $m$'s \emph{optimal} lineup would have scored and $S_m$ what he actually
+started. Every started player was either drafted by him or acquired later, so
+\begin{equation}
+O_m \;=\; \underbrace{D_m}_{\text{drafted starters}}
+\;+\; \underbrace{A_m}_{\text{acquired starters}}
+\;+\; \underbrace{L_m}_{\text{left on the bench}} ,
+\label{eq:identity}
+\end{equation}
+with no residual. This is arithmetic, not estimation, and it is where we begin
+because it fixes the scale of what follows.
+
+\subsection{Variance components}
+
+Let $Y_{mt}$ be the points scored by manager $m$'s starting lineup in week $t$.
+We posit
+\begin{equation}
+Y_{mt} = \mu + \alpha_m + \varepsilon_{mt}, \qquad
+\alpha_m \sim (0, \tau^2), \quad \varepsilon_{mt} \sim (0, \sigma^2),
+\label{eq:model}
+\end{equation}
+with $\alpha_m \perp \varepsilon_{mt}$, and define the intraclass correlation
+$\rho = \tau^2/(\tau^2+\sigma^2)$.
+
+We stress what $\alpha_m$ is not. It is everything that persists week to week
+--- including a draft that broke well, and including a manager who has stopped
+setting his lineup. It is an upper bound on skill, not a measurement of it. Much
+of this paper is about the gap between the two.
+
+\subsection{From variance to win probability}
+
+A matchup is decided by the margin
+$D_{mm't} = (\alpha_m - \alpha_{m'}) + (\varepsilon_{mt} - \varepsilon_{m't})$.
+The talent gap enters once; the noise enters \emph{twice}, with variance
+$2\sigma^2$. Under approximate normality,
+\begin{equation}
+\Pr(m \text{ beats } m' \mid \delta) = \Phi\!\left(\frac{\delta}{\sigma\sqrt2}\right),
+\qquad \delta = \alpha_m - \alpha_{m'} .
+\end{equation}
+Writing $\delta = c\tau$ for a manager $c$ standard deviations above average and
+defining the \textbf{skill-to-noise ratio}
+\begin{equation}
+\kappa \;\equiv\; \frac{\tau}{\sigma\sqrt2} \;=\; \sqrt{\frac{\rho}{2(1-\rho)}},
+\label{eq:kappa}
+\end{equation}
+this collapses to
+\begin{equation}
+\boxed{\;\Pr(\text{win a given week}) = \Phi(c\,\kappa)\;}
+\label{eq:pk}
+\end{equation}
+The second equality in~\eqref{eq:kappa} follows from
+$\tau^2 = \rho(\tau^2+\sigma^2)$ and $\sigma^2 = (1-\rho)(\tau^2+\sigma^2)$, and
+is the reason everything downstream --- win rates, season records, the
+observation horizon --- follows from $\rho$ alone. With $n$ independent
+matchups, $W \sim \mathrm{Bin}(n, \Phi(c\kappa))$.
+
+\subsection{Estimation}
+
+Panels are unbalanced, so \eqref{eq:model} is fitted by unbalanced one-way ANOVA
+\citep{searle1992}:
+$\widehat\sigma^2 = \mathrm{MS}_W$ and
+$\widehat\tau^2 = \max\{(\mathrm{MS}_B - \mathrm{MS}_W)/n_0,\,0\}$ with
+$n_0 = (N - \sum_i n_i^2/N)/(k-1)$. The correction by $n_0$ is not cosmetic: in
+the focal league the naive between-group variance of manager means is $26.2$, of
+which $\widehat\sigma^2/\bar n = 9.5$ is sampling noise in the means themselves.
+Omitting it overstates the persistent component by a third.
+
+Intervals come from a nonparametric bootstrap resampling \emph{managers}, since
+observations cluster within manager; $B=2000$.
+
+\section{Results}
+
+\subsection{One league, in detail}\label{sec:oneleague}
+
+Applying~\eqref{eq:identity} to the focal league gives a first orientation:
+
+\begin{center}\small
+\begin{tabular}{lrr}
+\toprule
+& mean per season & between-manager SD \\
+\midrule
+$D$ \ points from drafted starters  & $1084$ & $207$ \\
+$A$ \ points from acquired starters & $418$  & $161$ \\
+$L$ \ points left on the bench      & $121$  & $41$ \\
+\midrule
+$O$ \ optimal total                 & $1623$ & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Two-thirds of a manager's ceiling comes from his draft, a quarter from the wire,
+and $7\%$ is forfeited to lineup mistakes.
+
+Table~\ref{tab:budget} gives the variance decomposition.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrlrl}
+\toprule
+& \multicolumn{2}{c}{actual lineup} & \multicolumn{2}{c}{optimal lineup} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+& est. & 95\% CI & est. & 95\% CI \\
+\midrule
+$\sigma^2$ (within manager) & $499.5$ & $[450,\,550]$ & $520.0$ & $[480,\,561]$ \\
+$\tau^2$ (between managers) & $20.3$ & $[1.2,\,36.9]$ & $20.6$ & $[0.0,\,41.7]$ \\
+$\rho$ (ICC)                & $0.039$ & $[0.003,\,0.065]$ & $0.038$ & $[0.000,\,0.071]$ \\
+$\Phi(\kappa)$              & $0.557$ & $[0.514,\,0.574]$ & $0.556$ & $[0.500,\,0.578]$ \\
+\bottomrule
+\end{tabular}
+\caption{Focal league, $k=14$ managers, 770 manager-weeks, 2022--2025. The
+optimal-lineup columns replace each manager's actual starters with the best
+legal lineup available from his roster that week.}
+\label{tab:budget}
+\end{table}
+
+In natural units $\widehat\sigma = 22.4$ points against $\widehat\tau = 4.5$:
+\textbf{about 96\% of the variation in a weekly score is within-manager noise.}
+The matchup margin carries a noise SD of $31.6$ points against a talent gap SD
+of $6.4$.
+
+The optimal-lineup columns deserve emphasis. Substituting every manager's
+\emph{best possible} lineup for his actual one moves $\rho$ from $0.039$ to
+$0.038$. Managers do differ in lineup efficiency --- the observed range is
+$91.1\%$ to $94.1\%$ of optimal --- but relative to $\sigma$ the differences do
+not register. Perfect hindsight start/sit decisions for everyone would not
+change who wins this league.
+
+Applying~\eqref{eq:pk}, a manager one standard deviation above average wins
+$55.7\%$ of weeks, expects $7.79$ wins in fourteen, and finishes above $.500$
+with probability $0.566$. By Spearman--Brown, a single season's record has
+reliability $0.362$; reaching $0.80$ requires about 99 weeks, or seven seasons.
+
+\subsection{The ceiling is not general}\label{sec:many}
+
+We expected these figures to be roughly typical. They are not.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrrr}
+\toprule
+& median & IQR & 10th--90th pct \\
+\midrule
+$\rho$ (ICC)                 & $0.294$ & $[0.171,\,0.381]$ & $[0.080,\,0.456]$ \\
+$\Phi(\kappa)$, P(+1 SD wins) & $0.676$ & $[0.626,\,0.710]$ & $[0.582,\,0.741]$ \\
+\bottomrule
+\end{tabular}
+\caption{252 public Sleeper leagues, 2025 season. Mean $\sigma = 27.5$ points
+per week; mean $\tau = 17.6$.}
+\label{tab:many}
+\end{table}
+
+The median league has an ICC of $0.294$ and a competent manager there wins
+$67.6\%$ of his weeks rather than $55.7\%$. Only $14\%$ of leagues fall below
+$\rho = 0.10$.
+
+The comparison requires care, because the two estimates are not computed over the
+same span. Every league in the sample is observed for a single season, whereas
+Table~\ref{tab:budget} pools four. Pooling treats a manager as one entity across
+four entirely different rosters, which attenuates $\tau^2$; estimating the focal
+league season by season instead gives $0.141$, $0.029$, $0.302$ and $0.078$ for
+2022--25, with a median of $0.110$. The like-for-like figure is therefore
+$0.110$, and \textbf{the focal league sits near the 15th percentile of the
+sample} --- at the 10th if 2025 alone is used. Unusual, but less extreme than the
+pooled estimate suggests.
+
+That gap is itself informative. Within a single season $11\%$ of weekly variance
+is between teams; across four seasons only $3.9\%$ is attributable to the
+\emph{person}. Most of what separates teams within a year is that year's roster,
+not a durable property of the manager --- the same conclusion
+Section~\ref{sec:persistence} reaches from draft records.
+
+Whatever the ceiling on skill is, it is not a constant of the game: the sample
+spans $\rho = 0.080$ to $0.456$ between its 10th and 90th percentiles.
+
+\subsection{Roughly half the difference is disengagement}\label{sec:dead}
+
+Public leagues contain abandoned teams, and an abandoned team scores poorly every
+week --- which is exactly what $\alpha_m$ is built to capture, without being
+skill in any useful sense. To test this we recomputed each league's ICC after
+removing its lowest-scoring managers.
+
+\begin{center}\small
+\begin{tabular}{lrr}
+\toprule
+sample & $n$ leagues & median $\rho$ \\
+\midrule
+all managers                & 252 & $0.294$ \\
+drop lowest-scoring manager & 252 & $0.217$ \\
+drop two lowest             & 252 & $0.164$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Removing two managers per league nearly halves the median ICC. The supporting
+descriptive is stark: \textbf{the median worst team scores $80\%$ of its league
+average, and the 10th percentile scores $62\%$.} In the focal league the worst
+team scores $93\%$ --- every manager sits within $7\%$ of the mean.
+
+Two conclusions follow. First, a substantial share of what a naive variance
+decomposition calls ``manager skill'' in a public league is somebody who stopped
+playing. Second, this does not explain the gap away. Applying the identical treatment to the
+focal league moves it only from $0.039$ to $0.035$, because it has no disengaged
+team to remove: the sample median under drop-two is $0.164$ against the focal
+league's $0.035$, a ratio of $4.7$. That league is genuinely, unusually compressed, and
+the compression is not an artifact of who is dropped.
+
+\subsection{League design changes the skill content}
+
+Scoring format is associated with the ICC in the direction one would predict
+from the volatility of the underlying statistics: receptions are far more stable
+week to week than touchdowns, so reception-heavy scoring should shrink $\sigma$
+without much affecting $\tau$.
+
+\begin{center}\small
+\begin{tabular}{lrr}
+\toprule
+& $n$ leagues & median $\rho$ \\
+\midrule
+half-PPR & 48  & $0.224$ \\
+full PPR & 201 & $0.299$ \\
+\midrule
+10 teams    & 35  & $0.197$ \\
+11--12 teams & 193 & $0.310$ \\
+13+ teams   & 20  & $0.342$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Three standard-scoring leagues are omitted from the upper panel as too few to
+summarise. Correlation between league size and ICC is $+0.138$. We report these as
+associations only: the sample is observational, formats are confounded with the
+kind of league that adopts them, and the size relation runs opposite to the
+focal league, which is the largest size class and the least noisy. The
+practical reading is nonetheless that a commissioner has some control over how
+much skill his league rewards.
+
+\subsection{What separates managers within a league}\label{sec:behaviour}
+
+Within the focal league we estimated each manager's $\alpha_m$ by empirical-Bayes
+shrinkage and correlated it against six measured behaviours.
+
+\begin{center}\small
+\begin{tabular}{lr}
+\toprule
+behaviour & $r$ with $\widehat\alpha_m$ \\
+\midrule
+early-round draft value        & $+0.805$ \\
+early-round bust avoidance     & $+0.625$ \\
+lineup efficiency              & $+0.448$ \\
+bid discipline                 & $+0.429$ \\
+waiver efficiency (pts/\$)     & $+0.429$ \\
+waiver claim volume            & $+0.413$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+With $n=14$ managers and six tests this is exploratory. It also carries a
+mechanical component we do not want to oversell: $\alpha_m$ is the persistent
+part of weekly scoring, and the persistent part of a roster is mostly what was
+drafted, so the leading correlation is close to arithmetic.
+
+The waiver results are on much firmer ground, resting on 1{,}089 auctions rather
+than sixteen picks per manager. Across the fourteen managers, claims attempted
+per season correlates with waiver production at $r=+0.888$; price paid per
+successful claim at $r=-0.799$; and claim \emph{win rate} at $r=-0.369$. The
+negative sign on win rate is informative: a high win rate means bidding only when
+certain, and certainty is expensive. Restricting to weeks 1--6 so that
+acquisition date does not confound the comparison, players won for \$0 returned
+$75.7$ points and players won for \$35 or more returned $78.4$ --- a $3.6\%$
+difference for an unbounded price, with points per dollar falling from $29.9$ in
+the \$1--4 band to $1.7$ above \$35. Since FAAB expires worthless and bench slots
+recycle weekly, the marginal cost of an additional small claim is near zero.
+
+We note one correction that changed this section materially. Our first pass
+credited a claimed player with all points he scored while rostered.
+Recomputing against weeks he was actually \emph{started} reduced every manager's
+waiver production by a median of $65\%$, and non-uniformly ($49\%$ to $78\%$
+across managers), which reordered the table.
+
+\subsection{Draft performance does not persist}\label{sec:persistence}
+
+If drafting is a stable trait, it should correlate across time. For the twelve
+managers present in both eras, the correlation between standardised draft score
+in 2016--17 and in 2022--25 is $r = -0.157$, 95\% CI $[-0.67,\,+0.46]$ by
+Fisher's $z$. Eight of twelve changed sign; the manager with the best four-year
+draft record in the current era had the worst in the earlier one.
+
+This estimate is attenuated by measurement error in both halves. With within-era
+ICC $0.215$ for season draft scores, Spearman--Brown gives reliabilities of
+$0.523$ and $0.354$ for four- and two-season means, so the disattenuated
+correlation is $-0.157/\sqrt{0.523 \times 0.354} = -0.365$. Correcting for
+attenuation moves the estimate \emph{further} from zero in the negative
+direction; it cannot rescue a claim of persistence. Supporting
+$r_{\text{true}} = +0.50$ would have required observing $r_{\text{obs}} = +0.215$.
+
+Pooling all six gradeable seasons, the share of variance in season draft scores
+attributable to the manager falls from $0.215$ to $0.027$.
+
+We hold this loosely. The eras differ in league size, roster structure and
+possibly scoring, and four years separate them. It is evidence of absence only
+in the weak sense: we could not detect persistence with the data available.
+
+\subsection{What is outside a manager's control}
+
+Two factors commonly blamed or credited can be measured directly. Draft slot is
+randomly assigned; across 56 manager-seasons its correlation with season wins is
+$+0.049$. Schedule is not: regressing wins on points scored gives $R^2 = 0.484$,
+and adding points \emph{allowed} raises it to $0.719$. \textbf{Roughly a quarter
+of the variance in season records is explained purely by whom a manager happened
+to be scheduled against.}
+
+\subsection{Validation, and where it fails}\label{sec:validation}
+
+The model is fitted to weekly scores and makes a testable prediction about season
+records. If win rates are $\mathrm{Bin}(14,p_m)/14$ with $p_m = \Phi(c_m\kappa)$,
+the talent-induced SD of the win rate is approximately $2\phi(0)\kappa$.
+
+\begin{center}\small
+\begin{tabular}{lr}
+\toprule
+observed SD of season win rate & $0.1517$ \\
+SD implied by a pure coin flip, $n=14$ & $0.1336$ \\
+residual attributable to talent & $0.0718$ \\
+predicted from the weekly model & $0.1137$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{These do not agree.} The weekly model predicts a talent spread in season
+records $1.6$ times larger than the records display. The discrepancy is not
+fatal --- $\widehat\tau^2$ has interval $[1.2,\,36.9]$, and $0.0718$ corresponds
+to a $\tau$ near its lower end --- but the point estimate in
+Table~\ref{tab:budget} should be read as an upper bound. Candidate explanations
+are non-normality in the margin, which heavier tails would produce, and
+schedule-induced correlation in opponent quality.
+
+\section{Discussion}
+
+\subsection{Repetition, not insight}
+
+Table~\ref{tab:reps} organises the decisions a manager makes by how often he
+makes them.
+
+\begin{table}[h]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+decision & per season & between-manager SD of season total \\
+\midrule
+trades                 & $\sim1$  & $\sim30$ \\
+early draft picks      & $4$      & $207$ \\
+weekly lineups         & $14$     & $41$ \\
+waiver claims (attempted) & $32$ & $161$ \\
+\bottomrule
+\end{tabular}
+\caption{Focal league. Waiver claims are attempts including failed bids, median
+per manager-season (range 7--92); completed claims median 15. Trades are rare and
+shrinking: nine in 2022, two in 2025.}
+\label{tab:reps}
+\end{table}
+
+A per-decision edge accumulates linearly in the number of decisions, while the
+noise in \emph{measuring} that edge grows only as $\sqrt n$. Repetition thus
+improves both how much advantage a manager can bank and our ability to detect
+that he has it. This organises the paper's otherwise scattered findings. Waivers
+produce the cleanest signal in the data because a manager attempts about thirty a
+season and the sample contains 1{,}089 auctions. Draft skill does not survive an era change partly
+because four meaningful picks a year over four years is sixteen noisy
+observations. Lineup selection never registers because its per-decision effect
+--- about $2.8$ points a week --- is an order of magnitude below the $31.6$
+points of matchup noise it competes with.
+
+\subsection{Two different questions}
+
+``What makes a good fantasy manager'' turns out to have two answers that are
+routinely conflated.
+
+\emph{What makes a manager score more this season?} Predominantly a draft that
+worked ($r = 0.805$). That is largely outside his control and does not carry from
+one era to the next.
+
+\emph{What can a manager actually improve?} Waiver behaviour: more claims, at
+lower prices. Its correlation with quality is weaker ($r = 0.413$), but its
+feedback loop is fast enough to learn from within a single season.
+
+Confusing the first for the second is, we suspect, why so many managers believe
+they are good at drafting.
+
+\section{Limitations}\label{sec:limits}
+
+\paragraph{The comparison sample is not random.} It was reached by snowball
+sampling from one league's social graph, so leagues socially proximate to the
+focal league are over-represented, and $201$ of $252$ are full PPR. This
+threatens the point estimate of the median ICC. It does not threaten the paper's
+central claim, which is about \emph{dispersion}: whatever the population median,
+we observe ICCs from $0.079$ to $0.456$ within a single sample, and that range
+is what falsifies a universal ceiling.
+
+\paragraph{Disengagement is inferred, not observed.} We identify likely
+abandoned teams by low scoring, because the crawl retained only weekly scores.
+Separating ``quit'' from ``bad but trying'' requires transaction counts per
+league, which we did not collect. The claim that roughly half the typical
+league's skill gap is disengagement should be read as consistent with the
+evidence rather than established by it.
+
+\paragraph{$\alpha_m$ is not skill.} It is everything persistent. We have no
+design that decomposes an individual manager's $\alpha_m$ into judgment and
+fortune; the cross-era comparison in Section~\ref{sec:persistence} is the closest
+available and it is underpowered.
+
+\paragraph{Normality.} Equation~\eqref{eq:pk} assumes an approximately normal
+margin. Weekly scores are right-skewed sums of skewed player scores, and the
+validation failure in Section~\ref{sec:validation} is what fat tails would
+produce.
+
+\paragraph{Free parameters and leakage.} The $-50$ bust threshold and the
+$\pm12$ window in the slot-expectation curve were chosen without formal
+justification; the ordering of managers is stable across thresholds from $-100$
+to $0$ but the magnitude is not. The slot curve is fitted on the same picks it
+scores, inducing mild leakage. Replacement level is computed from season totals
+although lineups are set weekly, which inflates all points-above-replacement
+figures.
+
+\paragraph{Single-season ICCs are noisy.} Each comparison league contributes one
+season, so $\tau$ there is estimated from roughly fourteen weeks per manager. The
+focal league's own per-season estimates range from $0.029$ to $0.302$, which is
+the scale of instability to expect in any individual league's figure. Conclusions
+are drawn from the distribution across leagues, not from any single one.
+
+\paragraph{Estimation.} Method-of-moments $\widehat\tau^2$ is truncated at zero,
+and the bootstrap inherits that truncation --- visible in
+Table~\ref{tab:budget}, where the optimal-lineup interval is pinned at the
+boundary. A hierarchical Bayesian model with $\tau$ on the log scale, partial
+pooling across leagues, and league covariates entering as coefficients would
+estimate this properly and is the obvious next step.
+
+\section{Conclusion}
+
+The question that titles this paper has a smaller answer than most managers
+believe, and a more variable one than we expected. In a competitive, fully
+engaged fourteen-team league, a manager one standard deviation above average wins
+$55.7\%$ of his weeks and would need seven seasons to demonstrate he is not
+lucky. In the median public league the same manager wins $67.6\%$ --- but about
+half of that larger edge appears to come from playing against people who have
+stopped trying, and the comparison narrows further once both sides are estimated
+over the same span.
+
+For a manager wanting to improve, the practical implication is narrow and
+somewhat deflating. The decision that most determines how good he looks --- the
+first four rounds of his draft --- is the one he gets four attempts at per year
+and cannot demonstrably learn on a human timescale. The decision he can actually
+improve is the one that feels like administrative work: many small waiver claims
+rather than few expensive ones. And a season's standings, in a league where
+everybody is trying, are close to uninformative about which of the two he did
+well.
+
+\begin{thebibliography}{9}
+\bibitem[Becker and Sun(2016)]{beckersun2016}
+Becker, A. and X.~A. Sun (2016).
+\newblock An analytical approach for fantasy football draft and lineup management.
+\newblock \emph{Journal of Quantitative Analysis in Sports} 12(1), 17--30.
+
+\bibitem[Lutz(2015)]{lutz2015}
+Lutz, R. (2015).
+\newblock Fantasy football prediction.
+\newblock \emph{arXiv preprint} arXiv:1505.06918.
+
+\bibitem[Searle et al.(1992)]{searle1992}
+Searle, S.~R., G.~Casella, and C.~E. McCulloch (1992).
+\newblock \emph{Variance Components}.
+\newblock Wiley, New York.
+\end{thebibliography}
+
+\end{document}

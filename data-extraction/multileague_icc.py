@@ -56,7 +56,10 @@ def main():
 
     rhos = sorted(r["rho"] for r in res)
     ps = sorted(Phi(r["kappa"]) for r in res)
-    q = lambda v, p: v[min(int(p * len(v)), len(v) - 1)]
+    def q(v, p):                       # linear-interpolated quantile
+        i = p * (len(v) - 1)
+        lo = int(i)
+        return v[lo] * (1 - (i - lo)) + v[min(lo + 1, len(v) - 1)] * (i - lo)
     print("=" * 80)
     print(f"  VARIANCE BUDGET ACROSS {len(res)} PUBLIC SLEEPER LEAGUES (2025)")
     print("=" * 80)

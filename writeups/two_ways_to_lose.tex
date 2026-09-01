@@ -1,0 +1,173 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue]{hyperref}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+
+\newcommand{\pos}[1]{\textcolor{blue!60!black}{#1}}
+\newcommand{\bad}[1]{\textcolor{red!65!black}{#1}}
+
+\title{\vspace{-2.5em}Two Ways to Lose a Fantasy Football League}
+\author{An empirical decomposition of Fat Man's Fantasy, 2016--2025}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+
+\begin{abstract}
+\noindent Across 56 manager-seasons we decompose league performance into the
+three components a manager actually controls: the draft, in-season roster
+acquisition, and weekly lineup selection. Two managers finish near the bottom of
+the league by mutually exclusive routes. \texttt{Gordonulus} is an above-average
+in-season manager who destroys his rosters in the first four rounds.
+\texttt{mikeion} drafts adequately and then stops playing. We also find no
+evidence that drafting ability persists across eras $(r = -0.157)$, which limits
+how much of this should be read as skill rather than circumstance.
+\end{abstract}
+
+\section{Framework}
+
+A season's starting-lineup points can be written as
+\[
+  \text{Points} \;=\; \underbrace{f(\text{draft})}_{\text{August}}
+  \;+\; \underbrace{g(\text{acquisitions})}_{\text{September--December}}
+  \;-\; \underbrace{h(\text{lineup error})}_{\text{every Sunday}} \;+\; \varepsilon .
+\]
+Each term is measured on a common scale. A player's contribution is his half-PPR
+points in weeks 1--14 (playoff weeks are excluded: they decide nothing for a team
+already eliminated), converted to points above replacement at his own position,
+with replacement recomputed each season for a 14-team lineup carrying two flex
+spots. A draft pick is then scored against what a pick at that slot typically
+returns, so that picking first is not mistaken for drafting well.
+
+Regressing season wins on the three components gives
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Component & Wins per SD & Raw $r$ & Partial $r$ \\
+\midrule
+Draft value            & $+1.19$ & $+0.52$ & --- \\
+Lineup efficiency      & $+0.54$ & $+0.33$ & $+0.34$ \\
+Waiver production      & $+0.33$ & $+0.01$ & $+0.25$ \\
+\bottomrule
+\end{tabular}
+\caption{$n = 56$ manager-seasons, $R^2 = 0.378$.}
+\end{table}
+
+\noindent Waiver production correlates with wins at essentially zero until the
+draft is held constant, at which point it recovers to $+0.25$. The two effects
+had been cancelling: a failed draft \emph{forces} a manager onto the wire, so raw
+waiver points measure draft failure as much as waiver skill. Note also that
+$R^2 = 0.378$. Roughly $62\%$ of a season is schedule, injury, and luck.
+
+\section{The two failure modes}
+
+Six controllable quantities, $z$-scored across the fourteen managers with at
+least two full seasons. Higher is better throughout.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrrr}
+\toprule
+& \multicolumn{2}{c}{$z$-score} & \multicolumn{2}{c}{raw value} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Dimension & \texttt{mikeion} & \texttt{Gordonulus} & \texttt{mikeion} & \texttt{Gordonulus} \\
+\midrule
+Waiver volume (claims/season) & \bad{$-1.74$} & \pos{$+0.19$} & $10.3$ & $32.5$ \\
+Bid discipline (\$ over 2nd bid) & \bad{$-0.90$} & \bad{$-0.86$} & $\$7.44$ & $\$7.33$ \\
+Waiver efficiency (points/\$) & \bad{$-1.83$} & \bad{$-0.65$} & $4.1$ & $6.4$ \\
+Lineup setting (\% of optimal) & \bad{$-0.74$} & \bad{$-0.96$} & $91.8\%$ & $91.6\%$ \\
+Early-round value (per pick) & \bad{$-1.23$} & \bad{$-1.48$} & $-26.1$ & $-31.4$ \\
+Bust avoidance (\% of R1--4) & \bad{$-1.45$} & \bad{$-2.03$} & $31\%$ & $38\%$ \\
+\bottomrule
+\end{tabular}
+\caption{League means: $30.3$ claims, $\$5.21$ overpay, $7.6$ points/\$,
+$92.5\%$ optimal, $-0.6$ per early pick, $16\%$ bust rate.}
+\end{table}
+
+\subsection*{\texttt{Gordonulus}: a draft problem}
+
+His waiver volume is the only positive number either manager records. He is an
+active, engaged in-season manager --- $32.5$ claims a season against a league
+mean of $30.3$, and he twice acquired Matthew Stafford for \$3, returning $302$
+points for six dollars across two seasons.
+
+He loses in August. His bust rate in rounds 1--4 is $38\%$ against a league rate
+of $16\%$, the worst mark on any dimension recorded by either manager. His
+early-round picks average $-31.4$ points of value each; over four picks that is
+roughly $125$ points a season surrendered before Week 1. His rounds 8--14 are
+also below water at $-11.5$ per pick, so there is no late-round recovery.
+
+The pattern is not obviously about age or position --- his round 1--4 skill picks
+average $25.0$ years old, \emph{younger} than the league's $26.3$. Nick Chubb at
+pick 6 in 2023 $(-157.3)$ and Elijah Mitchell at pick 47 in 2022 $(-93.8)$ were
+both bets on running backs returning from injury.
+
+\subsection*{\texttt{mikeion}: a participation problem}
+
+His draft is mediocre rather than catastrophic, and it is specifically
+front-loaded: $-26.1$ per pick in rounds 1--4 but $+9.1$ per pick from round 8
+onward, one of the better late-round records in the league. He is not bad at
+evaluating players; he is bad at the four picks that matter most.
+
+What separates him from everyone else is the season that follows. At $10.3$
+claims per season he is last in the league by a factor of three, and he converts
+$4.1$ points per FAAB dollar against a league mean of $7.6$. In absolute terms he
+extracts $252$ points a season from the waiver wire; the league median is $692$
+and the leader is $1{,}098$. Over a fourteen-week season that gap is roughly $60$
+points a week of unclaimed production.
+
+His claim \emph{win rate} of $63\%$ is the second highest in the league, which is
+diagnostic rather than flattering. Across the fourteen managers,
+
+\[
+  r(\text{claims per season},\ \text{waiver points}) = +0.888, \qquad
+  r(\text{price paid per win},\ \text{waiver points}) = -0.799,
+\]
+\[
+  r(\text{claim win rate},\ \text{waiver points}) = -0.369 .
+\]
+
+\noindent A high win rate means bidding only when certain, and certainty is
+expensive: he pays \$9.40 per successful claim against a league mean of \$5.50.
+Volume, not accuracy, is what the wire rewards.
+
+\section{What this is not}
+
+Three caveats materially limit the above.
+
+\paragraph{Drafting ability does not persist.} Extending the analysis to the
+MyFantasyLeague seasons of 2016--17, the correlation between a manager's draft
+performance then and now is $r = -0.157$, $95\%$ CI $[-0.67, +0.46]$. Eight of
+twelve managers changed sign. The manager with the best four-year draft record in
+the current era had the worst in the previous one. Pooling all six gradeable
+seasons, the share of variance attributable to the manager falls from $0.215$ to
+$0.027$.
+
+\paragraph{The early-round samples are small.} Each manager has 16 picks in
+rounds 1--4 across four seasons. A $38\%$ bust rate is six events. The waiver
+figures rest on 1{,}089 auctions and are considerably more solid.
+
+\paragraph{The dimensions are not equally weighted.} A $z$-score conceals effect
+size. The entire league sits between $91.1\%$ and $94.1\%$ lineup efficiency; one
+standard deviation is about $2.8$ points per week. The waiver and early-round
+columns carry real magnitude, the lineup column does not.
+
+\section{Conclusion}
+
+Both managers finish near the bottom, and the remedies do not overlap. One should
+draft more conservatively in the first four rounds and would otherwise be fine.
+The other should open the application on Tuesdays. Neither is doing the thing the
+other needs to fix, which is why the shared complaint --- that they are simply
+unlucky --- is only $62\%$ correct.
+
+\end{document}

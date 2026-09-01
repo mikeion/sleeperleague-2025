@@ -1,0 +1,87 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in,letterpaper]{geometry}
+\usepackage[sfdefault,scale=0.96]{plex-sans}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs,makecell,array,xcolor,microtype,enumitem}
+\definecolor{muted}{HTML}{6A7078}
+\definecolor{rule}{HTML}{C9CDD2}
+\newcommand{\rk}[1]{\textsuperscript{\textcolor{muted}{\scriptsize #1}}}
+\renewcommand{\theadfont}{\normalsize\color{muted}}
+\renewcommand{\theadalign}{bc}
+\setlength{\parindent}{0pt}
+\setlength{\arrayrulewidth}{0.5pt}
+\pagestyle{empty}
+\begin{document}
+
+{\fontsize{18}{21}\selectfont\bfseries Five things you can measure about a fantasy manager}
+
+\vspace{5pt}
+{\color{muted}\large Fat Man's Fantasy, 2022--2025. Career averages, with each
+manager's rank of 14 in small type.}
+
+\vspace{15pt}
+\renewcommand{\arraystretch}{1.28}
+\setlength{\tabcolsep}{11pt}
+\begin{tabular}{l*{5}{r}}
+\toprule
+& \thead{Waiver claims\\made} & \thead{Points per\\FAAB dollar} & \thead{Overpaid on\\won bids} & \thead{Busts per season\\rounds 1--4} & \thead{Started the\\right players} \\
+\midrule
+rpthorp & 65\,\rk{1} & 3.1\,\rk{4} & \$2.06\,\rk{2} & 0.25\,\rk{5} & 93.3\%\,\rk{4} \\
+robbbbbbbb & 54\,\rk{3} & 3.0\,\rk{6} & \$2.14\,\rk{3} & 0.50\,\rk{7} & 93.3\%\,\rk{3} \\
+robertwneal2 & 57\,\rk{2} & 3.6\,\rk{3} & \$2.04\,\rk{1} & 0.50\,\rk{9} & 92.0\%\,\rk{9} \\
+fishy11 & 18\,\rk{12} & 3.1\,\rk{5} & \$8.11\,\rk{9} & 0.00\,\rk{1} & 93.4\%\,\rk{2} \\
+DakodiacBear & 30\,\rk{9} & 2.4\,\rk{9} & \$3.00\,\rk{4} & 0.25\,\rk{2} & 92.8\%\,\rk{6} \\
+SamBam805 & 38\,\rk{6} & 4.0\,\rk{2} & \$3.92\,\rk{5} & 1.00\,\rk{11} & 92.3\%\,\rk{7} \\
+otterboi & 48\,\rk{4} & 2.8\,\rk{7} & \$4.54\,\rk{6} & 1.00\,\rk{10} & 93.0\%\,\rk{5} \\
+BigDog11 & 35\,\rk{8} & 4.4\,\rk{1} & \$8.23\,\rk{10} & 0.25\,\rk{4} & 91.9\%\,\rk{10} \\
+buddygalletti & 22\,\rk{11} & 1.3\,\rk{13} & \$8.56\,\rk{11} & 0.25\,\rk{3} & 94.1\%\,\rk{1} \\
+Spaceman917 & 27\,\rk{10} & 2.4\,\rk{8} & \$4.67\,\rk{7} & 0.50\,\rk{6} & 91.1\%\,\rk{14} \\
+CaseyForeverUnclean & 17\,\rk{13} & 2.3\,\rk{10} & \$5.49\,\rk{8} & 0.50\,\rk{8} & 92.1\%\,\rk{8} \\
+CaptainBigCup & 38\,\rk{5} & 2.2\,\rk{11} & \$9.01\,\rk{12} & 1.00\,\rk{12} & 91.1\%\,\rk{13} \\
+Gordonulus & 37\,\rk{7} & 1.9\,\rk{12} & \$10.17\,\rk{14} & 1.50\,\rk{14} & 91.5\%\,\rk{12} \\
+mikeion & 11\,\rk{14} & 0.9\,\rk{14} & \$9.50\,\rk{13} & 1.25\,\rk{13} & 91.8\%\,\rk{11} \\
+\midrule
+\textbf{league median} & \textbf{36} & \textbf{2.6} & \textbf{\$5.08} & \textbf{0.50} & \textbf{92.2\%} \\
+\bottomrule
+\end{tabular}
+
+\vspace{18pt}
+{\large\bfseries What the columns mean}
+
+\vspace{6pt}
+\begin{itemize}[leftmargin=1.4em,itemsep=4pt,topsep=0pt]
+\item \textbf{Waiver claims made} --- how many you put in across a season, the ones
+      you lost included.
+\item \textbf{Points per FAAB dollar} --- points a claimed player scored
+      \emph{while in your starting lineup}, divided by what you paid. Points he
+      scored on your bench do not count.
+\item \textbf{Overpaid on won bids} --- how far above the \emph{next-highest} bid you
+      landed on a contested claim. Money you did not have to spend.
+\item \textbf{Busts in rounds 1--4} --- picks returning at least 50 points less than
+      that draft slot normally does.
+\item \textbf{Started the right players} --- the share of your best possible lineup
+      you actually started, judged after the fact.
+\end{itemize}
+
+\vspace{16pt}
+{\large\bfseries What any of it is worth}
+
+\vspace{6pt}
+Fitted against season win totals across 56 manager-seasons, then checked by
+leaving each season out and predicting it.
+
+\vspace{6pt}
+\begin{itemize}[leftmargin=1.4em,itemsep=4pt,topsep=0pt]
+\item Busting a pick in the first four rounds costs about \textbf{one win} --- by some
+      distance the most expensive thing here. Ten extra waiver claims are worth
+      roughly a tenth of a win.
+\item But all five together sharpen a guess at a manager's record only from
+      \textbf{$\pm$2.1 wins to $\pm$2.0}. They account for 8\% of a season; the other
+      92\% is schedule, injuries and luck.
+\end{itemize}
+
+\vspace{16pt}
+{\color{muted}\small Managers with fewer than three seasons are not ranked --- one
+year is far too noisy to place anyone.}
+
+\end{document}

@@ -25,3 +25,11 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Regenerable API caches (rebuild by re-running the extraction scripts)
+data-extraction/output/sleeper/season_skill_cache.json
+data-extraction/output/sleeper/weekly_stats_cache.json
+data-extraction/output/sleeper/weekly_stats_byweek*.json
+data-extraction/output/sleeper/h2h_cache.json
+data-extraction/output/variance_inputs.json
+data-extraction/output/multileague/

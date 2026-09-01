@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Draft Board - Fantasy League Dashboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/draft.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Fantasy Dashboard</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="season.html">Season View</a></li>
+							<li><a href="weekly.html">Weekly Recap</a></li>
+							<li><a href="alltime.html">Dynasty Rankings</a></li>
+							<li><a href="draft.html" class="button primary">Draft Board</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+
+						<div id="draft-app">
+							<div id="status"><span class="lbl">connecting to draft…</span></div>
+							<div id="turn-banner" class="turn-banner"></div>
+
+							<div id="rec"><span class="lbl">loading board…</span></div>
+
+							<div id="filters">
+								<button data-pos="ALL" class="on">All</button>
+								<button data-pos="QB">QB</button>
+								<button data-pos="RB">RB</button>
+								<button data-pos="WR">WR</button>
+								<button data-pos="TE">TE</button>
+								<button data-pos="K">K</button>
+								<button data-pos="DEF">DEF</button>
+							</div>
+							<div id="alts"></div>
+
+							<div class="panels">
+								<div class="panel">
+									<h4>Your roster</h4>
+									<div id="roster"></div>
+									<h4 style="margin-top:14px">Your picks</h4>
+									<div id="mypicks"></div>
+								</div>
+								<div class="panel">
+									<div id="gap"></div>
+									<h4 style="margin-top:14px">Recent picks</h4>
+									<div id="recent"></div>
+								</div>
+							</div>
+
+							<div id="live">connecting…</div>
+						</div>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Fantasy League Dashboard</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/draft.js"></script>
+	</body>
+</html>

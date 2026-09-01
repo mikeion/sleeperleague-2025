@@ -1,5 +1,8 @@
-"""The one image to send: why two managers underperform, and why the league
-makes it hard to tell. Built to read as a phone screenshot in a group chat.
+"""A league table of manager behaviour, in ranks.
+
+Ranks, not z-scores: everyone in a fantasy league already reads standings.
+Plain column names, no invented metric vocabulary, and the honest caveat about
+how little any of it predicts printed on the figure itself.
 """
 import json, statistics
 from pathlib import Path
@@ -7,93 +10,75 @@ from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch
+from matplotlib.colors import LinearSegmentedColormap
 
 OUT = Path(__file__).parent / "output" / "charts"
-PROFILE = json.loads((Path(__file__).parent / "output" / "manager_profile.json").read_text())
-ICC = json.loads(Path("/tmp/icc_vals.json").read_text())
+D = json.loads((OUT.parent / "predict_quality.json").read_text())
 
-BLUE, ORANGE, GREY = "#2a78d6", "#eb6834", "#9aa4b5"
-SURFACE, INK, MUTED, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e6e5e1"
-A, B = "mikeion", "Gordonulus"
-FOCAL_ICC = 0.078          # 2025 only, like-for-like with the sample
+SURFACE, INK, MUTED, RULE = "#fcfcfb", "#0b0b0b", "#5c6470", "#e3e3dd"
+HILITE = "#fff3d6"
+# sequential blue, dark = rank 1. Starts at step 250 so the palest cell still reads.
+RAMP = LinearSegmentedColormap.from_list("b", ["#0d366b", "#256abf", "#5598e7", "#9ec5f4", "#e8f1fd"])
 
-
-def style(ax):
-    ax.set_facecolor(SURFACE)
-    for s in ("top", "right", "left"):
-        ax.spines[s].set_visible(False)
-    ax.spines["bottom"].set_color(GRID)
-    ax.tick_params(colors=MUTED, length=0, labelsize=9)
-    ax.set_axisbelow(True)
+COLS = [("waiver claims", "Waiver claims\nmade"),
+        ("points per $",  "Points per\nFAAB dollar"),
+        ("overpay $",     "Overpaying on\nwon bids"),
+        ("early busts",   "Busts in\nrounds 1–4"),
+        ("lineup %",      "Started the\nright players")]
+FOCUS = {"mikeion": "Mike", "Gordonulus": "Gordon"}
 
 
 def main():
-    dims, raw = PROFILE["dims"], PROFILE["raw"]
-    z = PROFILE["z"]
-    fig = plt.figure(figsize=(14, 6.9), facecolor=SURFACE)
-    gs = fig.add_gridspec(1, 2, width_ratios=[1.25, 1], wspace=0.30,
-                          left=.125, right=.975, top=.76, bottom=.26)
+    ranks = D["ranks"]
+    n = len(ranks)
+    order = sorted(ranks, key=lambda w: statistics.mean(ranks[w].values()))
 
-    # ---- left: the two profiles ----
-    ax = fig.add_subplot(gs[0])
-    ys = list(range(len(dims)))[::-1]
-    for y, i in zip(ys, range(len(dims))):
-        for who, off, col in ((A, 0.19, BLUE), (B, -0.19, ORANGE)):
-            v = z[who][i]
-            x0, w = (0, v) if v > 0 else (v, -v)
-            ax.add_patch(FancyBboxPatch((x0, y + off - 0.17), w, 0.34,
-                         boxstyle=f"round,pad=0,rounding_size={min(.05, w/2) if w else 0}",
-                         linewidth=0, facecolor=col, mutation_aspect=.35, clip_on=False))
-            pad = 0.07 if v >= 0 else -0.07
-            ax.text(v + pad, y + off, f"{v:+.2f}", va="center",
-                    ha="left" if v >= 0 else "right", fontsize=8.5,
-                    color=col, fontweight="bold")
-    ax.axvline(0, color=INK, linewidth=1.3)
-    ax.set_yticks(ys); ax.set_yticklabels(dims, fontsize=10.5, color=INK)
-    ax.set_xlim(-2.65, 2.65); ax.set_ylim(-0.7, len(dims) - 0.3)
-    style(ax)
-    ax.set_xlabel("standard deviations from league average   ←  worse      better  →",
-                  fontsize=9.5, color=MUTED, labelpad=8)
-    ax.set_title("1.  We are bad at different things", fontsize=13, color=INK,
-                 fontweight="bold", loc="left", pad=12)
+    fig, ax = plt.subplots(figsize=(11.6, 8.4), facecolor=SURFACE)
+    ax.set_facecolor(SURFACE); ax.axis("off")
+    ax.set_xlim(0, 1); ax.set_ylim(-1.9, n + 1.5)
 
-    # ---- right: where this league sits among 252 ----
-    ax2 = fig.add_subplot(gs[1])
-    ax2.hist(ICC, bins=30, color=GREY, edgecolor=SURFACE, linewidth=0.8)
-    ax2.axvline(FOCAL_ICC, color=BLUE, linewidth=2.4)
-    ax2.axvline(statistics.median(ICC), color=INK, linewidth=1.2, linestyle=(0, (4, 3)))
-    ymax = ax2.get_ylim()[1]
-    ax2.text(FOCAL_ICC + .012, ymax * .93, "our league\n0.078", fontsize=9.5,
-             color=BLUE, fontweight="bold", va="top")
-    ax2.text(statistics.median(ICC) + .012, ymax * .56, "typical league\n0.294",
-             fontsize=9.5, color=INK, va="top")
-    style(ax2)
-    ax2.set_xlabel("share of weekly scoring explained by who the manager is",
-                   fontsize=9.5, color=MUTED, labelpad=8)
-    ax2.set_ylabel("leagues", fontsize=9.5, color=MUTED)
-    ax2.set_title("2.  And our league barely rewards it", fontsize=13, color=INK,
-                  fontweight="bold", loc="left", pad=12)
+    x0, cw = 0.30, 0.132
+    for j, (_key, lbl) in enumerate(COLS):
+        ax.text(x0 + j * cw + cw / 2, n + 0.30, lbl, fontsize=10.2, color=MUTED,
+                ha="center", va="bottom", linespacing=1.5)
+    ax.plot([0.02, x0 + len(COLS) * cw], [n + 0.12, n + 0.12], color=INK, lw=1.4)
 
-    fig.text(.035, .945, "Why we suck, and why it is hard to tell",
-             fontsize=18, color=INK, fontweight="bold", ha="left")
-    fig.text(.035, .900,
-             "Fat Man's Fantasy 2022–25 vs 252 public Sleeper leagues  ·  "
-             "left panel: every manager z-scored, higher is better",
-             fontsize=10, color=MUTED, ha="left")
-    fig.text(.035, .855, "mikeion", fontsize=12, color=BLUE, fontweight="bold", ha="left")
-    fig.text(.096, .855, "Gordonulus", fontsize=12, color=ORANGE, fontweight="bold", ha="left")
+    for i, who in enumerate(order):
+        y = n - 1 - i
+        name = FOCUS.get(who, who)
+        focus = who in FOCUS
+        if focus:
+            ax.add_patch(plt.Rectangle((0.02, y - 0.42), x0 + len(COLS) * cw - 0.02, 0.84,
+                                       facecolor=HILITE, edgecolor="none", zorder=0))
+        ax.text(0.045, y, name, fontsize=11.5 if focus else 10.8, color=INK,
+                va="center", fontweight="bold" if focus else "normal")
+        for j, (key, _l) in enumerate(COLS):
+            r = ranks[who][key]
+            cx = x0 + j * cw + cw / 2
+            ax.add_patch(plt.Rectangle((cx - 0.052, y - 0.30), 0.104, 0.60,
+                                       facecolor=RAMP((r - 1) / (n - 1)),
+                                       edgecolor=SURFACE, lw=1.6, zorder=2))
+            ax.text(cx, y, str(r), fontsize=11, ha="center", va="center", zorder=3,
+                    color="#ffffff" if r <= n * 0.45 else INK,
+                    fontweight="bold" if focus else "normal")
 
-    fig.text(.5, .025,
-             "You lose in the draft: 38% of your rounds 1–4 bust, against 16% league-wide. "
-             "I lose on the wire: 10 claims a season, median is 32.\n"
-             "But our league is in the bottom 15% for how much any of that matters — and not "
-             "because we are good. Our top half is exactly as spread out as\neveryone else's "
-             "(50th percentile). What we do not have is a team that quit: 65% of leagues have one, "
-             "and their worst team scores 80% of average. Ours scores 93%.",
-             fontsize=10, color=INK, ha="center", va="bottom", linespacing=1.7)
+    ax.plot([0.02, x0 + len(COLS) * cw], [-0.55, -0.55], color=RULE, lw=1.2)
+    ax.text(0.02, -1.02, "Rank out of 15 managers, Fat Man's Fantasy 2022–25.  "
+                         "1 is best.  Darker is better.",
+            fontsize=10, color=MUTED, va="top")
+    ax.text(0.02, -1.48,
+            "All five together explain 8% of season wins out of sample. "
+            "Busting an early pick is the costliest at three-quarters of a win.",
+            fontsize=10, color=MUTED, va="top")
 
-    p = OUT / "why_we_suck.png"
+    fig.text(0.035, 0.955, "Mike and Gordon, ranked", fontsize=20, color=INK,
+             fontweight="bold", ha="left", va="top")
+    fig.text(0.035, 0.912,
+             "Gordon is last or nearly last at drafting. Mike is last at working the wire.",
+             fontsize=11.5, color=MUTED, ha="left", va="top")
+
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.86, bottom=0.03)
+    p = OUT / "ranked.png"
     fig.savefig(p, dpi=170, facecolor=SURFACE)
     print(f"wrote {p}")
 

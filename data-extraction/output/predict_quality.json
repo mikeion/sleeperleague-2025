@@ -1,0 +1,736 @@
+{
+ "rows": [
+  {
+   "yr": "2025",
+   "who": "Spaceman917",
+   "points": 1580.52,
+   "wins": 7,
+   "waiver claims": 39,
+   "points per $": 2.2528571428571427,
+   "overpay $": 4.416666666666667,
+   "early busts": 0,
+   "lineup %": 91.61053986065868
+  },
+  {
+   "yr": "2025",
+   "who": "DakodiacBear",
+   "points": 1544.4599999999998,
+   "wins": 7,
+   "waiver claims": 24,
+   "points per $": 2.103,
+   "overpay $": 3.6666666666666665,
+   "early busts": 0,
+   "lineup %": 93.21383306174181
+  },
+  {
+   "yr": "2025",
+   "who": "elliottkaser",
+   "points": 1527.0400000000002,
+   "wins": 8,
+   "waiver claims": 66,
+   "points per $": 7.8964,
+   "overpay $": 1,
+   "early busts": 2,
+   "lineup %": 97.08806998804712
+  },
+  {
+   "yr": "2025",
+   "who": "buddygalletti",
+   "points": 1484.8600000000004,
+   "wins": 5,
+   "waiver claims": 27,
+   "points per $": 2.0595999999999997,
+   "overpay $": 7,
+   "early busts": 0,
+   "lineup %": 95.11260857311234
+  },
+  {
+   "yr": "2025",
+   "who": "otterboi",
+   "points": 1428.48,
+   "wins": 5,
+   "waiver claims": 59,
+   "points per $": 3.2858,
+   "overpay $": 0.9230769230769231,
+   "early busts": 1,
+   "lineup %": 94.97493451059134
+  },
+  {
+   "yr": "2025",
+   "who": "fishy11",
+   "points": 1668.7199999999998,
+   "wins": 8,
+   "waiver claims": 14,
+   "points per $": 3.5940816326530616,
+   "overpay $": 7.125,
+   "early busts": 0,
+   "lineup %": 93.03124233436655
+  },
+  {
+   "yr": "2025",
+   "who": "BigDog11",
+   "points": 1568.36,
+   "wins": 9,
+   "waiver claims": 32,
+   "points per $": 10.70125,
+   "overpay $": 1.75,
+   "early busts": 1,
+   "lineup %": 93.9666638706817
+  },
+  {
+   "yr": "2025",
+   "who": "robbbbbbbb",
+   "points": 1396.86,
+   "wins": 9,
+   "waiver claims": 92,
+   "points per $": 5.1156,
+   "overpay $": 1.75,
+   "early busts": 1,
+   "lineup %": 94.73063151041666
+  },
+  {
+   "yr": "2025",
+   "who": "Gordonulus",
+   "points": 1432.28,
+   "wins": 5,
+   "waiver claims": 64,
+   "points per $": 3.0644,
+   "overpay $": 1.9,
+   "early busts": 1,
+   "lineup %": 90.09410225442835
+  },
+  {
+   "yr": "2025",
+   "who": "SamBam805",
+   "points": 1293.1000000000001,
+   "wins": 4,
+   "waiver claims": 62,
+   "points per $": 4.9606,
+   "overpay $": 4.5,
+   "early busts": 2,
+   "lineup %": 94.9496284547831
+  },
+  {
+   "yr": "2025",
+   "who": "mikeion",
+   "points": 1512.1200000000001,
+   "wins": 7,
+   "waiver claims": 18,
+   "points per $": 1.9820000000000002,
+   "overpay $": 3.5,
+   "early busts": 1,
+   "lineup %": 92.56819628777122
+  },
+  {
+   "yr": "2025",
+   "who": "CaseyForeverUnclean",
+   "points": 1621.3200000000002,
+   "wins": 9,
+   "waiver claims": 26,
+   "points per $": 2.785,
+   "overpay $": 4,
+   "early busts": 0,
+   "lineup %": 93.79707730223197
+  },
+  {
+   "yr": "2025",
+   "who": "rpthorp",
+   "points": 1790.42,
+   "wins": 10,
+   "waiver claims": 70,
+   "points per $": 3.7354000000000003,
+   "overpay $": 0.6666666666666666,
+   "early busts": 0,
+   "lineup %": 95.01576148678052
+  },
+  {
+   "yr": "2025",
+   "who": "robertwneal2",
+   "points": 1507.5600000000004,
+   "wins": 5,
+   "waiver claims": 88,
+   "points per $": 3.2342,
+   "overpay $": 0.4,
+   "early busts": 1,
+   "lineup %": 89.16990997598575
+  },
+  {
+   "yr": "2024",
+   "who": "Spaceman917",
+   "points": 1576.3999999999999,
+   "wins": 9,
+   "waiver claims": 19,
+   "points per $": 0.8859999999999999,
+   "overpay $": 4.5,
+   "early busts": 0,
+   "lineup %": 91.52451839895957
+  },
+  {
+   "yr": "2024",
+   "who": "DakodiacBear",
+   "points": 1463.98,
+   "wins": 5,
+   "waiver claims": 28,
+   "points per $": 2.977,
+   "overpay $": 2.75,
+   "early busts": 1,
+   "lineup %": 94.51007733922093
+  },
+  {
+   "yr": "2024",
+   "who": "CaptainBigCup",
+   "points": 1503.12,
+   "wins": 7,
+   "waiver claims": 58,
+   "points per $": 2.9058000000000006,
+   "overpay $": 8.714285714285714,
+   "early busts": 1,
+   "lineup %": 93.6791853116781
+  },
+  {
+   "yr": "2024",
+   "who": "buddygalletti",
+   "points": 1661.8600000000001,
+   "wins": 8,
+   "waiver claims": 16,
+   "points per $": 1.829,
+   "overpay $": 15.666666666666666,
+   "early busts": 0,
+   "lineup %": 94.53343648319643
+  },
+  {
+   "yr": "2024",
+   "who": "otterboi",
+   "points": 1402.2200000000003,
+   "wins": 5,
+   "waiver claims": 32,
+   "points per $": 2.5218749999999996,
+   "overpay $": 7.5,
+   "early busts": 2,
+   "lineup %": 93.7112382378101
+  },
+  {
+   "yr": "2024",
+   "who": "fishy11",
+   "points": 1591.62,
+   "wins": 7,
+   "waiver claims": 20,
+   "points per $": 1.850833333333333,
+   "overpay $": 6.2,
+   "early busts": 0,
+   "lineup %": 95.27920118768257
+  },
+  {
+   "yr": "2024",
+   "who": "BigDog11",
+   "points": 1579.6200000000001,
+   "wins": 8,
+   "waiver claims": 47,
+   "points per $": 1.671489361702128,
+   "overpay $": 4.375,
+   "early busts": 0,
+   "lineup %": 91.69869152802129
+  },
+  {
+   "yr": "2024",
+   "who": "robbbbbbbb",
+   "points": 1592.2399999999998,
+   "wins": 9,
+   "waiver claims": 34,
+   "points per $": 2.1414141414141414,
+   "overpay $": 2.111111111111111,
+   "early busts": 0,
+   "lineup %": 90.33370777592444
+  },
+  {
+   "yr": "2024",
+   "who": "Gordonulus",
+   "points": 1657.52,
+   "wins": 7,
+   "waiver claims": 28,
+   "points per $": 1.5734000000000001,
+   "overpay $": 24.333333333333332,
+   "early busts": 1,
+   "lineup %": 93.66213100673566
+  },
+  {
+   "yr": "2024",
+   "who": "SamBam805",
+   "points": 1553.2599999999998,
+   "wins": 7,
+   "waiver claims": 31,
+   "points per $": 5.927619047619047,
+   "overpay $": 4,
+   "early busts": 0,
+   "lineup %": 90.84560586742153
+  },
+  {
+   "yr": "2024",
+   "who": "mikeion",
+   "points": 1170.52,
+   "wins": 3,
+   "waiver claims": 8,
+   "points per $": 0.14339622641509434,
+   "overpay $": 8,
+   "early busts": 1,
+   "lineup %": 91.77957596286538
+  },
+  {
+   "yr": "2024",
+   "who": "CaseyForeverUnclean",
+   "points": 1194.6,
+   "wins": 2,
+   "waiver claims": 18,
+   "points per $": 2.3762,
+   "overpay $": 4.25,
+   "early busts": 1,
+   "lineup %": 92.2613531047266
+  },
+  {
+   "yr": "2024",
+   "who": "rpthorp",
+   "points": 1810.46,
+   "wins": 8,
+   "waiver claims": 61,
+   "points per $": 4.0812,
+   "overpay $": 2.3076923076923075,
+   "early busts": 0,
+   "lineup %": 96.61145381971868
+  },
+  {
+   "yr": "2024",
+   "who": "robertwneal2",
+   "points": 1846.3999999999999,
+   "wins": 13,
+   "waiver claims": 48,
+   "points per $": 3.3184615384615386,
+   "overpay $": 3.5454545454545454,
+   "early busts": 0,
+   "lineup %": 94.6095511375282
+  },
+  {
+   "yr": "2023",
+   "who": "Spaceman917",
+   "points": 1426.9799999999998,
+   "wins": 5,
+   "waiver claims": 18,
+   "points per $": 2.451,
+   "overpay $": 5.857142857142857,
+   "early busts": 1,
+   "lineup %": 90.46749591083723
+  },
+  {
+   "yr": "2023",
+   "who": "DakodiacBear",
+   "points": 1454.9,
+   "wins": 4,
+   "waiver claims": 34,
+   "points per $": 2.9360000000000004,
+   "overpay $": 1,
+   "early busts": 0,
+   "lineup %": 89.9919589286819
+  },
+  {
+   "yr": "2023",
+   "who": "CaptainBigCup",
+   "points": 1588.92,
+   "wins": 7,
+   "waiver claims": 22,
+   "points per $": 3.0069999999999997,
+   "overpay $": 8.75,
+   "early busts": 1,
+   "lineup %": 90.99197122928385
+  },
+  {
+   "yr": "2023",
+   "who": "buddygalletti",
+   "points": 1520.8199999999997,
+   "wins": 4,
+   "waiver claims": 18,
+   "points per $": 0.5945999999999999,
+   "overpay $": 9.25,
+   "early busts": 0,
+   "lineup %": 92.98239178283197
+  },
+  {
+   "yr": "2023",
+   "who": "otterboi",
+   "points": 1563.8799999999999,
+   "wins": 9,
+   "waiver claims": 51,
+   "points per $": 2.6578000000000004,
+   "overpay $": 6.5,
+   "early busts": 1,
+   "lineup %": 93.39273344003058
+  },
+  {
+   "yr": "2023",
+   "who": "fishy11",
+   "points": 1576.6399999999999,
+   "wins": 8,
+   "waiver claims": 27,
+   "points per $": 3.3985999999999996,
+   "overpay $": 10.8,
+   "early busts": 0,
+   "lineup %": 97.00609118316619
+  },
+  {
+   "yr": "2023",
+   "who": "BigDog11",
+   "points": 1525.9399999999998,
+   "wins": 6,
+   "waiver claims": 41,
+   "points per $": 3.222696629213483,
+   "overpay $": 8.285714285714286,
+   "early busts": 0,
+   "lineup %": 90.65815896101425
+  },
+  {
+   "yr": "2023",
+   "who": "robbbbbbbb",
+   "points": 1674.52,
+   "wins": 7,
+   "waiver claims": 42,
+   "points per $": 3.1655102040816323,
+   "overpay $": 2.4,
+   "early busts": 1,
+   "lineup %": 96.69692559998151
+  },
+  {
+   "yr": "2023",
+   "who": "Gordonulus",
+   "points": 1480.88,
+   "wins": 7,
+   "waiver claims": 24,
+   "points per $": 1.069,
+   "overpay $": 8.444444444444445,
+   "early busts": 2,
+   "lineup %": 93.8132704904532
+  },
+  {
+   "yr": "2023",
+   "who": "SamBam805",
+   "points": 1469.2800000000002,
+   "wins": 7,
+   "waiver claims": 36,
+   "points per $": 2.6608823529411767,
+   "overpay $": 3,
+   "early busts": 2,
+   "lineup %": 94.0206818879902
+  },
+  {
+   "yr": "2023",
+   "who": "mikeion",
+   "points": 1540.0,
+   "wins": 6,
+   "waiver claims": 7,
+   "points per $": 0.7307692307692307,
+   "overpay $": 14,
+   "early busts": 2,
+   "lineup %": 91.00471569890438
+  },
+  {
+   "yr": "2023",
+   "who": "CaseyForeverUnclean",
+   "points": 1560.2800000000002,
+   "wins": 8,
+   "waiver claims": 16,
+   "points per $": 2.124,
+   "overpay $": 9.2,
+   "early busts": 0,
+   "lineup %": 96.77475376485474
+  },
+  {
+   "yr": "2023",
+   "who": "rpthorp",
+   "points": 1469.0,
+   "wins": 9,
+   "waiver claims": 79,
+   "points per $": 2.293,
+   "overpay $": 1.0769230769230769,
+   "early busts": 1,
+   "lineup %": 94.82558289653748
+  },
+  {
+   "yr": "2023",
+   "who": "robertwneal2",
+   "points": 1783.38,
+   "wins": 10,
+   "waiver claims": 61,
+   "points per $": 4.8355999999999995,
+   "overpay $": 1.5454545454545454,
+   "early busts": 0,
+   "lineup %": 95.03351842180989
+  },
+  {
+   "yr": "2022",
+   "who": "Spaceman917",
+   "points": 1276.7600000000002,
+   "wins": 6,
+   "waiver claims": 33,
+   "points per $": 3.8999999999999995,
+   "overpay $": 3.909090909090909,
+   "early busts": 1,
+   "lineup %": 90.76664960473185
+  },
+  {
+   "yr": "2022",
+   "who": "rpthorp",
+   "points": 1365.42,
+   "wins": 8,
+   "waiver claims": 50,
+   "points per $": 2.3196153846153846,
+   "overpay $": 4.2,
+   "early busts": 0,
+   "lineup %": 86.65811987509838
+  },
+  {
+   "yr": "2022",
+   "who": "fishy11",
+   "points": 1354.06,
+   "wins": 6,
+   "waiver claims": 12,
+   "points per $": 3.3701999999999996,
+   "overpay $": 8.333333333333334,
+   "early busts": 0,
+   "lineup %": 88.35512750241432
+  },
+  {
+   "yr": "2022",
+   "who": "DakodiacBear",
+   "points": 1437.04,
+   "wins": 10,
+   "waiver claims": 32,
+   "points per $": 1.4247191011235956,
+   "overpay $": 4.571428571428571,
+   "early busts": 0,
+   "lineup %": 93.5731308685064
+  },
+  {
+   "yr": "2022",
+   "who": "robertwneal2",
+   "points": 1520.06,
+   "wins": 9,
+   "waiver claims": 30,
+   "points per $": 2.8620000000000005,
+   "overpay $": 2.6666666666666665,
+   "early busts": 1,
+   "lineup %": 89.25253948681816
+  },
+  {
+   "yr": "2022",
+   "who": "robbbbbbbb",
+   "points": 1392.5199999999998,
+   "wins": 6,
+   "waiver claims": 47,
+   "points per $": 1.4376,
+   "overpay $": 2.2857142857142856,
+   "early busts": 0,
+   "lineup %": 91.56978273449415
+  },
+  {
+   "yr": "2022",
+   "who": "otterboi",
+   "points": 1414.1399999999999,
+   "wins": 6,
+   "waiver claims": 52,
+   "points per $": 2.7632,
+   "overpay $": 3.25,
+   "early busts": 0,
+   "lineup %": 89.82887197794518
+  },
+  {
+   "yr": "2022",
+   "who": "SamBam805",
+   "points": 1494.48,
+   "wins": 6,
+   "waiver claims": 24,
+   "points per $": 2.2573529411764706,
+   "overpay $": 4.2,
+   "early busts": 0,
+   "lineup %": 89.48553362713164
+  },
+  {
+   "yr": "2022",
+   "who": "BigDog11",
+   "points": 1608.58,
+   "wins": 9,
+   "waiver claims": 20,
+   "points per $": 2.0103092783505154,
+   "overpay $": 18.5,
+   "early busts": 0,
+   "lineup %": 91.33016896802326
+  },
+  {
+   "yr": "2022",
+   "who": "CaptainBigCup",
+   "points": 1081.8600000000001,
+   "wins": 4,
+   "waiver claims": 35,
+   "points per $": 0.5811538461538461,
+   "overpay $": 9.571428571428571,
+   "early busts": 1,
+   "lineup %": 88.66832770547163
+  },
+  {
+   "yr": "2022",
+   "who": "mikeion",
+   "points": 1516.72,
+   "wins": 8,
+   "waiver claims": 10,
+   "points per $": 0.6964912280701755,
+   "overpay $": 12.5,
+   "early busts": 1,
+   "lineup %": 91.91462542572147
+  },
+  {
+   "yr": "2022",
+   "who": "CaseyForeverUnclean",
+   "points": 1395.14,
+   "wins": 6,
+   "waiver claims": 7,
+   "points per $": 1.8860000000000001,
+   "overpay $": 4.5,
+   "early busts": 1,
+   "lineup %": 85.67340522217583
+  },
+  {
+   "yr": "2022",
+   "who": "buddygalletti",
+   "points": 1480.3400000000001,
+   "wins": 11,
+   "waiver claims": 26,
+   "points per $": 0.5329032258064516,
+   "overpay $": 2.3333333333333335,
+   "early busts": 1,
+   "lineup %": 93.59525555752258
+  },
+  {
+   "yr": "2022",
+   "who": "Gordonulus",
+   "points": 1207.3000000000002,
+   "wins": 3,
+   "waiver claims": 32,
+   "points per $": 1.8993684210526312,
+   "overpay $": 6,
+   "early busts": 2,
+   "lineup %": 88.23615394734918
+  }
+ ],
+ "ranks": {
+  "elliottkaser": {
+   "waiver claims": 1,
+   "points per $": 1,
+   "overpay $": 1,
+   "early busts": 15,
+   "lineup %": 1
+  },
+  "rpthorp": {
+   "waiver claims": 2,
+   "points per $": 5,
+   "overpay $": 3,
+   "early busts": 5,
+   "lineup %": 5
+  },
+  "robertwneal2": {
+   "waiver claims": 3,
+   "points per $": 4,
+   "overpay $": 2,
+   "early busts": 9,
+   "lineup %": 10
+  },
+  "robbbbbbbb": {
+   "waiver claims": 4,
+   "points per $": 7,
+   "overpay $": 4,
+   "early busts": 7,
+   "lineup %": 4
+  },
+  "otterboi": {
+   "waiver claims": 5,
+   "points per $": 8,
+   "overpay $": 7,
+   "early busts": 10,
+   "lineup %": 6
+  },
+  "CaptainBigCup": {
+   "waiver claims": 6,
+   "points per $": 12,
+   "overpay $": 13,
+   "early busts": 12,
+   "lineup %": 14
+  },
+  "SamBam805": {
+   "waiver claims": 7,
+   "points per $": 3,
+   "overpay $": 6,
+   "early busts": 11,
+   "lineup %": 8
+  },
+  "Gordonulus": {
+   "waiver claims": 8,
+   "points per $": 13,
+   "overpay $": 15,
+   "early busts": 14,
+   "lineup %": 13
+  },
+  "BigDog11": {
+   "waiver claims": 9,
+   "points per $": 2,
+   "overpay $": 11,
+   "early busts": 4,
+   "lineup %": 11
+  },
+  "DakodiacBear": {
+   "waiver claims": 10,
+   "points per $": 10,
+   "overpay $": 5,
+   "early busts": 2,
+   "lineup %": 7
+  },
+  "Spaceman917": {
+   "waiver claims": 11,
+   "points per $": 9,
+   "overpay $": 8,
+   "early busts": 6,
+   "lineup %": 15
+  },
+  "buddygalletti": {
+   "waiver claims": 12,
+   "points per $": 14,
+   "overpay $": 12,
+   "early busts": 3,
+   "lineup %": 2
+  },
+  "fishy11": {
+   "waiver claims": 13,
+   "points per $": 6,
+   "overpay $": 10,
+   "early busts": 1,
+   "lineup %": 3
+  },
+  "CaseyForeverUnclean": {
+   "waiver claims": 14,
+   "points per $": 11,
+   "overpay $": 9,
+   "early busts": 8,
+   "lineup %": 9
+  },
+  "mikeion": {
+   "waiver claims": 15,
+   "points per $": 15,
+   "overpay $": 14,
+   "early busts": 13,
+   "lineup %": 12
+  }
+ },
+ "beta": {
+  "waiver claims": 0.263009554348156,
+  "points per $": 0.22160027885246872,
+  "overpay $": 0.07524329027952675,
+  "early busts": -0.7390082127750804,
+  "lineup %": 0.6037267911217842
+ },
+ "loo_r2": 0.0836345255165657,
+ "lam": 0
+}

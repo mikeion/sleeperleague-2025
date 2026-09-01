@@ -15,10 +15,11 @@ OUT = HERE.parent / "writeups"
 OUT.mkdir(exist_ok=True)
 
 # key, header, format, higher-is-better
-COLS = [("waiver claims", r"Waiver claims\\made",        "{:.0f}",  True),
-        ("points per $",  r"Points per\\FAAB dollar",    "{:.1f}",  True),
-        ("overpay $",     r"Overpaid on\\won bids",      r"\${:.2f}", False),
-        ("early busts",   r"Busts per season\\rounds 1--4", "{:.2f}", False),
+COLS = [("waiver claims", r"Waiver\\claims",            "{:.0f}",  True),
+        ("points per $",  r"Points per\\FAAB \$",        "{:.1f}",  True),
+        ("overpay $",     r"Overpaid\\per bid",          r"\${:.2f}", False),
+        ("early busts",   r"Busts in\\rounds 1--4",      "{:.2f}", False),
+        ("late steals",   r"Steals in\\rounds 8--14",  "{:.2f}", True),
         ("lineup %",      r"Started the\\right players", r"{:.1f}\%", True)]
 
 
@@ -27,7 +28,7 @@ def main():
     n = len(ranks)
     vals = {w: {k: statistics.mean(r[k] for r in rows if r["who"] == w)
                 for k, *_ in COLS} for w in ranks}
-    order = sorted(ranks, key=lambda w: statistics.mean(ranks[w].values()))
+    order = sorted(ranks, key=lambda w: -D["pred_wins"][w])
 
     def cell(w, k, fmt):
         v, r = vals[w][k], ranks[w][k]
@@ -43,7 +44,7 @@ def main():
     header = " & ".join(rf"\thead{{{lbl}}}" for _, lbl, _f, _g in COLS)
 
     tex = rf"""\documentclass[10pt]{{article}}
-\usepackage[margin=0.8in,letterpaper]{{geometry}}
+\usepackage[margin=0.65in,top=0.55in,bottom=0.5in,letterpaper]{{geometry}}
 \usepackage[sfdefault,scale=0.96]{{plex-sans}}
 \usepackage[T1]{{fontenc}}
 \usepackage{{booktabs,makecell,array,xcolor,microtype,enumitem}}
@@ -57,16 +58,17 @@ def main():
 \pagestyle{{empty}}
 \begin{{document}}
 
-{{\fontsize{{18}}{{21}}\selectfont\bfseries Five things you can measure about a fantasy manager}}
+{{\fontsize{{16}}{{19}}\selectfont\bfseries Six things you can measure about a fantasy manager}}
 
 \vspace{{5pt}}
-{{\color{{muted}}\large Fat Man's Fantasy, 2022--2025. Career averages, with each
-manager's rank of {n} in small type.}}
+{{\color{{muted}}\large Fat Man's Fantasy, 2022--2025. Each figure is a
+\emph{{per-season}} average, with the manager's rank of {n} in small type. Ordered by
+what the model at the foot of the page predicts from these six numbers alone.}}
 
-\vspace{{15pt}}
-\renewcommand{{\arraystretch}}{{1.28}}
-\setlength{{\tabcolsep}}{{11pt}}
-\begin{{tabular}}{{l*{{5}}{{r}}}}
+\vspace{{10pt}}
+\renewcommand{{\arraystretch}}{{1.16}}
+\setlength{{\tabcolsep}}{{8pt}}
+\begin{{tabular}}{{l*{{6}}{{r}}}}
 \toprule
 & {header} \\
 \midrule
@@ -76,42 +78,59 @@ manager's rank of {n} in small type.}}
 \bottomrule
 \end{{tabular}}
 
-\vspace{{18pt}}
+\vspace{{11pt}}
 {{\large\bfseries What the columns mean}}
 
 \vspace{{6pt}}
-\begin{{itemize}}[leftmargin=1.4em,itemsep=4pt,topsep=0pt]
+\begin{{itemize}}[leftmargin=1.4em,itemsep=2.5pt,topsep=0pt]
 \item \textbf{{Waiver claims made}} --- how many you put in across a season, the ones
       you lost included.
 \item \textbf{{Points per FAAB dollar}} --- points a claimed player scored
-      \emph{{while in your starting lineup}}, divided by what you paid. Points he
-      scored on your bench do not count.
+      \emph{{while in your starting lineup}}, divided by what you paid. Bench points
+      do not count.
 \item \textbf{{Overpaid on won bids}} --- how far above the \emph{{next-highest}} bid you
       landed on a contested claim. Money you did not have to spend.
-\item \textbf{{Busts in rounds 1--4}} --- picks returning at least 50 points less than
-      that draft slot normally does.
+\item \textbf{{Busts in rounds 1--4}} --- how many of your four early picks, per
+      season, came in 50+ points below what that slot usually returns. Malik
+      Nabers, taken 14th in 2025, played four games and finished 119 points below
+      what pick 14 gives you: one bust.
+\item \textbf{{Steals in rounds 8--14}} --- the mirror of a bust, same threshold. Rico
+      Dowdle, taken 154th in 2025, finished as the 17th-best running back: one
+      steal.
 \item \textbf{{Started the right players}} --- the share of your best possible lineup
       you actually started, judged after the fact.
 \end{{itemize}}
 
-\vspace{{16pt}}
-{{\large\bfseries What any of it is worth}}
+\vspace{{11pt}}
+{{\large\bfseries Why none of this explains very much}}
 
 \vspace{{6pt}}
-Fitted against season win totals across {len(rows)} manager-seasons, then checked by
-leaving each season out and predicting it.
+Not because managers are all alike. The spread of season win rates has an SD of
+\textbf{{0.152}}; fourteen tosses of a fair coin give \textbf{{0.134}} of that on
+their own, leaving \textbf{{0.072}} for real differences. A good manager here does
+sit near a \textbf{{0.57}} weekly win probability and a poor one near
+\textbf{{0.43}} --- eight wins against six. The gap is real; the noise over
+fourteen games is simply twice its size.
 
 \vspace{{6pt}}
-\begin{{itemize}}[leftmargin=1.4em,itemsep=4pt,topsep=0pt]
-\item Busting a pick in the first four rounds costs about \textbf{{one win}} --- by some
-      distance the most expensive thing here. Ten extra waiver claims are worth
-      roughly a tenth of a win.
-\item But all five together sharpen a guess at a manager's record only from
-      \textbf{{$\pm$2.1 wins to $\pm$2.0}}. They account for 8\% of a season; the other
-      92\% is schedule, injuries and luck.
+That caps what any model can reach: even a \emph{{perfect}} measure of manager
+quality explains only about \textbf{{23\%}} of win totals here. These six columns
+reach 6\%, a quarter of what is available, and 11\% against points scored.
+Against 252 other Sleeper leagues ours sits near the \textbf{{15th percentile}}
+for how much a manager matters at all --- the median league has managers
+differing three times as much. Nobody here pulls far ahead, because nobody here
+has quit.
+
+\vspace{{6pt}}
+\begin{{itemize}}[leftmargin=1.4em,itemsep=2.5pt,topsep=0pt]
+\item Busting one early pick costs about \textbf{{one win}}, the most expensive single
+      thing on this page. Ten extra waiver claims are worth about a tenth of a win.
+\item Every figure is out of sample: each of the {len(rows)} manager-seasons was removed
+      in turn, the model refitted without it, and used to predict the season it
+      had never seen.
 \end{{itemize}}
 
-\vspace{{16pt}}
+\vspace{{11pt}}
 {{\color{{muted}}\small Managers with fewer than three seasons are not ranked --- one
 year is far too noisy to place anyone.}}
 

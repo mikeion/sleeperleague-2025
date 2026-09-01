@@ -9,6 +9,7 @@
    "points per $": 2.2528571428571427,
    "overpay $": 4.416666666666667,
    "early busts": 0,
+   "late steals": 2,
    "lineup %": 91.61053986065868
   },
   {
@@ -20,6 +21,7 @@
    "points per $": 2.103,
    "overpay $": 3.6666666666666665,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 93.21383306174181
   },
   {
@@ -27,10 +29,11 @@
    "who": "elliottkaser",
    "points": 1527.0400000000002,
    "wins": 8,
-   "waiver claims": 66,
+   "waiver claims": 63,
    "points per $": 7.8964,
    "overpay $": 1,
    "early busts": 2,
+   "late steals": 0,
    "lineup %": 97.08806998804712
   },
   {
@@ -38,10 +41,11 @@
    "who": "buddygalletti",
    "points": 1484.8600000000004,
    "wins": 5,
-   "waiver claims": 27,
+   "waiver claims": 26,
    "points per $": 2.0595999999999997,
    "overpay $": 7,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 95.11260857311234
   },
   {
@@ -53,6 +57,7 @@
    "points per $": 3.2858,
    "overpay $": 0.9230769230769231,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 94.97493451059134
   },
   {
@@ -60,10 +65,11 @@
    "who": "fishy11",
    "points": 1668.7199999999998,
    "wins": 8,
-   "waiver claims": 14,
+   "waiver claims": 13,
    "points per $": 3.5940816326530616,
    "overpay $": 7.125,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 93.03124233436655
   },
   {
@@ -75,6 +81,7 @@
    "points per $": 10.70125,
    "overpay $": 1.75,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 93.9666638706817
   },
   {
@@ -82,10 +89,11 @@
    "who": "robbbbbbbb",
    "points": 1396.86,
    "wins": 9,
-   "waiver claims": 92,
+   "waiver claims": 85,
    "points per $": 5.1156,
    "overpay $": 1.75,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 94.73063151041666
   },
   {
@@ -93,10 +101,11 @@
    "who": "Gordonulus",
    "points": 1432.28,
    "wins": 5,
-   "waiver claims": 64,
+   "waiver claims": 61,
    "points per $": 3.0644,
    "overpay $": 1.9,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 90.09410225442835
   },
   {
@@ -104,10 +113,11 @@
    "who": "SamBam805",
    "points": 1293.1000000000001,
    "wins": 4,
-   "waiver claims": 62,
+   "waiver claims": 61,
    "points per $": 4.9606,
    "overpay $": 4.5,
    "early busts": 2,
+   "late steals": 0,
    "lineup %": 94.9496284547831
   },
   {
@@ -119,6 +129,7 @@
    "points per $": 1.9820000000000002,
    "overpay $": 3.5,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 92.56819628777122
   },
   {
@@ -130,6 +141,7 @@
    "points per $": 2.785,
    "overpay $": 4,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 93.79707730223197
   },
   {
@@ -137,10 +149,11 @@
    "who": "rpthorp",
    "points": 1790.42,
    "wins": 10,
-   "waiver claims": 70,
+   "waiver claims": 53,
    "points per $": 3.7354000000000003,
    "overpay $": 0.6666666666666666,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 95.01576148678052
   },
   {
@@ -148,10 +161,11 @@
    "who": "robertwneal2",
    "points": 1507.5600000000004,
    "wins": 5,
-   "waiver claims": 88,
+   "waiver claims": 77,
    "points per $": 3.2342,
    "overpay $": 0.4,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 89.16990997598575
   },
   {
@@ -163,6 +177,7 @@
    "points per $": 0.8859999999999999,
    "overpay $": 4.5,
    "early busts": 0,
+   "late steals": 2,
    "lineup %": 91.52451839895957
   },
   {
@@ -174,6 +189,7 @@
    "points per $": 2.977,
    "overpay $": 2.75,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 94.51007733922093
   },
   {
@@ -181,10 +197,11 @@
    "who": "CaptainBigCup",
    "points": 1503.12,
    "wins": 7,
-   "waiver claims": 58,
+   "waiver claims": 56,
    "points per $": 2.9058000000000006,
    "overpay $": 8.714285714285714,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 93.6791853116781
   },
   {
@@ -196,6 +213,7 @@
    "points per $": 1.829,
    "overpay $": 15.666666666666666,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 94.53343648319643
   },
   {
@@ -207,6 +225,7 @@
    "points per $": 2.5218749999999996,
    "overpay $": 7.5,
    "early busts": 2,
+   "late steals": 1,
    "lineup %": 93.7112382378101
   },
   {
@@ -218,6 +237,7 @@
    "points per $": 1.850833333333333,
    "overpay $": 6.2,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 95.27920118768257
   },
   {
@@ -229,6 +249,7 @@
    "points per $": 1.671489361702128,
    "overpay $": 4.375,
    "early busts": 0,
+   "late steals": 2,
    "lineup %": 91.69869152802129
   },
   {
@@ -236,10 +257,11 @@
    "who": "robbbbbbbb",
    "points": 1592.2399999999998,
    "wins": 9,
-   "waiver claims": 34,
+   "waiver claims": 33,
    "points per $": 2.1414141414141414,
    "overpay $": 2.111111111111111,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 90.33370777592444
   },
   {
@@ -251,6 +273,7 @@
    "points per $": 1.5734000000000001,
    "overpay $": 24.333333333333332,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 93.66213100673566
   },
   {
@@ -262,6 +285,7 @@
    "points per $": 5.927619047619047,
    "overpay $": 4,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 90.84560586742153
   },
   {
@@ -273,6 +297,7 @@
    "points per $": 0.14339622641509434,
    "overpay $": 8,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 91.77957596286538
   },
   {
@@ -280,10 +305,11 @@
    "who": "CaseyForeverUnclean",
    "points": 1194.6,
    "wins": 2,
-   "waiver claims": 18,
+   "waiver claims": 17,
    "points per $": 2.3762,
    "overpay $": 4.25,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 92.2613531047266
   },
   {
@@ -291,10 +317,11 @@
    "who": "rpthorp",
    "points": 1810.46,
    "wins": 8,
-   "waiver claims": 61,
+   "waiver claims": 56,
    "points per $": 4.0812,
    "overpay $": 2.3076923076923075,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 96.61145381971868
   },
   {
@@ -302,10 +329,11 @@
    "who": "robertwneal2",
    "points": 1846.3999999999999,
    "wins": 13,
-   "waiver claims": 48,
+   "waiver claims": 44,
    "points per $": 3.3184615384615386,
    "overpay $": 3.5454545454545454,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 94.6095511375282
   },
   {
@@ -317,6 +345,7 @@
    "points per $": 2.451,
    "overpay $": 5.857142857142857,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 90.46749591083723
   },
   {
@@ -328,6 +357,7 @@
    "points per $": 2.9360000000000004,
    "overpay $": 1,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 89.9919589286819
   },
   {
@@ -339,6 +369,7 @@
    "points per $": 3.0069999999999997,
    "overpay $": 8.75,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 90.99197122928385
   },
   {
@@ -350,6 +381,7 @@
    "points per $": 0.5945999999999999,
    "overpay $": 9.25,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 92.98239178283197
   },
   {
@@ -357,10 +389,11 @@
    "who": "otterboi",
    "points": 1563.8799999999999,
    "wins": 9,
-   "waiver claims": 51,
+   "waiver claims": 46,
    "points per $": 2.6578000000000004,
    "overpay $": 6.5,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 93.39273344003058
   },
   {
@@ -372,6 +405,7 @@
    "points per $": 3.3985999999999996,
    "overpay $": 10.8,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 97.00609118316619
   },
   {
@@ -383,6 +417,7 @@
    "points per $": 3.222696629213483,
    "overpay $": 8.285714285714286,
    "early busts": 0,
+   "late steals": 2,
    "lineup %": 90.65815896101425
   },
   {
@@ -394,6 +429,7 @@
    "points per $": 3.1655102040816323,
    "overpay $": 2.4,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 96.69692559998151
   },
   {
@@ -401,10 +437,11 @@
    "who": "Gordonulus",
    "points": 1480.88,
    "wins": 7,
-   "waiver claims": 24,
+   "waiver claims": 23,
    "points per $": 1.069,
    "overpay $": 8.444444444444445,
    "early busts": 2,
+   "late steals": 1,
    "lineup %": 93.8132704904532
   },
   {
@@ -412,10 +449,11 @@
    "who": "SamBam805",
    "points": 1469.2800000000002,
    "wins": 7,
-   "waiver claims": 36,
+   "waiver claims": 34,
    "points per $": 2.6608823529411767,
    "overpay $": 3,
    "early busts": 2,
+   "late steals": 1,
    "lineup %": 94.0206818879902
   },
   {
@@ -427,6 +465,7 @@
    "points per $": 0.7307692307692307,
    "overpay $": 14,
    "early busts": 2,
+   "late steals": 2,
    "lineup %": 91.00471569890438
   },
   {
@@ -434,10 +473,11 @@
    "who": "CaseyForeverUnclean",
    "points": 1560.2800000000002,
    "wins": 8,
-   "waiver claims": 16,
+   "waiver claims": 15,
    "points per $": 2.124,
    "overpay $": 9.2,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 96.77475376485474
   },
   {
@@ -445,10 +485,11 @@
    "who": "rpthorp",
    "points": 1469.0,
    "wins": 9,
-   "waiver claims": 79,
+   "waiver claims": 65,
    "points per $": 2.293,
    "overpay $": 1.0769230769230769,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 94.82558289653748
   },
   {
@@ -460,6 +501,7 @@
    "points per $": 4.8355999999999995,
    "overpay $": 1.5454545454545454,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 95.03351842180989
   },
   {
@@ -471,6 +513,7 @@
    "points per $": 3.8999999999999995,
    "overpay $": 3.909090909090909,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 90.76664960473185
   },
   {
@@ -478,10 +521,11 @@
    "who": "rpthorp",
    "points": 1365.42,
    "wins": 8,
-   "waiver claims": 50,
+   "waiver claims": 46,
    "points per $": 2.3196153846153846,
    "overpay $": 4.2,
    "early busts": 0,
+   "late steals": 1,
    "lineup %": 86.65811987509838
   },
   {
@@ -493,6 +537,7 @@
    "points per $": 3.3701999999999996,
    "overpay $": 8.333333333333334,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 88.35512750241432
   },
   {
@@ -504,6 +549,7 @@
    "points per $": 1.4247191011235956,
    "overpay $": 4.571428571428571,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 93.5731308685064
   },
   {
@@ -515,6 +561,7 @@
    "points per $": 2.8620000000000005,
    "overpay $": 2.6666666666666665,
    "early busts": 1,
+   "late steals": 1,
    "lineup %": 89.25253948681816
   },
   {
@@ -526,6 +573,7 @@
    "points per $": 1.4376,
    "overpay $": 2.2857142857142856,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 91.56978273449415
   },
   {
@@ -533,10 +581,11 @@
    "who": "otterboi",
    "points": 1414.1399999999999,
    "wins": 6,
-   "waiver claims": 52,
+   "waiver claims": 49,
    "points per $": 2.7632,
    "overpay $": 3.25,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 89.82887197794518
   },
   {
@@ -544,10 +593,11 @@
    "who": "SamBam805",
    "points": 1494.48,
    "wins": 6,
-   "waiver claims": 24,
+   "waiver claims": 22,
    "points per $": 2.2573529411764706,
    "overpay $": 4.2,
    "early busts": 0,
+   "late steals": 0,
    "lineup %": 89.48553362713164
   },
   {
@@ -559,6 +609,7 @@
    "points per $": 2.0103092783505154,
    "overpay $": 18.5,
    "early busts": 0,
+   "late steals": 2,
    "lineup %": 91.33016896802326
   },
   {
@@ -570,6 +621,7 @@
    "points per $": 0.5811538461538461,
    "overpay $": 9.571428571428571,
    "early busts": 1,
+   "late steals": 2,
    "lineup %": 88.66832770547163
   },
   {
@@ -581,6 +633,7 @@
    "points per $": 0.6964912280701755,
    "overpay $": 12.5,
    "early busts": 1,
+   "late steals": 2,
    "lineup %": 91.91462542572147
   },
   {
@@ -592,6 +645,7 @@
    "points per $": 1.8860000000000001,
    "overpay $": 4.5,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 85.67340522217583
   },
   {
@@ -603,6 +657,7 @@
    "points per $": 0.5329032258064516,
    "overpay $": 2.3333333333333335,
    "early busts": 1,
+   "late steals": 0,
    "lineup %": 93.59525555752258
   },
   {
@@ -610,10 +665,11 @@
    "who": "Gordonulus",
    "points": 1207.3000000000002,
    "wins": 3,
-   "waiver claims": 32,
+   "waiver claims": 29,
    "points per $": 1.8993684210526312,
    "overpay $": 6,
    "early busts": 2,
+   "late steals": 0,
    "lineup %": 88.23615394734918
   }
  ],
@@ -623,6 +679,7 @@
    "points per $": 4,
    "overpay $": 2,
    "early busts": 5,
+   "late steals": 5,
    "lineup %": 4
   },
   "robertwneal2": {
@@ -630,6 +687,7 @@
    "points per $": 3,
    "overpay $": 1,
    "early busts": 9,
+   "late steals": 6,
    "lineup %": 9
   },
   "robbbbbbbb": {
@@ -637,6 +695,7 @@
    "points per $": 6,
    "overpay $": 3,
    "early busts": 7,
+   "late steals": 14,
    "lineup %": 3
   },
   "otterboi": {
@@ -644,6 +703,7 @@
    "points per $": 7,
    "overpay $": 6,
    "early busts": 10,
+   "late steals": 13,
    "lineup %": 5
   },
   "CaptainBigCup": {
@@ -651,6 +711,7 @@
    "points per $": 11,
    "overpay $": 12,
    "early busts": 12,
+   "late steals": 3,
    "lineup %": 13
   },
   "SamBam805": {
@@ -658,6 +719,7 @@
    "points per $": 2,
    "overpay $": 5,
    "early busts": 11,
+   "late steals": 10,
    "lineup %": 7
   },
   "Gordonulus": {
@@ -665,6 +727,7 @@
    "points per $": 12,
    "overpay $": 14,
    "early busts": 14,
+   "late steals": 9,
    "lineup %": 12
   },
   "BigDog11": {
@@ -672,6 +735,7 @@
    "points per $": 1,
    "overpay $": 10,
    "early busts": 4,
+   "late steals": 2,
    "lineup %": 10
   },
   "DakodiacBear": {
@@ -679,6 +743,7 @@
    "points per $": 9,
    "overpay $": 4,
    "early busts": 2,
+   "late steals": 12,
    "lineup %": 6
   },
   "Spaceman917": {
@@ -686,6 +751,7 @@
    "points per $": 8,
    "overpay $": 7,
    "early busts": 6,
+   "late steals": 1,
    "lineup %": 14
   },
   "buddygalletti": {
@@ -693,6 +759,7 @@
    "points per $": 13,
    "overpay $": 11,
    "early busts": 3,
+   "late steals": 7,
    "lineup %": 1
   },
   "fishy11": {
@@ -700,6 +767,7 @@
    "points per $": 5,
    "overpay $": 9,
    "early busts": 1,
+   "late steals": 8,
    "lineup %": 2
   },
   "CaseyForeverUnclean": {
@@ -707,6 +775,7 @@
    "points per $": 10,
    "overpay $": 8,
    "early busts": 8,
+   "late steals": 11,
    "lineup %": 8
   },
   "mikeion": {
@@ -714,17 +783,35 @@
    "points per $": 14,
    "overpay $": 13,
    "early busts": 13,
+   "late steals": 4,
    "lineup %": 11
   }
  },
  "n_ranked": 14,
- "beta": {
-  "waiver claims": 0.263009554348156,
-  "points per $": 0.22160027885246872,
-  "overpay $": 0.07524329027952675,
-  "early busts": -0.7390082127750804,
-  "lineup %": 0.6037267911217842
+ "pred_wins": {
+  "Spaceman917": -0.06269401770127458,
+  "DakodiacBear": 0.25670477458802576,
+  "buddygalletti": 0.34824536386239446,
+  "otterboi": -0.27396819548878326,
+  "fishy11": 0.6896142693462259,
+  "BigDog11": 0.7403320010007042,
+  "robbbbbbbb": 0.43109602503032707,
+  "Gordonulus": -1.3884153192077504,
+  "SamBam805": -0.266782439973383,
+  "mikeion": -1.168248051850986,
+  "CaseyForeverUnclean": -0.25402849997281846,
+  "rpthorp": 0.8921615970457766,
+  "robertwneal2": 0.3684736010611225,
+  "CaptainBigCup": -0.6084037842761048
  },
- "loo_r2": 0.0836345255165657,
+ "beta": {
+  "waiver claims": 0.16978394383027734,
+  "points per $": 0.2601375756472957,
+  "overpay $": -0.04618358921027644,
+  "early busts": -0.7198164102502985,
+  "late steals": 0.22737873862369343,
+  "lineup %": 0.64808933488918
+ },
+ "loo_r2": 0.060941848647696806,
  "lam": 0
 }

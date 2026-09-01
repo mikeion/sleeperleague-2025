@@ -22,7 +22,8 @@ BW = json.loads((OUT / "sleeper" / "weekly_stats_byweek.json").read_text())
 GR = json.loads((OUT / "draft_grades.json").read_text())
 FLEX = {"FLEX": {"RB", "WR", "TE"}, "WRRB_FLEX": {"RB", "WR"},
         "REC_FLEX": {"WR", "TE"}, "SUPER_FLEX": {"QB", "RB", "WR", "TE"}}
-FEATURES = ["waiver claims", "points per $", "overpay $", "early busts", "lineup %"]
+FEATURES = ["waiver claims", "points per $", "overpay $", "early busts",
+            "late steals", "lineup %"]
 
 
 WINS = {}
@@ -73,12 +74,15 @@ def build():
             who = d["rid2who"].get(str(t["roster_ids"][0])) or d["rid2who"].get(t["roster_ids"][0])
             for pid in adds:
                 auc[(t.get("leg"), pid)].append((bid, who, t.get("status") == "complete"))
-        att = collections.Counter(); spent = collections.Counter()
+        att = collections.defaultdict(set); spent = collections.Counter()
         wire = collections.defaultdict(float); over = collections.defaultdict(list)
         for (wk, pid), bids in auc.items():
             if not wk: continue
+            # one claim per (week, player) per manager: Sleeper records a row for
+            # every bid, and re-bidding the same player would otherwise inflate
+            # the count for exactly the most active managers
             for b, who, wonit in bids:
-                if who: att[who] += 1
+                if who: att[who].add((wk, pid))
             w = next((b for b in bids if b[2]), None)
             if not w: continue
             wbid, who, _ = w
@@ -90,13 +94,16 @@ def build():
             if losers: over[who].append(wbid - max(losers))
         for who in act:
             e = [p for p in GR["picks"] if p["who"] == who and p["yr"] == yr and p["rd"] <= 4]
-            if not e or not opt[who] or att[who] < 3: continue
+            late = [p for p in GR["picks"] if p["who"] == who and p["yr"] == yr and p["rd"] >= 8]
+            if not e or not late or not opt[who] or len(att[who]) < 3: continue
             rows.append({"yr": yr, "who": who, "points": act[who],
                          "wins": WINS.get((yr, who)),
-                         "waiver claims": att[who],
+                         "waiver claims": len(att[who]),
                          "points per $": wire[who] / max(spent[who], 1),
                          "overpay $": statistics.mean(over[who]) if over[who] else 0.0,
                          "early busts": sum(1 for p in e if p["val"] < -50),
+                         # mirror of a bust: a late pick that beat its slot by 50+
+                         "late steals": sum(1 for p in late if p["val"] > 50),
                          "lineup %": act[who] / opt[who] * 100})
     return rows
 
@@ -168,14 +175,21 @@ def main():
     print(f"  {'manager':22}" + "".join(f"{f[:12]:>14}" for f in FEATURES))
     ranks = {}
     for f in FEATURES:
-        hi_good = f in ("waiver claims", "points per $", "lineup %")
+        hi_good = f in ("waiver claims", "points per $", "lineup %", "late steals")
         order = sorted(who_list, key=lambda w: -statistics.mean(agg[w][f]) if hi_good
                        else statistics.mean(agg[w][f]))
         for i, w in enumerate(order, 1): ranks.setdefault(w, {})[f] = i
-    for w in sorted(who_list, key=lambda w: statistics.mean(ranks[w].values())):
+    # Order by what the fitted model predicts from behaviour alone, so the
+    # ordering is the model's opinion rather than an unweighted rank average.
+    def predicted(w):
+        return sum(beta[1 + j] * (statistics.mean(agg[w][f]) - mu[f]) / sd[f]
+                   for j, f in enumerate(FEATURES))
+    pred_wins = {w: predicted(w) for w in who_list}
+    for w in sorted(who_list, key=lambda w: -pred_wins[w]):
         mark = " <<<" if w in ("mikeion", "Gordonulus") else ""
         print(f"  {w:22}" + "".join(f"{ranks[w][f]:>14}" for f in FEATURES) + mark)
-    json.dump({"rows": rows, "ranks": ranks, "n_ranked": len(who_list), "beta": dict(zip(FEATURES, beta[1:])),
+    json.dump({"rows": rows, "ranks": ranks, "n_ranked": len(who_list),
+               "pred_wins": pred_wins, "beta": dict(zip(FEATURES, beta[1:])),
                "loo_r2": best_r2, "lam": best_lam},
               open(OUT / "predict_quality.json", "w"), indent=1)
 

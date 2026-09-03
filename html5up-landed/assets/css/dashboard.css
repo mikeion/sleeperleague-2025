@@ -124,3 +124,15 @@
 
 #standings-table td, #power-table td { padding: 0.5em 0.6em; }
 .rank-me { font-weight: bold; }
+
+/* Phones: stack avatar over name so nothing truncates */
+@media screen and (max-width: 736px) {
+	.matchup-card { padding: 0.9em 0.8em; }
+	.matchup-card .teams { gap: 0.4em; }
+	.matchup-card .team, .matchup-card .team.right { flex-direction: column; text-align: center; gap: 0.3em; }
+	.matchup-card .team .who strong { white-space: normal; font-size: 1em; line-height: 1.2; }
+	.matchup-card .team .who small { display: block; line-height: 1.3; }
+	.matchup-card .score { min-width: 4.5em; font-size: 1.1em; }
+	.matchup-card .detail { flex-direction: column; gap: 0.1em; text-align: center; }
+	.week-bar { flex-direction: column; align-items: flex-start; }
+}

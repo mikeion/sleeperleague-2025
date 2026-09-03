@@ -1,0 +1,45 @@
+name: Weekly projections snapshot
+
+# Thursday morning (before the first game) locks this week's projections,
+# intervals, and win probabilities. Tuesday morning archives the final stat
+# lines for the week just played. Each run commits the data files, which
+# Netlify then deploys. Times are UTC: 13:00 UTC is 9am Eastern.
+on:
+  schedule:
+    - cron: "0 13 * * 4"   # Thursday
+    - cron: "0 13 * * 2"   # Tuesday
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Archive projections and actuals
+        working-directory: data-extraction
+        run: python3 archive_projections.py
+
+      - name: Lock this week's projections (Thursday only)
+        if: github.event.schedule == '0 13 * * 4' || github.event_name == 'workflow_dispatch'
+        working-directory: data-extraction
+        run: python3 week_report.py
+
+      - name: Commit data
+        run: |
+          git config user.name "snapshot-bot"
+          git config user.email "snapshot-bot@users.noreply.github.com"
+          git add data-extraction/output/sleeper/projections html5up-landed/assets/data
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+          else
+            git commit -m "Weekly snapshot $(date -u +%Y-%m-%d)"
+            git push
+          fi

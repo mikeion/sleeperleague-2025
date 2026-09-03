@@ -30,7 +30,7 @@ def main():
     rng = random.Random(2026)
     state = fetch("https://api.sleeper.app/v1/state/nfl")
     season, week = state["season"], max(int(state["week"]), 1)
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1 and sys.argv[1].isdigit():
         week = int(sys.argv[1])
     league = fetch(f"https://api.sleeper.app/v1/league/{LEAGUE_ID}")
     users = fetch(f"https://api.sleeper.app/v1/league/{LEAGUE_ID}/users")
@@ -101,6 +101,12 @@ def main():
               "calibration_seasons": CALIBRATION_SEASONS,
               "managers": sorted(managers.values(), key=lambda m: -m["p50"]), "matchups": out_games}
     (DATA / "weeks").mkdir(parents=True, exist_ok=True)
+    locked = DATA / "weeks" / f"{season}_w{week:02d}.json"
+    if locked.exists() and "--force" not in sys.argv:
+        # The first snapshot is the prediction of record. Rerunning after kickoff
+        # would quietly replace it with numbers that already know the scores.
+        print(f"week {week} is already locked at {locked}; pass --force to overwrite", file=sys.stderr)
+        return
     text = json.dumps(report, separators=(",", ":"))
     (DATA / "week_report.json").write_text(text)
     (DATA / "weeks" / f"{season}_w{week:02d}.json").write_text(text)

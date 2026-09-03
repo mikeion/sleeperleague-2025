@@ -1834,6 +1834,10 @@ async function renderWeeklyRecap(selectedWeek = null) {
             container.innerHTML = '<p>No matchup data available for this week yet.</p>';
             return;
         }
+        if (!weekMatchups.some(m => m.points > 0)) {
+            container.innerHTML = `<p>Week ${recapWeek} has not kicked off yet. The <a href="index.html">home page</a> has the matchups and win probabilities.</p>`;
+            return;
+        }
 
         // Fetch rosters and users if not already loaded
         if (!rostersData || !usersData || rostersData.length === 0 || usersData.length === 0) {

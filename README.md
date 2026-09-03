@@ -20,7 +20,10 @@ A dashboard for tracking our fantasy league stats. Built using the Sleeper API t
 cd data-extraction
 python3 archive_projections.py   # Sleeper weekly projections + actuals, 2018 to now
 python3 draft_report.py          # writes html5up-landed/assets/data/draft_report.json
+python3 week_report.py           # locks this week's projections, intervals, and win probabilities
 ```
+
+The homepage reads the weekly snapshots in `assets/data/weeks/` to show win probabilities next to live scores and to grade past weeks on the model scorecard. Snapshots are never rewritten once a week is played.
 
 Run the archive Thursday morning each week so the pre-game projections are captured, and again Tuesday for the final stat lines. The intervals on the report come from the empirical distribution of RotoWire's misses in the archived seasons, by position and projection band, with starters simulated independently.
 

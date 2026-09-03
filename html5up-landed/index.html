@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Fantasy League Dashboard</title>
+		<title>Fat Man's Fantasy</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/dashboard.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	</head>
-	<body class="is-preload landing">
+	<body class="is-preload">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -26,110 +26,72 @@
 					</nav>
 				</header>
 
-			<!-- Banner -->
-				<section id="banner">
-					<div class="content">
-						<header>
-							<h2 id="league-name">Loading League...</h2>
-							<p id="league-subtitle">League stats and insights</p>
-						</header>
-					</div>
-					<a href="#one" class="goto-next scrolly">Next</a>
-				</section>
-
-			<!-- One - Current Standings -->
-				<section id="one" class="spotlight style1 bottom">
-					<span class="image fit main"><img src="images/pic02.jpg" alt="" /></span>
-					<div class="content">
-						<div class="container">
-							<header class="major">
-								<h2>Current Season Standings</h2>
-								<p id="current-week-display">Loading...</p>
-							</header>
-							<div id="standings-preview"></div>
-							<ul class="actions special">
-								<li><a href="season.html" class="button">View Full Season Stats</a></li>
-							</ul>
-						</div>
-					</div>
-					<a href="#two" class="goto-next scrolly">Next</a>
-				</section>
-
-			<!-- Two - This Week -->
-				<section id="two" class="spotlight style2 right">
-					<span class="image fit main"><img src="images/pic03.jpg" alt="" /></span>
-					<div class="content">
-						<header>
-							<h2>This Week's Action</h2>
-							<p id="weekly-subtitle">Latest matchups and highlights</p>
-						</header>
-						<div id="weekly-preview"></div>
-						<ul class="actions">
-							<li><a href="weekly.html" class="button">View Weekly Recap</a></li>
-						</ul>
-					</div>
-					<a href="#three" class="goto-next scrolly">Next</a>
-				</section>
-
-			<!-- Three - Dynasty Rankings -->
-				<section id="three" class="spotlight style3 left">
-					<span class="image fit main bottom"><img src="images/pic04.jpg" alt="" /></span>
-					<div class="content">
-						<header>
-							<h2>Dynasty Legends</h2>
-							<p>Career statistics spanning some of the league history (2016-present)</p>
-						</header>
-						<div id="alltime-preview"></div>
-						<ul class="actions">
-							<li><a href="alltime.html" class="button">View Dynasty Rankings</a></li>
-						</ul>
-					</div>
-					<a href="#four" class="goto-next scrolly">Next</a>
-				</section>
-
-			<!-- Four - Quick Stats Grid -->
-				<section id="four" class="wrapper style1 special fade-up">
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
 					<div class="container">
 						<header class="major">
-							<h2>What's Inside</h2>
-							<p>Track league performance and history</p>
+							<h2 id="league-name">Fat Man's Fantasy</h2>
+							<p id="league-subtitle">Loading...</p>
 						</header>
-						<div class="box alt">
-							<div class="row gtr-uniform">
-								<section class="col-4 col-6-medium col-12-xsmall">
-									<span class="icon solid alt major fa-chart-area"></span>
-									<h3>Power Rankings</h3>
-									<p>Visual rankings based on wins, points, and strength of schedule.</p>
+
+						<section id="week-section" style="margin-bottom: 60px;">
+							<div class="week-bar">
+								<h2 id="week-title">Week</h2>
+								<div class="week-controls">
+									<button id="week-prev" class="button small" title="Previous week">&larr;</button>
+									<select id="week-select"></select>
+									<button id="week-next" class="button small" title="Next week">&rarr;</button>
+								</div>
+							</div>
+							<p id="week-note" class="week-note"></p>
+							<div id="matchup-grid" class="matchup-grid"><p>Loading matchups...</p></div>
+						</section>
+
+						<section id="scorecard-section" style="margin-bottom: 60px;">
+							<h2>Model Scorecard</h2>
+							<p id="scorecard-note">How the projections have done so far. A prediction is locked every Thursday and graded once the week is played.</p>
+							<div id="scorecard" class="scorecard"></div>
+						</section>
+
+						<div class="row">
+							<div class="col-6 col-12-medium">
+								<section id="standings-section">
+									<h2>Standings</h2>
+									<div class="table-wrapper">
+										<table id="standings-table" class="alt">
+											<thead><tr><th>#</th><th>Manager</th><th>W-L</th><th>PF</th><th>PA</th></tr></thead>
+											<tbody></tbody>
+										</table>
+									</div>
 								</section>
-								<section class="col-4 col-6-medium col-12-xsmall">
-									<span class="icon solid alt major fa-trophy"></span>
-									<h3>Dynasty Rankings</h3>
-									<p>Career statistics, championships, and win rates spanning some of the league history (2016-present).</p>
-								</section>
-								<section class="col-4 col-6-medium col-12-xsmall">
-									<span class="icon solid alt major fa-chart-line"></span>
-									<h3>Weekly Trends</h3>
-									<p>Scoring heatmaps and line charts showing performance over time.</p>
-								</section>
-								<section class="col-4 col-6-medium col-12-xsmall">
-									<span class="icon solid alt major fa-exchange-alt"></span>
-									<h3>Waiver Wire</h3>
-									<p>FAAB spending, waiver activity, and recent pickups.</p>
-								</section>
-								<section class="col-4 col-6-medium col-12-xsmall">
-									<span class="icon solid alt major fa-handshake"></span>
-									<h3>Trade Tracker</h3>
-									<p>Complete trade history with player details.</p>
-								</section>
-								<section class="col-4 col-6-medium col-12-xsmall">
-									<span class="icon solid alt major fa-fire"></span>
-									<h3>Weekly Highlights</h3>
-									<p>Top scores, blowouts, and close matchups from each week.</p>
+							</div>
+							<div class="col-6 col-12-medium">
+								<section id="power-section">
+									<h2>Power Score</h2>
+									<p class="week-note">Points per game and this week's projected median, so a hot start and a good roster both count.</p>
+									<div class="table-wrapper">
+										<table id="power-table" class="alt">
+											<thead><tr><th>#</th><th>Manager</th><th>PPG</th><th>Proj</th><th>Score</th></tr></thead>
+											<tbody></tbody>
+										</table>
+									</div>
 								</section>
 							</div>
 						</div>
+
+						<section id="links-section" style="margin-top: 40px;">
+							<h2>More</h2>
+							<ul class="actions">
+								<li><a href="draft-report.html" class="button">Draft Report</a></li>
+								<li><a href="season.html" class="button">Season View</a></li>
+								<li><a href="weekly.html" class="button">Weekly Recap</a></li>
+								<li><a href="alltime.html" class="button">Dynasty Rankings</a></li>
+								<li><a href="wrapped.html" class="button">2025 Wrapped</a></li>
+							</ul>
+						</section>
+
 					</div>
-				</section>
+				</div>
 
 			<!-- Footer -->
 				<footer id="footer">
@@ -149,13 +111,7 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script src="assets/js/league-data.js"></script>
-		<script>
-			// Initialize home page with preview data
-			document.addEventListener('DOMContentLoaded', async () => {
-				await initHomePage();
-			});
-		</script>
+		<script src="assets/js/dashboard.js"></script>
 
 	</body>
 </html>

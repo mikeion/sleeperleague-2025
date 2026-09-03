@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Draft Report - Fantasy League Dashboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/draft-report.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<h1 id="logo"><a href="index.html">Fantasy Dashboard</a></h1>
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="season.html">Season View</a></li>
+							<li><a href="weekly.html">Weekly Recap</a></li>
+							<li><a href="alltime.html">Dynasty Rankings</a></li>
+							<li><a href="draft-report.html">Draft Report</a></li>
+							<li><a href="wrapped.html" class="button primary">2025 Wrapped</a></li>
+						</ul>
+					</nav>
+				</header>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style1">
+					<div class="container">
+						<header class="major">
+							<h2 id="report-title">Draft Report</h2>
+							<p id="report-subtitle">How the draft shook out, and what it means for Week 1</p>
+						</header>
+
+						<section id="cards" style="margin-bottom: 60px;">
+							<h2>Final Report</h2>
+							<div id="card-grid" class="card-grid"><p>Loading...</p></div>
+						</section>
+
+						<section id="projections" style="margin-bottom: 60px;">
+							<h2 id="projection-title">Projected Week 1</h2>
+							<p>Each team's best possible lineup. The bar is the middle 80% of simulated outcomes, the marker is the median. Sleeper shows you the median and nothing else.</p>
+							<div class="chart-container tall">
+								<canvas id="projection-chart"></canvas>
+							</div>
+						</section>
+
+						<section id="matchups" style="margin-bottom: 60px;">
+							<h2 id="matchup-title">Week 1 Win Probabilities</h2>
+							<p>From the same simulations. When the bar sits near the middle, the projections cannot tell the two teams apart and the lineup with more variance is the one to want.</p>
+							<div id="matchup-list"></div>
+						</section>
+
+						<section id="reach" style="margin-bottom: 60px;">
+							<h2>The Reachers and the Cowards</h2>
+							<p>How far each pick landed from its Sleeper ADP, averaged over the draft. Below each manager: their single biggest reach.</p>
+							<div class="chart-container">
+								<canvas id="reach-chart"></canvas>
+							</div>
+							<h3 style="margin-top: 40px;">Do the reaches pay off?</h3>
+							<p id="history-blurb"></p>
+							<div class="table-wrapper">
+								<table id="history-table">
+									<thead>
+										<tr>
+											<th>Manager</th>
+											<th>Reaches</th>
+											<th>Reach return</th>
+											<th>Other picks</th>
+											<th>Other return</th>
+											<th>Verdict</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</section>
+
+						<section id="positions" style="margin-bottom: 60px;">
+							<h2>Position Rankings</h2>
+							<p>Projected season points drafted at each position. Darker is better.</p>
+							<div class="table-wrapper">
+								<table id="position-table" class="position-table">
+									<thead></thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</section>
+
+						<section id="lineups" style="margin-bottom: 60px;">
+							<h2>Lineups</h2>
+							<div style="margin-bottom: 20px;">
+								<label for="lineup-select" style="font-size: 0.9em; margin-right: 10px;">Manager:</label>
+								<select id="lineup-select" style="padding: 8px 12px; font-size: 0.9em; border-radius: 4px; border: 1px solid #ccc;"></select>
+							</div>
+							<div class="table-wrapper">
+								<table id="lineup-table">
+									<thead>
+										<tr><th>Slot</th><th>Player</th><th>Team</th><th>Bye</th><th>Proj</th></tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+							<h3 style="margin-top: 40px;">Draft picks</h3>
+							<div class="table-wrapper">
+								<table id="picks-table">
+									<thead>
+										<tr><th>Pick</th><th>Player</th><th>Pos</th><th>ADP</th><th>vs ADP</th><th>Season proj</th></tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</section>
+
+						<section id="method">
+							<h3>How the numbers are made</h3>
+							<p id="method-text"></p>
+						</section>
+
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="copyright">
+						<li>&copy; Fantasy League Dashboard</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/draft-report.js"></script>
+
+	</body>
+</html>

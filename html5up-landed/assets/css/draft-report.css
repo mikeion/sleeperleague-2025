@@ -1,0 +1,114 @@
+/* Draft report: cards, matchup bars, position heat table. */
+
+.card-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.25em;
+}
+
+@media screen and (max-width: 736px) {
+	.card-grid { grid-template-columns: 1fr; }
+}
+
+.report-card {
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	padding: 1.1em 1.25em;
+	background: #ffffff;
+	border: solid 1px rgba(144, 144, 144, 0.25);
+	border-radius: 6px;
+}
+
+.report-card img {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	flex: 0 0 56px;
+	object-fit: cover;
+	background: #eee;
+}
+
+.report-card .card-body { flex: 1; min-width: 0; }
+
+.report-card .card-title {
+	font-size: 0.7em;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: #e44c65;
+	margin: 0;
+}
+
+.report-card .card-name {
+	font-weight: bold;
+	color: #1c1d26;
+	margin: 0.1em 0;
+}
+
+.report-card .card-blurb {
+	font-size: 0.85em;
+	color: #7a7b85;
+	margin: 0;
+	line-height: 1.5;
+}
+
+.report-card .card-value {
+	font-weight: bold;
+	white-space: nowrap;
+	color: #1c1d26;
+	font-size: 1.05em;
+}
+
+.chart-container { position: relative; height: 380px; }
+.chart-container.tall { height: 560px; }
+
+.matchup {
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
+	align-items: center;
+	gap: 1em;
+	padding: 0.7em 0;
+	border-bottom: solid 1px rgba(144, 144, 144, 0.25);
+}
+
+.matchup .side { display: flex; align-items: center; gap: 0.6em; }
+.matchup .side.right { justify-content: flex-end; text-align: right; }
+.matchup .side img { width: 36px; height: 36px; border-radius: 50%; background: #eee; }
+.matchup .side .who { line-height: 1.3; }
+.matchup .side .who small { display: block; color: #7a7b85; font-size: 0.75em; }
+
+.prob-bar {
+	position: relative;
+	height: 26px;
+	border-radius: 13px;
+	overflow: hidden;
+	background: #b8bcc9;
+}
+
+.prob-bar .fill {
+	height: 100%;
+	background: #e44c65;
+}
+
+.prob-bar .label {
+	position: absolute;
+	top: 0;
+	line-height: 26px;
+	font-size: 0.8em;
+	font-weight: bold;
+	color: #fff;
+	padding: 0 0.7em;
+}
+
+.prob-bar .label.left { left: 0; }
+.prob-bar .label.right { right: 0; }
+
+.position-table th, .position-table td { text-align: center; padding: 0.5em 0.4em; }
+.position-table th img { width: 32px; height: 32px; border-radius: 50%; display: block; margin: 0 auto 4px; background: #eee; }
+.position-table th small { font-size: 0.7em; display: block; }
+.position-table td.cell { color: #fff; font-weight: bold; border-radius: 4px; }
+.position-table td.cell small { display: block; font-weight: normal; font-size: 0.7em; opacity: 0.9; }
+
+.verdict-good { color: #2e8b57; font-weight: bold; }
+.verdict-bad { color: #e44c65; font-weight: bold; }
+.verdict-meh { color: #7a7b85; }

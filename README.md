@@ -10,6 +10,19 @@ A dashboard for tracking our fantasy league stats. Built using the Sleeper API t
 - Weekly scoring trends and power rankings
 - Trade history
 - **2025 Season Wrapped** - Spotify Wrapped-style season highlights
+- **Draft Report** - post-draft cards, projected lineups with 80% intervals, Week 1 win probabilities, reach history
+
+## Draft Report
+
+`draft-report.html` is built from a static JSON file, so it loads instantly and makes no API calls. Rebuild it with:
+
+```bash
+cd data-extraction
+python3 archive_projections.py   # Sleeper weekly projections + actuals, 2018 to now
+python3 draft_report.py          # writes html5up-landed/assets/data/draft_report.json
+```
+
+Run the archive Thursday morning each week so the pre-game projections are captured, and again Tuesday for the final stat lines. The intervals on the report come from the empirical distribution of RotoWire's misses in the archived seasons, by position and projection band, with starters simulated independently.
 
 ## 2025 Wrapped
 

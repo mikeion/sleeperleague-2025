@@ -1,5 +1,5 @@
 // Sleeper API Configuration
-let CURRENT_LEAGUE_ID = '1257482235834028032'; // 2025 season
+let CURRENT_LEAGUE_ID = '1389689478104231936'; // 2026 season
 const SPORT = 'nfl';
 
 // API Endpoints - these will be dynamic based on selected season
@@ -227,8 +227,9 @@ function combineTeamData(rosters, users) {
             wins: roster.settings.wins,
             losses: roster.settings.losses,
             ties: roster.settings.ties || 0,
-            pointsFor: roster.settings.fpts + (roster.settings.fpts_decimal / 100),
-            pointsAgainst: roster.settings.fpts_against + (roster.settings.fpts_against_decimal / 100),
+            // Sleeper omits these fields until a week has been scored
+            pointsFor: (roster.settings.fpts || 0) + (roster.settings.fpts_decimal || 0) / 100,
+            pointsAgainst: (roster.settings.fpts_against || 0) + (roster.settings.fpts_against_decimal || 0) / 100,
             players: roster.players || []
         };
     }).sort((a, b) => {
@@ -3010,8 +3011,14 @@ async function initWrapped() {
     if (!container) return;
 
     try {
-        // Calculate wrapped data for current season
-        const wrappedData = await calculateWrappedData(CURRENT_LEAGUE_ID);
+        // Wrapped covers the most recently completed season. During the
+        // season that is last year's league, not the one in progress.
+        let wrappedLeagueId = CURRENT_LEAGUE_ID;
+        const currentLeague = await fetchData(getLeagueUrl(CURRENT_LEAGUE_ID));
+        if (currentLeague.status !== 'complete' && currentLeague.previous_league_id) {
+            wrappedLeagueId = currentLeague.previous_league_id;
+        }
+        const wrappedData = await calculateWrappedData(wrappedLeagueId);
 
         // Store globally for wrapped.js to access
         window.wrappedData = wrappedData;

@@ -1,14 +1,21 @@
 import { getStore } from '@netlify/blobs';
 
 const API_BASE = 'https://api.sleeper.app/v1';
-const LEAGUE_ID = '1257482235834028032';
+const LEAGUE_ID = '1389689478104231936'; // 2026 season
 
-// List of all season league IDs (add new seasons as they come)
-const SEASONS = [
-    { season: '2022', leagueId: '784850758166863872' },
-    { season: '2023', leagueId: '918746033135255552' },
-    { season: '2024', leagueId: LEAGUE_ID }
-];
+// Every season of the league, newest first, found by following
+// previous_league_id back from the current league.
+async function loadSeasons() {
+    const seasons = [];
+    let leagueId = LEAGUE_ID;
+    while (leagueId) {
+        const league = await fetchData(`${API_BASE}/league/${leagueId}`);
+        if (!league) break;
+        seasons.push({ season: league.season, leagueId });
+        leagueId = league.previous_league_id;
+    }
+    return seasons;
+}
 
 async function fetchData(url) {
     try {
@@ -27,7 +34,7 @@ async function calculateH2HData() {
     const h2hMatrix = {};
     const userNames = {};
 
-    for (const season of SEASONS) {
+    for (const season of await loadSeasons()) {
         try {
             const leagueData = await fetchData(`${API_BASE}/league/${season.leagueId}`);
             const rosters = await fetchData(`${API_BASE}/league/${season.leagueId}/rosters`);

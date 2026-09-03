@@ -1,143 +1,148 @@
 \documentclass[11pt]{article}
-\usepackage[margin=0.85in,letterpaper]{geometry}
+\usepackage[margin=0.9in,letterpaper]{geometry}
 \usepackage[sfdefault,scale=0.97]{plex-sans}
 \usepackage[T1]{fontenc}
 \usepackage{booktabs,array,xcolor,microtype,enumitem}
 \definecolor{muted}{HTML}{6A7078}
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
 \renewcommand{\arraystretch}{1.2}
 \pagestyle{empty}
 \begin{document}
 
-{\fontsize{19}{22}\selectfont\bfseries Why we suck}
+{\fontsize{20}{23}\selectfont\bfseries The Nick Chubb problem}
+
+{\color{muted}\large Why we lose, and the one part of it either of us can do
+anything about.}
+
+\vspace{10pt}
+{\large\bfseries It starts with the worst pick in the league's history}
+
+In 2023 you took Nick Chubb sixth overall. He played two games. Measured against
+what a sixth pick normally returns, that is $-157$ points --- the single worst
+draft pick anyone in this league has made in four years.
+
+The obvious reading is that you cannot draft. That reading is wrong, and the
+reason is in the box score: across those two games Chubb scored 10.6 points a
+game. A healthy early-round pick averages 14. He was not bad. He was hurt.
+
+Do the same for your other five, and the pattern is the same:
 
 \vspace{4pt}
-{\color{muted}\large Four years of our drafts and waiver claims, pulled apart.
-Two things came out.}
-
-\vspace{18pt}
-{\large\bfseries 1.\quad Almost none of it is bad drafting}
-
-\vspace{7pt}
-Across the league, \textbf{72\% of the picks that blew up in rounds 1--4 were
-injuries}, not misjudgements. A healthy early pick averages 14 points a game.
-Here are your six:
-
-\vspace{9pt}
-\begin{tabular}{lllrrrl}
+\begin{tabular}{llllrrrl}
 \toprule
-Year & Rd & Player & Games & Pts/gm & vs slot & \\
+Year & Pick & Player & Age & Games & Pts/gm & vs slot & \\
 \midrule
-2023 & R1 & Nick Chubb & 2 & 10.6 & -157 & injured \\
-2022 & R4 & Elijah Mitchell & 4 & 6.2 & -94 & injured \\
-2025 & R3 & Mike Evans & 3 & 9.0 & -87 & injured \\
-2023 & R4 & Cam Akers & 7 & 5.9 & -78 & injured \\
-2024 & R4 & Rashee Rice & 4 & 13.5 & -71 & injured \\
-2022 & R3 & Kyle Pitts & 10 & 6.2 & -51 & \textbf{played badly} \\
+2023 & 6 & Nick Chubb & 28 & 2 & 10.6 & -157 & injured \\
+2022 & 47 & Elijah Mitchell & 24 & 4 & 6.2 & -94 & injured \\
+2025 & 39 & Mike Evans & 32 & 3 & 9.0 & -87 & injured \\
+2023 & 51 & Cam Akers & 24 & 7 & 5.9 & -78 & injured \\
+2024 & 52 & Rashee Rice & 24 & 4 & 13.5 & -71 & injured \\
+2022 & 38 & Kyle Pitts & 22 & 10 & 6.2 & -51 & \textbf{played badly} \\
 \bottomrule
 \end{tabular}
 
-\vspace{9pt}
-Rashee Rice was scoring 13.5 a game and played four of them. Chubb was at 10.6
-and played two. \textbf{You have one genuine miss in four years} --- Kyle Pitts,
-who played ten games and was bad. Everything else was a knee.
+Rashee Rice was scoring 13.5 a game --- better than a typical first-rounder ---
+and played four of them. Mike Evans played three. Cam Akers seven. In four years
+of drafting, you have made exactly \textbf{one} pick that was simply wrong: Kyle
+Pitts, who stayed healthy for ten games and was bad anyway.
+
+This is not personal bad luck either. Of the 36 picks that blew up in rounds 1--4
+across the whole league, \textbf{26 were injuries} --- 72\%, with a 95\% interval
+of $[56\%,\,84\%]$. Almost nobody in this league is losing seasons because they
+misjudged a player. They are losing them because a knee went.
 
 \vspace{6pt}
-Out of 36 such busts league-wide, 26 were injuries: \textbf{72\%}, with a 95\%
-interval of $[56\%,\,84\%]$.
+{\large\bfseries But there is a pattern, and it is not the one you would guess}
 
-\vspace{18pt}
-{\large\bfseries 2.\quad But you draft young, and young is where things break}
+Look at the age column again. Mitchell 24. Akers 24. Rice 24. Pitts 22. Four of
+your six were players who had not yet turned 25.
 
-\vspace{7pt}
-Splitting every early-round running back, receiver and tight end in the league by
-age at the time he was drafted:
+Split every early-round running back, receiver and tight end in the league that
+way:
 
-\vspace{9pt}
+\vspace{4pt}
 \begin{tabular}{lrrlr}
 \toprule
 Age when drafted & Picks & Bust rate & 95\% interval & Avg value \\
 \midrule
 Under 25    & 77 & \textbf{23\%} & $[15\%,\,34\%]$ & $-5.1$ \\
 25 to 28    & 89 & \textbf{8\%}  & $[4\%,\,15\%]$  & $+2.3$ \\
-29 and over & 37 & 16\%            & $[7\%,\,31\%]$  & $+1.4$ \\
+29 and over & 37 & 16\%          & $[7\%,\,31\%]$  & $+1.4$ \\
 \bottomrule
 \end{tabular}
 
-\vspace{10pt}
-The gap between the first two rows is \textbf{16 percentage points}, interval
-$[5,\,26]$; as a ratio, under-25 picks bust \textbf{3.0 times} as often,
-interval $[1.3,\,6.7]$. A two-proportion test gives $z = 2.79$, $p = 0.005$. That
-test assumes a normal approximation, so I also shuffled the age labels 200{,}000
-times and counted how often a gap this large appeared by chance: 1{,}690 times,
-$p = 0.008$. Same answer without the assumption.
+Young players blow up \textbf{three times as often}, ratio $3.0$ with an interval
+of $[1.3,\,6.7]$. Note what the third row does \emph{not} say: the old players are
+fine. ``Avoid the veteran'' is not the lesson here. Avoiding the 23-year-old is.
 
-\vspace{8pt}
-\textbf{You take 67\% of your early skill picks under 25}, interval
-$[42\%,\,85\%]$. The league takes 38\%, interval $[32\%,\,45\%]$. I take 21\%.
-Mitchell, Akers, Rice and Pitts were all 24 or younger. You are not drafting
-badly; you are drafting young, and young is where the variance lives. Bijan and
-Chase are why you keep doing it.
+And this is your signature. \textbf{You take 67\% of your early skill picks under
+25.} The league takes 38\%. I take 21\%. You are not drafting badly --- you are
+drafting young, and young is where the variance lives.
 
-\vspace{18pt}
-{\large\bfseries 3.\quad Three things that did \emph{not} hold up}
+\vspace{6pt}
+{\large\bfseries What a different decision would have looked like}
 
-\vspace{7pt}
-\begin{itemize}[leftmargin=1.4em,itemsep=4pt,topsep=0pt]
-\item \textbf{Age as a straight line.} The correlation between age and games played
-      is $-0.013$, interval $[-0.15,\,+0.13]$. Dead zero. The effect is not
-      ``older is worse'' --- the 29-and-over group is no worse than average. Only
-      the young end is unusual.
-\item \textbf{Avoiding injury-prone players.} Players drafted after a season in
-      which they missed five or more weeks busted 10\% of the time. Players who
-      had been healthy busted 19\%. The obvious heuristic is backwards here,
-      though on only 20 picks.
-\item \textbf{The idea that some of us are simply better.} Year-to-year correlation
-      in season wins across the league is $-0.10$. Top-four finishes repeat 25\%
-      of the time; chance alone gives 29\%. Nobody in this league persists.
-\end{itemize}
+Not hypothetical. These players were on the board within twelve picks of the ones
+you took:
 
-\vspace{18pt}
-{\large\bfseries 4.\quad And my problem is the opposite}
+\vspace{4pt}
+\begin{tabular}{llll}
+\toprule
+You took & Result & Available shortly after & Result \\
+\midrule
+Nick Chubb, 6th (2023)      & $-157$ & A.J. Brown, 12th, age 26   & $+38$ \\
+Cam Akers, 51st (2023)      & $-78$  & DJ Moore, 54th, age 26     & $+77$ \\
+Elijah Mitchell, 47th (2022)& $-94$  & Josh Jacobs, 50th, age 25  & $+141$ \\
+Rashee Rice, 52nd (2024)    & $-71$  & Terry McLaurin, 60th, 29   & $+52$ \\
+Kyle Pitts, 38th (2022)     & $-51$  & Terry McLaurin, 40th, 27   & $+27$ \\
+\bottomrule
+\end{tabular}
 
-\vspace{7pt}
-I put in \textbf{11 waiver claims a season}. The league median is 35. You are at
-35 yourself, which is the one thing you do better than almost anyone here. When
-Nabers went down in week 4 last year I lost a first-round receiver and simply
-never replaced him.
+That is hindsight and should be discounted heavily --- I am choosing the winner
+after the fact, so it is an upper bound on what any rule could have delivered,
+not a forecast. But the shape holds across all six: the prime-age player two or
+three picks later kept playing.
 
-\vspace{18pt}
-{\large\bfseries How the numbers were built, and how far to trust them}
+\vspace{6pt}
+{\large\bfseries So the rule is narrow}
 
-\vspace{7pt}
-Every pick is scored the same way. A player's fantasy points in weeks 1--14 are
-compared against \emph{replacement level} --- what the best freely available
-player at his position scored that season, computed by filling all fourteen
-starting lineups and taking the next man. That difference is then compared
-against what picks at that draft slot typically return, averaged over every pick
-within twelve slots of it. A ``bust'' is a pick landing 50 or more points below
-that, which is roughly three and a half points a week from a starting spot across
-a season.
+Not ``draft better''. Not ``avoid injury-prone players'' --- that one is actually
+backwards: players coming off a season where they missed five or more weeks
+busted 10\% of the time, while the healthy ones busted 19\%.
 
-\vspace{8pt}
-Two reasons to take it seriously: it is not a sample. Every pick and every claim
-either of us has made on Sleeper is in here, so there is no sampling error in the
-descriptive figures --- 67\% of your early picks really were under 25. And the
-age result survived a permutation test, which makes no distributional assumption
-at all.
+Just this: \textbf{in the first four rounds, when two players are close in value
+and one is 23 and the other 26, take the 26-year-old.} It is one decision, four
+times a year, and it is the only thing on this page you control.
 
-\vspace{8pt}
+\vspace{6pt}
+{\large\bfseries How far to trust it}
+
+Two reasons to take it seriously. This is not a sample --- every pick either of us
+has made on Sleeper is in it, so ``67\% of your early picks were under 25'' has no
+sampling error at all. And the age gap survives a permutation test: shuffling the
+age labels 200{,}000 times produced a gap that large 1{,}690 times, $p = 0.008$,
+with no distributional assumption.
+
 Two reasons for caution, which matter more. \textbf{I chose the age bands after
-looking at the data}, and I ran perhaps twenty comparisons over the course of
-this: positions, draft slots, schedule effects, injury history, waiver behaviour,
-lineup efficiency. Bonferroni against twenty tests turns $p = 0.005$ into
-$p = 0.10$. And 36 busts is not many. \textbf{Treat the age finding as the best
-lead we have, not as established} --- the honest test is whether it holds in
-2026, on a season nobody has looked at yet.
+looking at the data}, and I ran perhaps twenty comparisons getting here. Bonferroni
+against twenty tests turns $p = 0.005$ into $p = 0.10$. Thirty-six busts is not
+many. \textbf{Treat this as the best lead available, not as settled} --- the real
+test is whether it holds in 2026, which nobody has looked at.
 
-\vspace{14pt}
-{\color{muted}\small Sleeper data, 2022--2025, 798 draft picks and 1{,}089 waiver
-auctions. A ``bust'' is a pick returning 50+ points less than that draft slot
-normally does, measured against the position's replacement level.}
+\vspace{6pt}
+{\large\bfseries And before this reads as one-sided}
+
+My problem is worse and I have no excuse for it. I put in \textbf{11 waiver claims
+a season}; the league median is 35, and you are at 35 yourself. When Nabers went
+down in week 4 last year I lost a first-round receiver and never replaced him. You
+cannot stop the injury. I did not even respond to it.
+
+\vspace{4pt}
+{\color{muted}\small Sleeper, 2022--2025: 798 draft picks, 1{,}089 waiver auctions.
+A pick's value is its points in weeks 1--14, measured against replacement at that
+position, minus what picks at that draft slot typically return. A ``bust'' lands
+50 or more points below that, about three and a half points a week from a
+starting spot.}
 
 \end{document}

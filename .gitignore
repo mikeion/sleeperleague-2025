@@ -33,3 +33,6 @@ data-extraction/output/sleeper/weekly_stats_byweek*.json
 data-extraction/output/sleeper/h2h_cache.json
 data-extraction/output/variance_inputs.json
 data-extraction/output/multileague/
+
+# LaTeX build artifacts
+*.aux

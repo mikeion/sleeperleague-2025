@@ -2256,8 +2256,10 @@ async function renderUserProfile(username) {
                 if (userEntry) {
                     const [userId, uname] = userEntry;
                     const roster = rosters.find(r => r.owner_id === userId);
+                    const played = roster && ((roster.settings?.wins || 0) + (roster.settings?.losses || 0) + (roster.settings?.ties || 0)) > 0;
 
-                    if (roster) {
+                    // A season with no games yet has nothing to show and would drag every average to zero
+                    if (played) {
                         const wins = roster.settings?.wins || 0;
                         const losses = roster.settings?.losses || 0;
                         const ties = roster.settings?.ties || 0;
@@ -2282,7 +2284,7 @@ async function renderUserProfile(username) {
                         let isEighthPlace = false;
                         let isSacko = false;
                         if (sleeperPlayoffs) {
-                            const yearPlayoffs = sleeperPlayoffs.find(p => p.year === season.season);
+                            const yearPlayoffs = sleeperPlayoffs.find(p => p.year === parseInt(season.season));
                             if (yearPlayoffs) {
                                 isChampion = yearPlayoffs.champion === normalizedUsername;
                                 isRunnerUp = yearPlayoffs.runner_up === normalizedUsername;

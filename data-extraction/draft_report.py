@@ -36,6 +36,7 @@ HISTORY = {"2025": ("1257482235834028032", "1257482235834028033"),
            "2022": ("859910378069577728", "859910379126509568")}
 POSITIONS = ["QB", "RB", "WR", "TE", "K", "DEF"]
 BASE = {"QB": 1, "RB": 2, "WR": 2, "TE": 1, "K": 1, "DEF": 1}
+SKILL = {"QB", "RB", "WR", "TE"}
 FLEX = [{"RB", "WR", "TE"}, {"RB", "WR"}]
 TEAMS = 14
 REACH = 12          # picks early enough to count as a reach
@@ -224,6 +225,26 @@ def main():
                 "img": (f"https://sleepercdn.com/images/team_logos/nfl/{pid.lower()}.png" if pos == "DEF"
                         else f"https://sleepercdn.com/content/nfl/players/thumb/{pid}.jpg")}
 
+    # Every player's rank by projected points above replacement at his position.
+    # ADP is the market before the news; this is what the market knows now.
+    proj_by_pos = collections.defaultdict(list)
+    for pid, st in season_proj.items():
+        pos = (players.get(pid) or {}).get("position")
+        if pos in BASE and st.get("pts_half_ppr"):
+            proj_by_pos[pos].append(st["pts_half_ppr"])
+    repl_now = replacement(proj_by_pos)
+    par_now = {pid: st["pts_half_ppr"] - repl_now[(players.get(pid) or {}).get("position")]
+               for pid, st in season_proj.items()
+               if (players.get(pid) or {}).get("position") in BASE and st.get("pts_half_ppr")}
+    ranked = sorted(par_now, key=lambda x: -par_now[x])
+    value_rank = {pid: i for i, pid in enumerate(ranked, 1)}
+    # what a pick at slot n usually buys: PAR of the players ranked near n, with the
+    # window clipped symmetrically so the top picks are not compared to a thinner tail
+    def expected(n):
+        w = min(WINDOW, n - 1)
+        return statistics.mean(par_now[pid] for pid in ranked[n - 1 - w:n + w])
+    expected_par = {n: max(expected(n), 0.0) for n in range(1, TEAMS * 20)}
+
     managers = {}
     for u in users:
         uname = u["display_name"].lower()
@@ -244,7 +265,12 @@ def main():
         info.update({"pick": p["pick_no"], "round": p["round"], "slot": p["draft_slot"],
                      "adp": adp if adp and adp < 999 else None,
                      "diff": round(p["pick_no"] - adp, 1) if adp and adp < 999 else None,
-                     "season_proj": round((season_proj.get(p["player_id"]) or {}).get("pts_half_ppr") or 0, 1)})
+                     "season_proj": round((season_proj.get(p["player_id"]) or {}).get("pts_half_ppr") or 0, 1),
+                     "value_rank": value_rank.get(p["player_id"]),
+                     # below replacement is worth zero, not negative: the cost of a bad pick is
+                     # bounded by what the slot would have bought
+                     "value_pts": round(max(par_now[p["player_id"]], 0.0) - expected_par[p["pick_no"]], 1)
+                                  if p["player_id"] in par_now else None})
         m["picks"].append(info)
         m["slot"] = p["draft_slot"]
 
@@ -255,6 +281,10 @@ def main():
                       "avg": round(statistics.mean(diffs), 1),
                       "biggest_reach": min((p for p in m["picks"] if p["diff"] is not None), key=lambda p: p["diff"]),
                       "biggest_steal": max((p for p in m["picks"] if p["diff"] is not None), key=lambda p: p["diff"])}
+        # kickers and defenses are excluded: their projections are noise and everyone takes them last
+        valued = [p for p in m["picks"] if p["value_pts"] is not None and p["pos"] in SKILL]
+        m["value"] = {"best": max(valued, key=lambda p: p["value_pts"]),
+                      "worst": min(valued, key=lambda p: p["value_pts"])}
         by_pos = collections.defaultdict(float)
         for p in m["picks"]:
             by_pos[p["pos"]] += p["season_proj"]
@@ -320,15 +350,15 @@ def main():
     spread = lambda m: m["week_p90"] - m["week_p10"]
     boom = max(ms, key=spread)
     steady = min(ms, key=spread)
-    steal = max(ms, key=lambda m: m["reach"]["biggest_steal"]["diff"])
-    reach = min(ms, key=lambda m: m["reach"]["biggest_reach"]["diff"])
+    steal = max(ms, key=lambda m: m["value"]["best"]["value_pts"])
+    reach = min(ms, key=lambda m: m["value"]["worst"]["value_pts"])
     coward = min(ms, key=lambda m: m["reach"]["avg_abs"])
     blazer = max(ms, key=lambda m: m["reach"]["avg_abs"])
     bomb = max(ms, key=lambda m: m["bye_bomb"]["starters"])
     rookies = max(ms, key=lambda m: m["rookies"])
     oldest = max((m for m in ms if m["starter_age"]), key=lambda m: m["starter_age"])
     king = max(ms, key=lambda m: m["positions_led"])
-    sp, rp = steal["reach"]["biggest_steal"], reach["reach"]["biggest_reach"]
+    sp, rp = steal["value"]["best"], reach["value"]["worst"]
     tight = min(matchup_out, key=lambda g: abs(g["p_a"] - 0.5))
     cards = [
         card("Best on paper", best, f"{best['week_p50']:.1f} pts",
@@ -337,10 +367,14 @@ def main():
              f"Widest 80% interval in Week {week}. The lineup you want when you are the underdog."),
         card("Steady Eddie", steady, f"{steady['week_p10']:.0f} to {steady['week_p90']:.0f}",
              f"Narrowest 80% interval in Week {week}. The lineup you want when you are the favorite."),
-        card("Steal of the draft", steal, f"{sp['diff']:+.0f} picks",
-             f"{sp['name']} at {sp['pick']}, ADP {sp['adp']:.0f}."),
-        card("Biggest reach", reach, f"{rp['diff']:+.0f} picks",
-             f"{rp['name']} at {rp['pick']}, ADP {rp['adp']:.0f}."),
+        card("Steal of the draft", steal, f"{sp['value_pts']:+.0f} pts",
+             f"{sp['name']} at {sp['pick']}, now projected the {ordinal(sp['value_rank'])} most valuable player"
+             + (f" (ADP {sp['adp']:.0f})." if sp['adp'] else ".")
+             + " Points above what that pick usually buys."),
+        card("Biggest reach", reach, f"{rp['value_pts']:+.0f} pts",
+             f"{rp['name']} at {rp['pick']}, now projected {ordinal(rp['value_rank'])} in value"
+             + (f" (ADP {rp['adp']:.0f})." if rp['adp'] else ".")
+             + " Projections, not ADP, so suspensions and injuries count."),
         card("Certified coward", coward, f"{coward['reach']['avg_abs']:.1f} picks off",
              "Never strayed from ADP. The board drafted for them."),
         card("Trailblazer", blazer, f"{blazer['reach']['avg_abs']:.1f} picks off",
@@ -367,6 +401,11 @@ def main():
         "managers": sorted(ms, key=lambda m: m["slot"]), "matchups": matchup_out, "cards": cards,
     }, separators=(",", ":")))
     print(f"wrote {OUT} ({OUT.stat().st_size // 1024} KB)", file=sys.stderr)
+
+
+def ordinal(n):
+    suffix = "th" if 10 <= n % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(n % 10, "th")
+    return f"{n}{suffix}"
 
 
 def managers_by(ms, username):

@@ -252,18 +252,7 @@ function populateSlides(manager) {
         document.querySelector('#slide-champion .slide-label').textContent = 'STILL IN PROGRESS';
     }
 
-    // Slide 12: Top 5 Scores
-    const top5List = document.getElementById('top5-list');
-    top5List.innerHTML = wrappedData.league.top5Scores.map((score, i) => `
-        <div class="leaderboard-item">
-            <span class="leaderboard-rank">${i + 1}</span>
-            <div class="leaderboard-info">
-                <div class="leaderboard-name">${score.manager}</div>
-                <div class="leaderboard-week">Week ${score.week}</div>
-            </div>
-            <span class="leaderboard-score">${score.score.toFixed(1)}</span>
-        </div>
-    `).join('');
+    // Slide 12: Top 5 Scores is drawn by createTop5Chart()
 
     // Slide 13: Biggest Blowout
     if (wrappedData.league.biggestBlowout) {

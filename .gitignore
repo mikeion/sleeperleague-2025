@@ -36,3 +36,4 @@ data-extraction/output/multileague/
 
 # LaTeX build artifacts
 *.aux
+__pycache__/

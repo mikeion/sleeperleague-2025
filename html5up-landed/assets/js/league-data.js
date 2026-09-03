@@ -2621,3 +2621,420 @@ function renderPointsChart(userData) {
         }
     });
 }
+
+// ========================================
+// WRAPPED FEATURE - Season Highlights
+// ========================================
+
+// Calculate all wrapped data for a given season
+async function calculateWrappedData(leagueId) {
+    try {
+        // Fetch base data
+        const [league, rosters, users, nflState] = await Promise.all([
+            fetchData(getLeagueUrl(leagueId)),
+            fetchData(getRostersUrl(leagueId)),
+            fetchData(getUsersUrl(leagueId)),
+            fetchData(NFL_STATE_URL)
+        ]);
+
+        // Cache players if needed
+        if (!playersData || Object.keys(playersData).length === 0) {
+            playersData = await fetchData(`${API_BASE}/players/nfl`);
+        }
+
+        // Determine last completed week
+        // If league is complete, scan from week 18 down to find last week with scores
+        // If league is in progress, use the NFL state week
+        const isLeagueComplete = league.status === 'complete';
+        const maxWeek = isLeagueComplete ? 18 : Math.min(nflState.week, 18);
+        let lastCompletedWeek = 1;
+
+        console.log('Wrapped: League status:', league.status, 'Max week to check:', maxWeek);
+
+        for (let week = maxWeek; week >= 1; week--) {
+            try {
+                const weekMatchups = await fetchData(getMatchupsUrl(leagueId, week));
+                // Check if any team has points (not just the first one)
+                const hasScores = weekMatchups && weekMatchups.some(m => m.points && m.points > 0);
+                if (hasScores) {
+                    lastCompletedWeek = week;
+                    console.log('Wrapped: Found last completed week:', week);
+                    break;
+                }
+            } catch (e) {
+                continue;
+            }
+        }
+
+        // Fetch all weekly matchups
+        const weeks = Array.from({ length: lastCompletedWeek }, (_, i) => i + 1);
+        const allMatchups = await Promise.all(
+            weeks.map(week => fetchData(getMatchupsUrl(leagueId, week)))
+        );
+
+        // Build team data
+        const teams = rosters.map(roster => {
+            const user = users.find(u => u.user_id === roster.owner_id);
+            return {
+                rosterId: roster.roster_id,
+                oderId: roster.owner_id,
+                username: user?.display_name?.toLowerCase() || user?.username || 'unknown',
+                displayName: getDisplayName({ userId: user?.display_name?.toLowerCase(), username: user?.display_name?.toLowerCase(), name: user?.display_name }),
+                teamName: user?.metadata?.team_name || user?.display_name || 'Unknown',
+                wins: roster.settings.wins,
+                losses: roster.settings.losses,
+                ties: roster.settings.ties || 0,
+                pointsFor: roster.settings.fpts + (roster.settings.fpts_decimal || 0) / 100,
+                pointsAgainst: roster.settings.fpts_against + (roster.settings.fpts_against_decimal || 0) / 100
+            };
+        });
+
+        // Calculate weekly scores for each team
+        const teamWeeklyData = {};
+        teams.forEach(team => {
+            teamWeeklyData[team.rosterId] = {
+                ...team,
+                weeklyScores: [],
+                weeklyOpponents: [],
+                weeklyResults: [] // { week, score, opponentScore, won, margin }
+            };
+        });
+
+        // Process all matchups
+        allMatchups.forEach((weekMatchups, weekIndex) => {
+            const week = weekIndex + 1;
+
+            // Group by matchup_id
+            const matchupPairs = {};
+            weekMatchups.forEach(m => {
+                if (!matchupPairs[m.matchup_id]) matchupPairs[m.matchup_id] = [];
+                matchupPairs[m.matchup_id].push(m);
+            });
+
+            // Process each matchup pair
+            Object.values(matchupPairs).forEach(pair => {
+                if (pair.length !== 2) return;
+
+                const [team1Matchup, team2Matchup] = pair;
+                const team1 = teamWeeklyData[team1Matchup.roster_id];
+                const team2 = teamWeeklyData[team2Matchup.roster_id];
+
+                if (!team1 || !team2) return;
+
+                const score1 = team1Matchup.points || 0;
+                const score2 = team2Matchup.points || 0;
+                const margin = Math.abs(score1 - score2);
+
+                team1.weeklyScores.push(score1);
+                team1.weeklyOpponents.push(team2.rosterId);
+                team1.weeklyResults.push({
+                    week,
+                    score: score1,
+                    opponentScore: score2,
+                    opponentRosterId: team2.rosterId,
+                    opponentName: team2.displayName,
+                    won: score1 > score2,
+                    margin: score1 > score2 ? margin : -margin
+                });
+
+                team2.weeklyScores.push(score2);
+                team2.weeklyOpponents.push(team1.rosterId);
+                team2.weeklyResults.push({
+                    week,
+                    score: score2,
+                    opponentScore: score1,
+                    opponentRosterId: team1.rosterId,
+                    opponentName: team1.displayName,
+                    won: score2 > score1,
+                    margin: score2 > score1 ? margin : -margin
+                });
+            });
+        });
+
+        // Calculate stats for each team
+        const allWeeklyScores = [];
+        Object.values(teamWeeklyData).forEach(team => {
+            team.weeklyScores.forEach((score, i) => {
+                allWeeklyScores.push({
+                    rosterId: team.rosterId,
+                    displayName: team.displayName,
+                    week: i + 1,
+                    score
+                });
+            });
+
+            // Calculate averages and extremes
+            const scores = team.weeklyScores;
+            team.avgScore = scores.length > 0 ? scores.reduce((a, b) => a + b, 0) / scores.length : 0;
+            team.highScore = scores.length > 0 ? Math.max(...scores) : 0;
+            team.lowScore = scores.length > 0 ? Math.min(...scores) : 0;
+            team.highWeek = scores.indexOf(team.highScore) + 1;
+            team.lowWeek = scores.indexOf(team.lowScore) + 1;
+
+            // Standard deviation (consistency)
+            if (scores.length > 0) {
+                const variance = scores.reduce((sum, s) => sum + Math.pow(s - team.avgScore, 2), 0) / scores.length;
+                team.stdDev = Math.sqrt(variance);
+            } else {
+                team.stdDev = 0;
+            }
+
+            // Expected wins (luck calculation)
+            let expectedWins = 0;
+            allMatchups.forEach(weekMatchups => {
+                const myMatchup = weekMatchups.find(m => m.roster_id === team.rosterId);
+                if (myMatchup && myMatchup.points) {
+                    const beaten = weekMatchups.filter(m =>
+                        m.roster_id !== team.rosterId && m.points < myMatchup.points
+                    ).length;
+                    expectedWins += beaten / (weekMatchups.length - 1);
+                }
+            });
+            team.expectedWins = expectedWins;
+            team.luckIndex = team.wins - expectedWins;
+
+            // Find closest game
+            const sortedResults = [...team.weeklyResults].sort((a, b) =>
+                Math.abs(a.margin) - Math.abs(b.margin)
+            );
+            team.closestGame = sortedResults[0] || null;
+        });
+
+        // Calculate H2H rivalries for each team
+        Object.values(teamWeeklyData).forEach(team => {
+            const h2h = {};
+
+            team.weeklyResults.forEach(result => {
+                if (!h2h[result.opponentRosterId]) {
+                    h2h[result.opponentRosterId] = {
+                        opponentName: result.opponentName,
+                        wins: 0,
+                        losses: 0,
+                        totalMargin: 0
+                    };
+                }
+                if (result.won) {
+                    h2h[result.opponentRosterId].wins++;
+                } else {
+                    h2h[result.opponentRosterId].losses++;
+                }
+                h2h[result.opponentRosterId].totalMargin += result.margin;
+            });
+
+            // Find nemesis (most losses against) and victim (most wins against)
+            const opponents = Object.entries(h2h);
+
+            const nemesis = opponents
+                .filter(([_, data]) => data.losses > 0)
+                .sort((a, b) => b[1].losses - a[1].losses || a[1].totalMargin - b[1].totalMargin)[0];
+
+            const victim = opponents
+                .filter(([_, data]) => data.wins > 0)
+                .sort((a, b) => b[1].wins - a[1].wins || b[1].totalMargin - a[1].totalMargin)[0];
+
+            team.nemesis = nemesis ? {
+                name: nemesis[1].opponentName,
+                record: `${nemesis[1].wins}-${nemesis[1].losses}`,
+                lossesAgainst: nemesis[1].losses
+            } : null;
+
+            team.victim = victim ? {
+                name: victim[1].opponentName,
+                record: `${victim[1].wins}-${victim[1].losses}`,
+                winsAgainst: victim[1].wins
+            } : null;
+
+            // Store full h2h record for charts
+            team.h2hRecord = Object.values(h2h).map(opp => ({
+                opponent: opp.opponentName,
+                wins: opp.wins,
+                losses: opp.losses
+            }));
+        });
+
+        // League-wide stats
+        const sortedByScore = [...allWeeklyScores].sort((a, b) => b.score - a.score);
+        const top5Scores = sortedByScore.slice(0, 5);
+
+        // Find biggest blowout and heartbreaker
+        let biggestBlowout = null;
+        let heartbreaker = null;
+
+        Object.values(teamWeeklyData).forEach(team => {
+            team.weeklyResults.forEach(result => {
+                if (result.won && result.margin > 0) {
+                    if (!biggestBlowout || result.margin > biggestBlowout.margin) {
+                        biggestBlowout = {
+                            winner: team.displayName,
+                            loser: result.opponentName,
+                            week: result.week,
+                            margin: result.margin,
+                            winnerScore: result.score,
+                            loserScore: result.opponentScore
+                        };
+                    }
+                }
+                if (!result.won && Math.abs(result.margin) < 5) {
+                    if (!heartbreaker || Math.abs(result.margin) < Math.abs(heartbreaker.margin)) {
+                        heartbreaker = {
+                            loser: team.displayName,
+                            winner: result.opponentName,
+                            week: result.week,
+                            margin: Math.abs(result.margin),
+                            loserScore: result.score,
+                            winnerScore: result.opponentScore
+                        };
+                    }
+                }
+            });
+        });
+
+        // Get standings order
+        const standings = [...Object.values(teamWeeklyData)]
+            .sort((a, b) => {
+                if (b.wins !== a.wins) return b.wins - a.wins;
+                return b.pointsFor - a.pointsFor;
+            });
+
+        standings.forEach((team, index) => {
+            team.rank = index + 1;
+        });
+
+        // Calculate league totals
+        const totalGames = lastCompletedWeek * (teams.length / 2);
+        const totalPoints = Object.values(teamWeeklyData)
+            .reduce((sum, team) => sum + team.pointsFor, 0);
+
+        // Load playoff results
+        let playoffResults = null;
+        try {
+            const playoffsResponse = await fetch('/assets/data/sleeper_playoff_results.json');
+            if (playoffsResponse.ok) {
+                const playoffsData = await playoffsResponse.json();
+                playoffResults = playoffsData.find(p => p.year === parseInt(league.season));
+            }
+        } catch (e) {
+            console.log('Could not load playoff results');
+        }
+
+        // Map playoff finishes to each team
+        const getPlayoffFinish = (username) => {
+            if (!playoffResults) return null;
+            const normalized = username.toLowerCase();
+            if (playoffResults.champion === normalized) return { place: 1, label: 'Champion', emoji: '🏆' };
+            if (playoffResults.runner_up === normalized) return { place: 2, label: 'Runner-up', emoji: '🥈' };
+            if (playoffResults.third_place === normalized) return { place: 3, label: '3rd Place', emoji: '🥉' };
+            if (playoffResults.fourth_place === normalized) return { place: 4, label: '4th Place', emoji: '' };
+            if (playoffResults.fifth_place === normalized) return { place: 5, label: '5th Place', emoji: '' };
+            if (playoffResults.sixth_place === normalized) return { place: 6, label: '6th Place', emoji: '' };
+            if (playoffResults.seventh_place === normalized) return { place: 7, label: '7th Place', emoji: '' };
+            if (playoffResults.eighth_place === normalized) return { place: 8, label: '8th Place', emoji: '' };
+            if (playoffResults.sacko === normalized) return { place: 14, label: 'Sacko', emoji: '💩' };
+            return null; // Didn't make playoffs
+        };
+
+        // Add playoff finish to each team
+        Object.values(teamWeeklyData).forEach(team => {
+            team.playoffFinish = getPlayoffFinish(team.username);
+        });
+
+        // Calculate superlatives
+        const sortedByLuck = [...Object.values(teamWeeklyData)].sort((a, b) => b.luckIndex - a.luckIndex);
+        const sortedByConsistency = [...Object.values(teamWeeklyData)].sort((a, b) => a.stdDev - b.stdDev);
+        const sortedByAvgScore = [...Object.values(teamWeeklyData)].sort((a, b) => b.avgScore - a.avgScore);
+
+        return {
+            season: league.season,
+            weeksCompleted: lastCompletedWeek,
+            managers: Object.fromEntries(
+                Object.values(teamWeeklyData).map(team => [
+                    team.username,
+                    {
+                        rosterId: team.rosterId,
+                        username: team.username,
+                        displayName: team.displayName,
+                        teamName: team.teamName,
+                        record: { wins: team.wins, losses: team.losses, ties: team.ties },
+                        regularSeasonRank: team.rank,
+                        playoffFinish: team.playoffFinish,
+                        pointsFor: team.pointsFor,
+                        pointsAgainst: team.pointsAgainst,
+                        avgScore: team.avgScore,
+                        peakWeek: { week: team.highWeek, score: team.highScore },
+                        valleyWeek: { week: team.lowWeek, score: team.lowScore },
+                        consistencyScore: team.stdDev,
+                        luckIndex: team.luckIndex,
+                        expectedWins: team.expectedWins,
+                        nemesis: team.nemesis,
+                        victim: team.victim,
+                        closestGame: team.closestGame,
+                        weeklyScores: team.weeklyScores,
+                        h2hRecord: team.h2hRecord
+                    }
+                ])
+            ),
+            league: {
+                totalGames,
+                totalPoints,
+                champion: playoffResults?.champion ? USERNAME_TO_NAME[playoffResults.champion] || playoffResults.champion : null,
+                runnerUp: playoffResults?.runner_up ? USERNAME_TO_NAME[playoffResults.runner_up] || playoffResults.runner_up : null,
+                top5Scores: top5Scores.map(s => ({
+                    manager: s.displayName,
+                    week: s.week,
+                    score: s.score
+                })),
+                biggestBlowout,
+                heartbreaker,
+                superlatives: {
+                    luckiest: sortedByLuck[0]?.displayName,
+                    unluckiest: sortedByLuck[sortedByLuck.length - 1]?.displayName,
+                    mostConsistent: sortedByConsistency[0]?.displayName,
+                    leastConsistent: sortedByConsistency[sortedByConsistency.length - 1]?.displayName,
+                    highestAverage: sortedByAvgScore[0]?.displayName
+                }
+            }
+        };
+    } catch (error) {
+        console.error('Error calculating wrapped data:', error);
+        throw error;
+    }
+}
+
+// Initialize wrapped page
+async function initWrapped() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const managerParam = urlParams.get('manager');
+
+    // Show loading
+    const container = document.getElementById('wrapped-container');
+    if (!container) return;
+
+    try {
+        // Calculate wrapped data for current season
+        const wrappedData = await calculateWrappedData(CURRENT_LEAGUE_ID);
+
+        // Store globally for wrapped.js to access
+        window.wrappedData = wrappedData;
+
+        // Dispatch event to signal data is ready
+        window.dispatchEvent(new CustomEvent('wrappedDataReady', { detail: wrappedData }));
+
+        // If manager specified, start the experience
+        if (managerParam && wrappedData.managers[managerParam.toLowerCase()]) {
+            window.selectedManager = managerParam.toLowerCase();
+            window.dispatchEvent(new CustomEvent('managerSelected', { detail: managerParam.toLowerCase() }));
+        } else {
+            // Show manager selector
+            window.dispatchEvent(new CustomEvent('showManagerSelector'));
+        }
+
+    } catch (error) {
+        console.error('Error initializing wrapped:', error);
+        container.innerHTML = `
+            <div class="wrapped-error">
+                <h2>Oops!</h2>
+                <p>Could not load wrapped data. Please try again.</p>
+            </div>
+        `;
+    }
+}

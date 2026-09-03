@@ -9,7 +9,7 @@ const DRAFT_ID = '1389689478104231937';
 const MY_SLOT = 9;
 const TEAMS = 14;
 const ROUNDS = 14;
-const POLL_MS = 5000;
+const POLL_MS = 2500;
 
 // avg round each manager takes their first player at a position (2022-25 drafts)
 const MANAGERS = {
@@ -337,6 +337,14 @@ async function init() {
 	render();
 	poll();
 	setInterval(poll, POLL_MS);
+
+	// Browsers throttle setInterval in background tabs — often to once a minute.
+	// Poll immediately whenever the page becomes visible again so switching back
+	// from Sleeper always shows current picks.
+	document.addEventListener('visibilitychange', () => {
+		if (!document.hidden) poll();
+	});
+	window.addEventListener('focus', poll);
 }
 
 if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', init);

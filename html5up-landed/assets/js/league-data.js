@@ -195,6 +195,7 @@ async function loadDashboardData() {
 
         // Render all sections
         renderStandings(teamsData);
+        await renderPostseason(teamsData);
         renderPowerRankings(teamsData);
         await renderWeeklyStats(teamsData, lastCompletedWeek);
         await renderManagerAnalysis(teamsData, lastCompletedWeek);
@@ -260,6 +261,43 @@ function renderStandings(teams) {
             </tr>
         `;
     }).join('');
+}
+
+// Final standings once the playoffs are done, or the playoff picture while the season runs
+async function renderPostseason(teams) {
+    const tbody = document.querySelector('#postseason-table tbody');
+    if (!tbody) return;
+    const note = document.getElementById('postseason-note');
+    const settings = leagueData.settings || {};
+    const playoffTeams = settings.playoff_teams || 8;
+    const playoffStart = settings.playoff_week_start || 15;
+    const byUser = {};
+    teams.forEach((t, i) => { byUser[(t.username || '').toLowerCase()] = { ...t, seed: i + 1 }; });
+    const record = (t) => `${t.wins}-${t.losses}${t.ties > 0 ? `-${t.ties}` : ''}`;
+    const row = (finish, t) => `<tr><td>${finish}</td><td>${getDisplayName({ username: (t.username || '').toLowerCase(), name: t.username })}</td>` +
+        `<td>${t.teamName}</td><td>${record(t)}</td><td>${t.seed}</td></tr>`;
+
+    if (leagueData.status === 'complete') {
+        let results = null;
+        try {
+            const res = await fetch('/assets/data/sleeper_playoff_results.json');
+            if (res.ok) results = (await res.json()).find(p => p.year === parseInt(leagueData.season));
+        } catch (e) { /* no file */ }
+        if (!results) {
+            note.textContent = 'Playoff results for this season have not been recorded yet.';
+            tbody.innerHTML = '';
+            return;
+        }
+        const places = [['champion', '🏆 1st'], ['runner_up', '🥈 2nd'], ['third_place', '🥉 3rd'], ['fourth_place', '4th'],
+            ['fifth_place', '5th'], ['sixth_place', '6th'], ['seventh_place', '7th'], ['eighth_place', '8th'], ['sacko', '💩 Sacko']];
+        note.textContent = `Final standings after the playoffs. Seed is the regular-season finish; the Sacko is the loser of the consolation bracket.`;
+        tbody.innerHTML = places.filter(([k]) => results[k] && byUser[results[k]])
+            .map(([k, label]) => row(label, byUser[results[k]])).join('');
+    } else {
+        note.textContent = `Playoffs start Week ${playoffStart} with ${playoffTeams} teams. This is the picture if the season ended today.`;
+        tbody.innerHTML = teams.slice(0, playoffTeams).map((t, i) => row(`In (${i + 1})`, { ...t, seed: i + 1 })).join('') +
+            teams.slice(playoffTeams).map((t, i) => row('Out', { ...t, seed: playoffTeams + i + 1 })).join('');
+    }
 }
 
 // Calculate power rankings

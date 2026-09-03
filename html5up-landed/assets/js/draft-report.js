@@ -223,7 +223,7 @@ function renderLineups() {
 			`<tr><td>${p.slot}</td><td>${p.name}</td><td>${p.team || ''}</td><td>${p.bye || ''}</td><td>${fmt1(p.proj)}</td></tr>`
 		).join('') + `<tr><th colspan="4">Total</th><th>${fmt1(m.week_proj)}</th></tr>`;
 		document.querySelector('#picks-table tbody').innerHTML = m.picks.map(p =>
-			`<tr><td>${p.round}.${String(p.pick - (p.round - 1) * REPORT.managers.length)}</td><td>${p.name}</td><td>${p.pos}</td>` +
+			`<tr><td>${p.round}.${String(p.pick - (p.round - 1) * REPORT.managers.length)}</td><td>${p.name}</td><td>${p.pos}</td><td>${p.team || ''}</td>` +
 			`<td>${p.adp === null ? '—' : fmt1(p.adp)}</td><td>${p.diff === null ? '—' : signed(p.diff)}</td><td>${fmt1(p.season_proj)}</td>` +
 			`<td>${p.value_rank ?? '—'}</td><td>${p.value_pts === null || p.value_pts === undefined ? '—' : signed(p.value_pts)}</td></tr>`
 		).join('');
